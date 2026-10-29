@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marexi — EU Funding &amp; Public Subsidies</title>
+<meta name="description" content="EU funding, CDTI projects and public subsidies awarded to Tecnología Marina Ximo, S.L. (Marexi). FEDER, FSE+, Xunta de Galicia.">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<style>
+  :root{
+    --navy:#081627;--navy2:#0c2036;--surface:#102b47;--line:#1e415f;
+    --ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;
+    --accent:#ff6a4d;--cyan:#37c6c9;
+    --maxw:960px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+  h1,h2{line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:16px}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(6,15,29,.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(55,198,201,.1)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;max-width:1280px;margin:0 auto;padding:0 48px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.05rem}
+  .brand img{height:44px}
+  .back{font-size:.82rem;color:var(--muted);font-weight:600}
+  .back:hover{color:var(--ink)}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#0a1524}
+
+  /* HERO */
+  .hero{padding:72px 0 48px;text-align:center}
+  .hero h1{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:16px}
+  .hero p{color:var(--muted);font-size:1.05rem;max-width:60ch;margin:0 auto}
+
+  /* GRANTS */
+  .grants{padding:0 0 64px}
+  .grant-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:24px}
+  .grant-card img{width:100%;display:block;background:#fff}
+  .grant-card.pdf-card{padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .grant-card.pdf-card .label{color:var(--muted);font-size:.94rem}
+  .grant-card.pdf-card .label strong{display:block;color:var(--ink);font-size:1rem;margin-bottom:4px}
+  .btn-dl{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0a1524;font-weight:700;
+          font-size:.9rem;padding:10px 20px;border-radius:999px;white-space:nowrap;transition:transform .15s}
+  .btn-dl:hover{transform:translateY(-2px)}
+
+  /* LEGAL NOTE */
+  .legal-note{border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:.84rem;line-height:1.7}
+  .legal-note a{color:var(--cyan);text-decoration:underline}
+
+  footer{margin-top:auto;border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:.85rem}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <img src="../logo_marexi_light.png" alt="Marexi">
+    </a>
+    <div class="nav-right">
+      <div class="lang">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Transparencia">Transparency</div>
+    <h1 data-es="Financiación Europea y Subvenciones Públicas">EU Funding &amp; Public Subsidies</h1>
+    <p data-es="Tecnología Marina Ximo, S.L. ha recibido financiación pública de la Unión Europea, el Gobierno de España y la Xunta de Galicia en apoyo de la I+D, la innovación y el empleo. La documentación oficial se muestra a continuación.">Tecnología Marina Ximo, S.L. has received public funding from the European Union, the Spanish Government and the Xunta de Galicia in support of R&amp;D, innovation and employment. Official documentation is shown below.</p>
+  </div>
+</section>
+
+<!-- GRANT POSTERS -->
+<section class="grants">
+  <div class="wrap">
+
+    <div class="grant-card">
+      <img src="https://marexi.com/wp-content/uploads/2023/09/Anisakischeck_CDTI.png"
+           alt="CDTI — AnisakisCHECK® project" loading="lazy">
+    </div>
+
+    <div class="grant-card">
+      <img src="https://marexi.com/wp-content/uploads/2023/02/APC.-Publicidad-web-2022.png"
+           alt="APC 2022 — EU co-financed project" loading="lazy">
+    </div>
+
+    <div class="grant-card">
+      <img src="https://marexi.com/wp-content/uploads/2025/09/IG285.2024_Cartel_publicidade_web_Re-acciona.png"
+           alt="Re-acciona — Xunta de Galicia innovation programme 2024" loading="lazy">
+    </div>
+
+    <div class="grant-card">
+      <img src="https://marexi.com/wp-content/uploads/2025/09/prog_incentivos_contratacion_conta_allea.png"
+           alt="Hiring incentives — Xunta de Galicia employment programme" loading="lazy">
+    </div>
+
+    <div class="grant-card">
+      <img src="https://marexi.com/wp-content/uploads/2022/05/feder.png"
+           alt="European Regional Development Fund (FEDER)" loading="lazy">
+    </div>
+
+    <div class="grant-card pdf-card">
+      <div class="label">
+        <strong data-es="TR342C — Aviso oficial de financiación pública">TR342C — Official public funding notice</strong>
+        <span data-es="Xunta de Galicia · Programa de fomento del empleo">Xunta de Galicia · Employment promotion programme</span>
+      </div>
+      <a class="btn-dl" href="https://marexi.com/wp-content/uploads/2025/09/TR342C_CARTEL-WEB_231286102.pdf"
+         target="_blank" rel="noopener noreferrer" data-es="↓ Descargar PDF">↓ Download PDF</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- LEGAL NOTE -->
+<div class="legal-note">
+  <div class="wrap">
+    Tecnología Marina Ximo, S.L. · CIF B36944999 · Jacinto Benavente 22, 36202 Vigo, Pontevedra, Spain.<br>
+    <span data-es="Para consultas sobre nuestros programas de financiación, contáctenos en">For questions about our funding programmes, please contact us at</span> <a href="mailto:info@marexi.com">info@marexi.com</a>.
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 Tecnología Marina Ximo, S.L.</span>
+    <a href="/" data-es="← Volver a Marexi">← Back to Marexi</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    });
+    document.getElementById('btn-en').classList.toggle('on', lang==='en');
+    document.getElementById('btn-es').classList.toggle('on', lang==='es');
+    try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
+    if(saved === 'es') setLang('es');
+  })();
+</script>
+
+</body>
+</html>

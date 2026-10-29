@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marexi — Certifications</title>
+<meta name="description" content="Certifications and quality recognitions awarded to Tecnología Marina Ximo, S.L. (Marexi).">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<style>
+  :root{
+    --navy:#081627;--navy2:#0c2036;--surface:#102b47;--line:#1e415f;
+    --ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;
+    --accent:#ff6a4d;--cyan:#37c6c9;
+    --maxw:960px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+  h1,h2{line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:16px}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(6,15,29,.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(55,198,201,.1)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;max-width:1280px;margin:0 auto;padding:0 48px}
+  .brand img{height:44px;width:auto;display:block}
+  .back{font-size:.82rem;color:var(--muted);font-weight:600}
+  .back:hover{color:var(--ink)}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#0a1524}
+
+  /* HERO */
+  .hero{padding:72px 0 48px;text-align:center}
+  .hero h1{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:16px}
+  .hero p{color:var(--muted);font-size:1.05rem;max-width:60ch;margin:0 auto}
+
+  /* CARDS */
+  .section{padding:0 0 64px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+  .logo-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;transition:background .2s,border-color .2s}
+  .logo-card:hover{background:rgba(55,198,201,.06);border-color:rgba(55,198,201,.2)}
+  .logo-card .logo-img{background:#fff;padding:24px 20px;display:flex;align-items:center;justify-content:center;min-height:130px}
+  .logo-card .logo-img img{max-height:90px;max-width:180px;width:auto;object-fit:contain}
+  .logo-card .logo-body{padding:16px 20px 20px}
+  .logo-card .logo-body p{font-size:.85rem;color:var(--muted);line-height:1.55}
+  .text-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;transition:background .2s}
+  .text-card:hover{background:rgba(55,198,201,.06);border-color:rgba(55,198,201,.2)}
+  .text-card .badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 12px;border-radius:999px;background:rgba(55,198,201,.12);color:var(--cyan);
+    border:1px solid rgba(55,198,201,.3);margin-bottom:14px}
+  .text-card h3{font-size:1rem;font-weight:700;margin-bottom:8px}
+  .text-card p{color:var(--muted);font-size:.9rem;line-height:1.6}
+
+  /* LEGAL NOTE */
+  .legal-note{border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:.84rem;line-height:1.7}
+  .legal-note a{color:var(--cyan);text-decoration:underline}
+
+  footer{margin-top:auto;border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:.85rem}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <img src="../logo_marexi_light.png" alt="Marexi">
+    </a>
+    <div class="nav-right">
+      <div class="lang">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Calidad y Reconocimiento">Quality &amp; Recognition</div>
+    <h1 data-es="Certificaciones">Certifications</h1>
+    <p data-es="Certificaciones oficiales y reconocimientos institucionales otorgados a Tecnología Marina Ximo, S.L. en apoyo a la innovación, la tecnología y el empleo.">Official certifications and institutional recognitions awarded to Tecnología Marina Ximo, S.L. in support of innovation, technology and employment.</p>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section">
+  <div class="wrap">
+    <div class="grid">
+
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/empresa-entidades-01.png" alt="Pyme Innovadora"></div>
+        <div class="logo-body"><p data-es="Certificada como pyme innovadora por el Ministerio de Economía, Industria y Competitividad de España.">Certified as an innovative SME by the Ministerio de Economía, Industria y Competitividad of Spain.</p></div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/empresa-entidades-02.png" alt="Xunta de Galicia I.E.B.T."></div>
+        <div class="logo-body"><p data-es="Calificada por la Xunta de Galicia como empresa de la Iniciativa de Empleo de Base Tecnológica (I.E.B.T.). Respaldada por el Fondo Social Europeo.">Qualified by the Xunta de Galicia as a Technology-Based Employment Initiative (I.E.B.T.) company. Backed by the EU Social Fund.</p></div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/empresa-entidades-03.png" alt="CDTI 7º FORONEOTEC"></div>
+        <div class="logo-body"><p data-es="Empresa seleccionada en el 7º foro FORONEOTEC, evento de referencia para empresas de base tecnológica en el sector gallego de pesca y acuicultura.">Selected company at the 7th FORONEOTEC forum, a benchmark event for technology-based companies in the Galician fisheries sector.</p></div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/empresa-entidades-04.png" alt="ENISA"></div>
+        <div class="logo-body"><p data-es="Empresa financiada por ENISA (Empresa Nacional de Innovación) mediante préstamos participativos.">Company financed by ENISA (Empresa Nacional de Innovación) through participative loans.</p></div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/ce-mark.png" alt="CE Marking"></div>
+        <div class="logo-body"><p data-es="Todos los productos Marexi llevan el marcado CE, que certifica la plena conformidad con las normas aplicables de la UE en materia de salud, seguridad y protección del medio ambiente.">All Marexi products carry the CE marking, certifying full conformity with applicable EU health, safety and environmental protection standards.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL NOTE -->
+<div class="legal-note">
+  <div class="wrap">
+    Tecnología Marina Ximo, S.L. · CIF B36944999 · Jacinto Benavente 22, 36202 Vigo, Pontevedra, Spain.<br>
+    <span data-es="Para consultas, contáctenos en">For questions, contact us at</span> <a href="mailto:info@marexi.com">info@marexi.com</a>.
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 Tecnología Marina Ximo, S.L.</span>
+    <a href="/" data-es="← Volver a Marexi">← Back to Marexi</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    });
+    document.getElementById('btn-en').classList.toggle('on', lang==='en');
+    document.getElementById('btn-es').classList.toggle('on', lang==='es');
+    try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
+    if(saved === 'es') setLang('es');
+  })();
+</script>
+
+</body>
+</html>

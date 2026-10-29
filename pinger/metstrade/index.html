@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pinger — Objetivos METSTRADE 2026 · Revisión Marexi</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23081627'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23ff6a4d' stroke-width='1.5' opacity='.55'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='%2337c6c9' stroke-width='1.5' opacity='.8'/%3E%3Ccircle cx='16' cy='16' r='2.4' fill='%2337c6c9'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#0b1f30; --muted:#5a6b7a; --faint:#8a99a6; --line:#e2e8ee; --bg:#f5f8fa;
+  --card:#ffffff; --navy:#081627; --navy2:#0d2a44; --orange:#ff6a4d; --cyan:#1f8a8d;
+  --green:#2c7a4b; --amber:#b07d1e; --red:#c0392b;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);line-height:1.5;padding:0 0 130px}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header.top .wrap{max-width:none;margin:0;padding:0 40px}
+.conf{background:var(--navy);color:#9fb3c2;text-align:center;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;padding:7px}
+header.top{background:var(--navy);color:#fff;padding:28px 0 24px}
+header.top .back{display:inline-block;color:#7fd3d5;font-size:.82rem;text-decoration:none;margin-bottom:11px}
+header.top .back:hover{color:#fff}
+header.top .eyebrow{color:var(--orange);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+header.top h1{font-size:1.62rem;letter-spacing:-.02em;margin-top:5px}
+header.top .sub{color:#b9c8d4;font-size:.94rem;max-width:none;margin-top:8px}
+header.top .meta{color:#7f93a3;font-size:.8rem;margin-top:11px}
+
+.namebar{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.namebar label{font-size:.86rem;color:var(--muted);font-weight:600}
+.namebar input{flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:.92rem;outline:none}
+.namebar input:focus{border-color:var(--cyan)}
+
+.intro{color:var(--muted);font-size:.92rem;margin:16px 0 2px;max-width:74ch}
+.toolrow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.legend{font-size:.76rem;color:var(--faint)}
+.expandall{background:transparent;border:0;color:var(--cyan);font-size:.8rem;font-weight:700;cursor:pointer;padding:4px 2px}
+.expandall:hover{text-decoration:underline}
+
+section{margin-top:24px}
+h2{font-size:1.08rem;letter-spacing:-.01em;margin-bottom:3px}
+h2 .n{color:var(--orange)}
+.note{color:var(--muted);font-size:.85rem;margin-bottom:8px;max-width:78ch}
+
+/* ---- compact accordion lead ---- */
+.card{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--line);border-radius:10px;margin-top:8px;overflow:hidden;transition:border-color .15s}
+.card .hd{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;user-select:none}
+.card .hd:hover{background:#fafcfd}
+.dot{flex:0 0 auto;width:9px;height:9px;border-radius:50%;background:#cdd7df}
+.card .co{font-weight:700;color:var(--navy2);font-size:.97rem}
+.card .cc{font-size:.68rem;color:var(--faint);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-left:7px}
+.card .spacer{flex:1}
+.card .stat{font-size:.76rem;color:var(--faint);font-weight:600;white-space:nowrap}
+.card .stand{font-size:.72rem;color:var(--cyan);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;margin-left:2px}
+.card .chev{flex:0 0 auto;color:var(--faint);font-size:.9rem;transition:transform .18s;margin-left:2px}
+.card.open .chev{transform:rotate(90deg)}
+.card .body{display:none;padding:0 14px 14px 33px}
+.card.open .body{display:block}
+.card .why{color:var(--muted);font-size:.88rem;margin:2px 0 11px;max-width:78ch}
+.card .ctrls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.card select{padding:8px 11px;border:1px solid var(--line);border-radius:8px;font-size:.87rem;background:#fff;outline:none;min-width:210px;color:var(--ink)}
+.card select:focus{border-color:var(--cyan)}
+.card .open-link{font-size:.82rem;font-weight:700;color:var(--cyan);text-decoration:none;white-space:nowrap}
+.card .open-link:hover{text-decoration:underline}
+.card textarea{width:100%;margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:.91rem;outline:none;resize:vertical;min-height:42px;font-family:inherit}
+.card textarea:focus{border-color:var(--cyan)}
+
+.general textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:.93rem;min-height:90px;font-family:inherit;outline:none}
+.general textarea:focus{border-color:var(--cyan)}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(8,22,39,.97);backdrop-filter:blur(6px);border-top:1px solid #123;padding:11px 0;z-index:50}
+.bar .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bar .status{color:#8fb0c4;font-size:.82rem;flex:1;min-width:150px}
+.bar .status b{color:#7fd3d5}
+.btn{border:0;border-radius:9px;padding:10px 16px;font-size:.88rem;font-weight:700;cursor:pointer}
+.btn.primary{background:var(--orange);color:#20110c}
+.btn.primary:hover{background:#ff7d63}
+.btn.ghost{background:transparent;color:#cfe0ea;border:1px solid #2a4459}
+.btn.ghost:hover{border-color:#3f6580;color:#fff}
+
+footer{margin-top:32px;color:var(--faint);font-size:.77rem;border-top:1px solid var(--line);padding-top:14px}
+.toast{position:fixed;bottom:74px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--green);color:#fff;padding:9px 17px;border-radius:9px;font-size:.86rem;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:60}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:560px){.card select{min-width:100%}.card .stat{display:none}}
+</style>
+</head>
+<body>
+<div class="conf">Confidencial · Marexi / Pinger · Uso interno</div>
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="../index.html" target="_top">← Pinger</a>
+    <div class="eyebrow">Preparación feria · Vuestra opinión</div>
+    <h1>Objetivos METSTRADE 2026 — Revisión Marexi</h1>
+    <div class="sub">Contactos (marcas, distribuidores e importadores) que proponemos abordar antes de METSTRADE para el Pinger, enfocados en <b>vela pequeña/media (≈8–16 m)</b> y la protección frente a orcas. Pulsa cada contacto para abrirlo y decirnos qué opináis.</div>
+    <div class="meta">METSTRADE 2026 · RAI Ámsterdam · 17–19 noviembre 2026</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="namebar">
+    <label for="who">Tu nombre</label>
+    <input id="who" type="text" placeholder="¿Quién rellena esto? (p. ej. Juan, Marexi)" autocomplete="name">
+  </div>
+
+  <p class="intro">Pulsa un contacto para desplegarlo: elige un <b>estado</b>, deja un <b>comentario</b> y, si quieres, ábrelo con <b>“Abrir ↗”</b> para verlo. Todo se guarda solo en este navegador. Al terminar, pulsa <b>“Enviar comentarios”</b> abajo.</p>
+  <div class="toolrow">
+    <span class="legend">● Sin revisar &nbsp; ● Ya trabajamos &nbsp; ● Conocido &nbsp; ● Prioridad &nbsp; ● Descartar</span>
+    <button class="expandall" id="toggleAll" onclick="toggleAll()">Desplegar todos</button>
+  </div>
+
+  <div id="app"></div>
+
+  <section class="general">
+    <h2><span class="n">+</span> Comentarios generales</h2>
+    <p class="note">¿Falta alguien importante? ¿Otros distribuidores, importadores o astilleros que propongáis? ¿Dudas sobre la regulación (uso de disuasores acústicos desde embarcaciones)? Escríbelo aquí:</p>
+    <textarea id="general" placeholder="Vuestros comentarios generales, contactos adicionales, etc."></textarea>
+  </section>
+
+  <footer>
+    Lista compilada el 7 de septiembre de 2026 (directorio de expositores METSTRADE 2026 + verificación web).
+    Los números de stand son provisionales — se reconfirman en el plano oficial ~4–6 semanas antes de la feria.
+    Vuestros comentarios se guardan solo en este navegador hasta que pulséis “Enviar”.
+  </footer>
+</div>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="status" id="savestate">Se guarda automáticamente…</div>
+    <button class="btn ghost" onclick="copyAll()">Copiar todo</button>
+    <button class="btn ghost" onclick="downloadTxt()">Descargar</button>
+    <button class="btn primary" onclick="sendMail()">Enviar comentarios ✉</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Guardado</div>
+
+<script>
+/* ============================================================
+   CONFIG — cambia SOLO esta línea para el destinatario del botón "Enviar"
+   ============================================================ */
+var RECIPIENT = "guido@leeus.de";
+
+var STATES = [
+  { v:"", label:"Sin revisar", short:"Sin revisar", color:"#cdd7df" },
+  { v:"trabajamos", label:"Ya trabajamos con ellos", short:"Ya trabajamos", color:"#2c7a4b" },
+  { v:"conocido", label:"Buen contacto / conocido", short:"Conocido", color:"#1f8a8d" },
+  { v:"prioridad", label:"Prioridad alta", short:"Prioridad", color:"#ff6a4d" },
+  { v:"descartar", label:"No encaja / descartar", short:"Descartar", color:"#c0392b" }
+];
+
+var GROUPS = [
+  { key:"A", title:"Prioridad — mercado ibérico / orcas", note:"La mayor palanca para vela pequeña y la zona de orcas (Gibraltar / Galicia / Vizcaya).", items:[
+    { co:"IMNASA", cc:"ES", stand:"12.410", url:"https://www.imnasa.com", why:"Distribuidor nº1 de accesorios náuticos en España (35.000+ referencias), justo en la zona caliente de orcas. El contacto ibérico más importante." },
+    { co:"AD Nautic / Accastillage Diffusion", cc:"FR+", stand:"", url:"https://www.accastillage-diffusion.com", why:"Red de 120+ tiendas franquiciadas en FR + ES + PT + IT — un solo acuerdo cubre toda la costa afectada." },
+    { co:"Jefa Steering", cc:"DK", stand:"", url:"https://www.jefa.com", why:"Fabricante de timones y sistemas de gobierno para veleros — el punto exacto de daño por orcas. El mejor relato de “protege tu timón”." },
+    { co:"SEA.AI", cc:"DE/AT", stand:"01.513", url:"https://www.sea.ai", why:"Vigía con IA que detecta mamíferos marinos y obstáculos — combo complementario “detectar → disuadir”, mismo cliente." }
+  ]},
+  { key:"B", title:"Electrónica de seguridad / náutica", note:"Marcas con canal hacia la vela de crucero — potencial OEM / co-marca / distribución.", items:[
+    { co:"Ocean Signal / ACR", cc:"UK/US", stand:"03.330", url:"https://www.oceansignal.com", why:"Electrónica de seguridad (EPIRB/PLB/MOB) con canal de vela de recreo; una relación llega a ambas marcas." },
+    { co:"Plastimo", cc:"FR", stand:"05.141", url:"https://www.plastimo.com", why:"Referente de seguridad para navegantes (balsas, MOB, boyas); fuerte alcance atlántico/Vizcaya; potencial co-marca/OEM." },
+    { co:"Weatherdock", cc:"DE", stand:"01.123", url:"https://www.easyais.com", why:"Electrónica de seguridad/navegación “Made in Germany” (AIS, MOB) vendida al segmento crucero en 30+ países." },
+    { co:"Wescom Group", cc:"UK", stand:"03.321", url:"https://www.wescom-group.com", why:"Supervivencia marina (Pains Wessex, sMRT MOB) con ~200 distribuidores; apetito por innovación electrónica de seguridad." },
+    { co:"Actisense", cc:"UK", stand:"01.603", url:"https://www.actisense.com", why:"Sensores/interfaces NMEA — aliado técnico/integración si el Pinger ofrece salida de datos al velero conectado." },
+    { co:"Raymarine / Teledyne FLIR", cc:"UK/US", stand:"", url:"https://www.raymarine.com", why:"Gran marca de electrónica de recreo; venta más larga como OEM grande — verificar apetito por acuerdo de accesorios." }
+  ]},
+  { key:"C", title:"Hardware de veleros — co-marketing / bundling", note:"Fabricantes de la “zona de daño” (timón, gobierno, hélice) y equipo de cubierta — mejor para co-marketing “protege tu timón” que para reventa pura.", items:[
+    { co:"Seldén Mast", cc:"SE", stand:"01.775", url:"https://www.seldenmast.com", why:"Palos/jarcia/herrajes para veleros de crucero y regata; amplia red de distribuidores para co-marketing." },
+    { co:"Facnor", cc:"FR", stand:"05.441", url:"https://www.facnor.com", why:"Enrolladores/equipo de cubierta; base francesa = línea directa con la flota de crucero atlántica/Vizcaya." },
+    { co:"Spinlock", cc:"UK", stand:"07.418", url:"https://www.spinlock.co.uk", why:"Herrajes de cubierta + seguridad (línea “Protect”) — encaja con un mensaje de seguridad de tripulación ante encuentros." },
+    { co:"Lewmar", cc:"UK", stand:"", url:"https://www.lewmar.com", why:"Winches + sistemas de gobierno + enorme presencia OEM/distribución en velero de crucero — escala vía la línea de gobierno." },
+    { co:"GORI Propeller", cc:"DK", stand:"", url:"https://gori-propeller.com", why:"Hélices plegables/abatibles para veleros — adyacencia “protege el tren de propulsión”." },
+    { co:"Harken", cc:"US/EU", stand:"", url:"https://www.harken.com", why:"Marca premium de equipo de cubierta crucero/regata — amplio alcance para bundling/co-marketing." }
+  ]},
+  { key:"D", title:"Importadores nacionales por mercado", note:"Rutas hacia los navegantes de los mercados afectados. Portugal tiene poca representación propia — se alcanza vía AD Nautic / IMNASA.", items:[
+    { co:"Nautichandler (Grupo Nautipaints)", cc:"ES", stand:"07.219", url:"https://www.nautichandler.com", why:"Tiendas náuticas de puertos mediterráneos (Palma, Barcelona, Vilanova); alcance Baleares/Med — minorista, secundario a IMNASA." },
+    { co:"Nautifish", cc:"PT", stand:"", url:"https://www.nautifish.com", why:"Tienda/distribuidor portugués de electrónica marina, seguridad y accesorios." },
+    { co:"SlickHull", cc:"PT", stand:"", url:"https://slickhull.pt", why:"Distribuidor exclusivo de productos AD Nautic en Portugal — subdistribuidor natural hacia PT." },
+    { co:"Forniture Nautiche Italiane (FNI)", cc:"IT", stand:"", url:"https://www.fni.it", why:"Mayorista B2B a revendedores/instaladores italianos, 15.000+ refs — socio de estantería ideal." },
+    { co:"Indemar", cc:"IT", stand:"", url:"https://www.indemar.com", why:"Importador/distribuidor italiano de marcas náuticas de prestigio; participante recurrente en METS." },
+    { co:"Seaware", cc:"UK", stand:"", url:"https://www.seaware.co.uk", why:"Mayorista náutico nacional del Reino Unido a tiendas y talleres." }
+  ]}
+];
+
+/* ---------- estado / persistencia ---------- */
+var LSKEY = "marexi_pinger_metstrade_v1";
+var store = load();
+function load(){ try{ return JSON.parse(localStorage.getItem(LSKEY)) || {}; }catch(e){ return {}; } }
+function save(){ localStorage.setItem(LSKEY, JSON.stringify(store)); flashSaved(); updateStatusLine(); }
+function idOf(co){ return co.replace(/[^a-z0-9]+/gi,"_").toLowerCase(); }
+function stateObj(v){ var s=STATES.filter(function(x){return x.v===(v||"");})[0]; return s||STATES[0]; }
+
+var saveTimer=null;
+function flashSaved(){ var t=document.getElementById("toast"); t.classList.add("show"); clearTimeout(saveTimer); saveTimer=setTimeout(function(){ t.classList.remove("show"); },900); }
+function updateStatusLine(){
+  var n=0; GROUPS.forEach(function(g){ g.items.forEach(function(it){
+    var d=store[idOf(it.co)]||{}; if((d.state&&d.state!=="")||(d.comment&&d.comment.trim())) n++;
+  });});
+  var extra=(store.__general&&store.__general.trim())?1:0;
+  document.getElementById("savestate").innerHTML = n? ("Guardado · <b>"+n+"</b> contacto"+(n>1?"s":"")+" con opinión"+(extra?" + comentario general":"")) : "Se guarda automáticamente…";
+}
+
+/* ---------- render ---------- */
+function render(){
+  var app=document.getElementById("app"); app.innerHTML="";
+  GROUPS.forEach(function(g){
+    var sec=document.createElement("section");
+    sec.innerHTML='<h2><span class="n">'+g.key+'.</span> '+g.title+'</h2><p class="note">'+g.note+'</p>';
+    g.items.forEach(function(it){
+      var id=idOf(it.co); var d=store[id]||{}; var st=stateObj(d.state);
+      var card=document.createElement("div"); card.className="card"; card.id="card_"+id;
+      var opts=STATES.map(function(s){ return '<option value="'+s.v+'"'+(d.state===s.v?" selected":"")+'>'+s.label+'</option>'; }).join("");
+      var standTxt = it.stand ? ('<span class="stand">Stand '+it.stand+'</span>') : '';
+      card.innerHTML =
+        '<div class="hd" onclick="toggleCard(\''+id+'\')">'+
+          '<span class="dot" id="dot_'+id+'" style="background:'+st.color+'"></span>'+
+          '<span class="co">'+it.co+'</span><span class="cc">'+it.cc+'</span>'+
+          '<span class="spacer"></span>'+
+          '<span class="stat" id="stat_'+id+'">'+st.short+'</span>'+
+          standTxt+
+          '<span class="chev">›</span>'+
+        '</div>'+
+        '<div class="body">'+
+          '<div class="why">'+it.why+'</div>'+
+          '<div class="ctrls">'+
+            '<select onchange="setState(\''+id+'\',this.value)">'+opts+'</select>'+
+            '<a class="open-link" href="'+it.url+'" target="_blank" rel="noopener">Abrir ↗</a>'+
+          '</div>'+
+          '<textarea placeholder="Comentario (opcional): ¿ya sois clientes? ¿contacto? ¿por qué sí/no?" '+
+          'oninput="setComment(\''+id+'\',this.value)">'+(d.comment||"")+'</textarea>'+
+        '</div>';
+      sec.appendChild(card);
+      setTimeout(function(){ markTouched(id); },0);
+    });
+    app.appendChild(sec);
+  });
+  document.getElementById("who").value = store.__who||"";
+  document.getElementById("general").value = store.__general||"";
+  updateStatusLine();
+}
+function markTouched(id){
+  var c=document.getElementById("card_"+id); if(!c) return;
+  var d=store[id]||{}; var st=stateObj(d.state);
+  var touched=(d.state&&d.state!=="")||(d.comment&&d.comment.trim());
+  c.style.borderLeftColor = touched ? st.color : "var(--line)";
+}
+function toggleCard(id){ document.getElementById("card_"+id).classList.toggle("open"); }
+var allOpen=false;
+function toggleAll(){
+  allOpen=!allOpen;
+  document.querySelectorAll(".card").forEach(function(c){ c.classList.toggle("open",allOpen); });
+  document.getElementById("toggleAll").textContent = allOpen ? "Plegar todos" : "Desplegar todos";
+}
+
+function setState(id,v){
+  store[id]=store[id]||{}; store[id].state=v;
+  var st=stateObj(v);
+  var dot=document.getElementById("dot_"+id); if(dot) dot.style.background=st.color;
+  var stat=document.getElementById("stat_"+id); if(stat) stat.textContent=st.short;
+  markTouched(id); save();
+}
+function setComment(id,v){ store[id]=store[id]||{}; store[id].comment=v; markTouched(id); save(); }
+
+document.addEventListener("input",function(e){
+  if(e.target.id==="who"){ store.__who=e.target.value; save(); }
+  if(e.target.id==="general"){ store.__general=e.target.value; save(); }
+});
+
+/* ---------- export ---------- */
+function buildText(){
+  var who=(store.__who||"").trim();
+  var lines=[];
+  lines.push("Pinger — Revisión objetivos METSTRADE 2026");
+  lines.push(who?("Comentarios de: "+who):"Comentarios de: (sin nombre)");
+  lines.push("");
+  GROUPS.forEach(function(g){
+    var block=[];
+    g.items.forEach(function(it){
+      var d=store[idOf(it.co)]||{};
+      var hasState=d.state&&d.state!=="";
+      var hasCom=d.comment&&d.comment.trim();
+      if(hasState||hasCom){ block.push("  • "+it.co+" ["+stateObj(d.state).label+"]"+(hasCom?(" — "+d.comment.trim()):"")); }
+    });
+    if(block.length){ lines.push(g.key+". "+g.title); lines.push.apply(lines,block); lines.push(""); }
+  });
+  if(store.__general&&store.__general.trim()){ lines.push("Comentarios generales:"); lines.push("  "+store.__general.trim()); lines.push(""); }
+  if(lines.length<=3){ lines.push("(Sin comentarios todavía.)"); }
+  return lines.join("\n");
+}
+function sendMail(){
+  var body=buildText(); var who=(store.__who||"").trim();
+  var subj="Pinger · Revisión objetivos METSTRADE 2026"+(who?(" — "+who):"");
+  window.location.href="mailto:"+RECIPIENT+"?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(body);
+}
+function copyAll(){
+  var t=buildText();
+  if(navigator.clipboard){ navigator.clipboard.writeText(t).then(function(){ toast("Copiado al portapapeles"); }); }
+  else { prompt("Copia el texto:", t); }
+}
+function downloadTxt(){
+  var blob=new Blob([buildText()],{type:"text/plain;charset=utf-8"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+  a.download="PINGER_METSTRADE_revision_Marexi.txt"; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },100); toast("Descargado");
+}
+function toast(msg){ var t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(function(){ t.classList.remove("show"); t.textContent="Guardado"; },1100); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marexi — Experience</title>
+<meta name="description" content="20+ years of applied R&D in marine technology. Sector platform memberships and institutional collaborations of Tecnología Marina Ximo, S.L.">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<style>
+  :root{
+    --navy:#081627;--navy2:#0c2036;--surface:#102b47;--line:#1e415f;
+    --ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;
+    --accent:#ff6a4d;--cyan:#37c6c9;
+    --maxw:960px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+  h1,h2{line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:16px}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(6,15,29,.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(55,198,201,.1)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;max-width:1280px;margin:0 auto;padding:0 48px}
+  .brand img{height:44px;width:auto;display:block}
+  .back{font-size:.82rem;color:var(--muted);font-weight:600}
+  .back:hover{color:var(--ink)}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#0a1524}
+
+  /* HERO */
+  .hero{padding:72px 0 48px;text-align:center}
+  .hero h1{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:16px}
+  .hero p{color:var(--muted);font-size:1.05rem;max-width:60ch;margin:0 auto}
+
+  /* STATS */
+  .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:0 0 56px;text-align:center}
+  .stat strong{display:block;font-size:2.2rem;font-weight:700;color:var(--ink)}
+  .stat span{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+
+  /* SECTION */
+  .section{padding:0 0 64px}
+  .section-title{font-size:1.1rem;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .card h3{font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--cyan)}
+  .card p{color:var(--muted);font-size:.9rem;line-height:1.6}
+  .logo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+  .logo-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;transition:background .2s,border-color .2s}
+  .logo-card:hover{background:rgba(55,198,201,.06);border-color:rgba(55,198,201,.2)}
+  .logo-card .logo-img{background:#fff;padding:20px;display:flex;align-items:center;justify-content:center;min-height:110px}
+  .logo-card .logo-img img{max-height:80px;max-width:160px;width:auto;object-fit:contain}
+  .logo-card .logo-body{padding:12px 16px 16px}
+  .logo-card .logo-body p{font-size:.8rem;color:var(--muted);line-height:1.5}
+
+  /* LEGAL NOTE */
+  .legal-note{border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:.84rem;line-height:1.7}
+  .legal-note a{color:var(--cyan);text-decoration:underline}
+
+  footer{margin-top:auto;border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:.85rem}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <img src="../logo_marexi_light.png" alt="Marexi">
+    </a>
+    <div class="nav-right">
+      <div class="lang">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Trayectoria">Track Record</div>
+    <h1 data-es="Experiencia">Experience</h1>
+    <p data-es="Fundada en 2004, Marexi lleva más de 20 años desarrollando soluciones de tecnología acústica, de visión artificial y de microondas para las industrias pesquera, acuícola y de procesamiento de alimentos.">Founded in 2004, Marexi has spent over 20 years developing acoustic, computer vision and microwave technology solutions for the fishing, aquaculture and food processing industries.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><strong>2004</strong><span data-es="Fundada">Founded</span></div>
+    <div class="stat"><strong>20+ yrs</strong><span data-es="I+D Aplicada">Applied R&amp;D</span></div>
+    <div class="stat"><strong>Vigo · Mallorca</strong><span data-es="Oficinas técnicas">Technical offices</span></div>
+    <div class="stat"><strong>12+</strong><span data-es="Patentes">Patents</span></div>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-title" data-es="Áreas de especialización">Areas of expertise</div>
+    <div class="grid">
+      <div class="card">
+        <h3 data-es="Detección de especies">Species detection</h3>
+        <p data-es="Pioneros en la detección automática de especies en barcos de pesca y en la reducción de capturas accesorias, combinando sensórica acústica y visión artificial con clasificación por IA.">Pioneer in automatic species detection on fishing vessels and bycatch reduction — combining acoustic sensing and computer vision with AI classification.</p>
+      </div>
+      <div class="card">
+        <h3 data-es="Control sanitario">Sanitary control</h3>
+        <p data-es="Detección y eliminación de parásitos (Anisakis y otros) y cribado de deformidades en alevines vivos — mediante inspección UV, escáner en línea por IA e inactivación por microondas.">Detection and elimination of parasites (Anisakis and others) and deformity screening in live fry — spanning UV inspection, AI in-line scanning and microwave inactivation.</p>
+      </div>
+      <div class="card">
+        <h3 data-es="Automatización de procesos">Process automation</h3>
+        <p data-es="Modernización de procesos de pelado, clasificación y categorización en producción alimentaria mediante visión artificial en tiempo real y sistemas de perfilometría láser.">Modernisation of peeling, sorting and classification processes in food production through real-time computer vision and laser profilometry systems.</p>
+      </div>
+      <div class="card">
+        <h3 data-es="Ensayos subacuáticos">Underwater testing</h3>
+        <p data-es="Tanque acústico y cilindro de presión hidrostática para la caracterización y validación de sensores, cámaras y electrónica subacuática hasta 120 bar.">Acoustic water tank and hydrostatic pressure cylinder for characterisation and validation of underwater sensors, cameras and electronics up to 120 bar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTOR PLATFORMS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-title" data-es="Membresías en plataformas sectoriales">Sector platform memberships</div>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/ptxga.png" alt="PTXGA"></div>
+        <div class="logo-body"><p data-es="Plataforma Tecnológica Galega de Acuicultura. Xunta de Galicia / UE.">Galician Aquaculture Technology Platform. Xunta de Galicia / EU.</p></div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/ptepa.png" alt="PTEPA"></div>
+        <div class="logo-body"><p data-es="Plataforma Tecnológica Española de la Pesca y la Acuicultura.">Spanish Technology Platform for Fishing and Aquaculture.</p></div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/tecnopeixe.png" alt="Tecnopeixe"></div>
+        <div class="logo-body"><p data-es="Plataforma Tecnológica Galega de Pesca. Xunta de Galicia / UE.">Galician Fishing Technology Platform. Xunta de Galicia / EU.</p></div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/pt-protecma.png" alt="pt-PROTECMA"></div>
+        <div class="logo-body"><p data-es="Plataforma Tecnológica Española para la Protección de la Costa y del Medio Marino.">Spanish Platform for Coastal &amp; Marine Protection.</p></div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-img"><img src="logos/anfaco.png" alt="ANFACO-CECOPESCA"></div>
+        <div class="logo-body"><p data-es="Asociación Nacional de Fabricantes de Conservas de Pescados y Mariscos.">National Association of Fish &amp; Seafood Canners.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL NOTE -->
+<div class="legal-note">
+  <div class="wrap">
+    Tecnología Marina Ximo, S.L. · CIF B36944999 · Jacinto Benavente 22, 36202 Vigo, Pontevedra, Spain.<br>
+    <span data-es="Para consultas, contáctenos en">For questions, contact us at</span> <a href="mailto:info@marexi.com">info@marexi.com</a>.
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 Tecnología Marina Ximo, S.L.</span>
+    <a href="/" data-es="← Volver a Marexi">← Back to Marexi</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    });
+    document.getElementById('btn-en').classList.toggle('on', lang==='en');
+    document.getElementById('btn-es').classList.toggle('on', lang==='es');
+    try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
+    if(saved === 'es') setLang('es');
+  })();
+</script>
+
+</body>
+</html>

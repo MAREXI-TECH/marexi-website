@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<base href="https://marexi.com/aquadef/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aquadef® — Real-time deformity detection in aquaculture fry</title>
+<meta name="description" content="Aquadef® by Marexi: the first automatic system for real-time detection and separation of deformed aquaculture fry. Counts, sizes and segregates batches simultaneously. Low maintenance. Remote assistance.">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<style>
+  :root{
+    --navy:#081627; --navy2:#0c2036; --surface:#102b47; --surface2:#14314f; --line:#1e415f;
+    --ink:#eef4fb; --muted:#9fb4cc; --faint:#6f88a3;
+    --accent:#ff6a4d; --accent-soft:#ff8b74; --cyan:#37c6c9; --gold:#e8b04b; --violet:#a78bfa;
+    --green:#4ade80;
+    --maxw:1080px; --radius:18px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+  h1,h2,h3{line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:16px}
+  section.block{padding:72px 0}
+  section.block+section.block{border-top:1px solid var(--line)}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(6,15,29,.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(55,198,201,.1)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;max-width:1280px;margin:0 auto;padding:0 48px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.03em;font-size:1.15rem}
+  .brand .mark{width:28px;height:28px;flex:0 0 auto}
+  .brand small{display:block;font-weight:500;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-top:1px}
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .back{font-size:.82rem;color:var(--muted);font-weight:600;transition:.15s}
+  .back:hover{color:var(--ink)}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#0a1524}
+
+  /* category pill */
+  .cat{display:inline-flex;align-items:center;gap:7px;margin-bottom:16px;font-size:.68rem;font-weight:700;
+       letter-spacing:.14em;text-transform:uppercase;padding:6px 13px;border-radius:999px}
+  .cat:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .cat-vision{color:var(--violet);background:rgba(167,139,250,.13);border:1px solid rgba(167,139,250,.4)}
+
+  /* HERO */
+  .hero{padding:84px 0 60px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:
+     radial-gradient(1000px 500px at 80% -10%,rgba(167,139,250,.13),transparent 60%),
+     radial-gradient(700px 500px at 5% 110%,rgba(74,222,128,.07),transparent 60%);z-index:0}
+  .hero .wrap{position:relative;z-index:2;text-align:center}
+  .hero h1{font-size:clamp(2rem,5vw,3.1rem);margin:0 auto 20px;max-width:22ch}
+  .hero .lede{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);max-width:62ch;margin:0 auto 32px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0a1524;
+       font-weight:700;font-size:.95rem;padding:13px 26px;border-radius:999px;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--muted)}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:52px}
+  .stat{background:var(--surface);padding:24px 16px;text-align:center}
+  .stat strong{display:block;font-size:1.8rem;font-weight:800;letter-spacing:-.03em;color:var(--violet);line-height:1}
+  .stat span{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--faint);margin-top:6px;display:block}
+  @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* DETECTION ALGORITHMS */
+  .algo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:44px}
+  @media(max-width:640px){.algo-grid{grid-template-columns:1fr}}
+  .algo{background:var(--surface);border:1px solid var(--line);border-left:2px solid var(--violet);border-radius:0 10px 10px 0;padding:20px 24px}
+  .algo h4{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--violet);margin-bottom:6px}
+  .algo p{font-size:.88rem;color:var(--muted);margin:0;line-height:1.55}
+
+  /* CAPABILITIES */
+  .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  @media(max-width:680px){.caps{grid-template-columns:1fr}}
+  .cap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .cap h3{font-size:1rem;font-weight:700;margin-bottom:8px}
+  .cap p{font-size:.87rem;color:var(--muted);line-height:1.55}
+
+  /* BENEFITS */
+  .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:44px}
+  @media(max-width:640px){.benefits{grid-template-columns:1fr}}
+  .benefit{background:var(--surface);border:1px solid var(--line);border-left:2px solid var(--green);border-radius:0 10px 10px 0;padding:18px 22px}
+  .benefit h4{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:5px}
+  .benefit p{font-size:.86rem;color:var(--muted);margin:0;line-height:1.5}
+
+  /* SPECS */
+  .specs{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;margin-top:40px;border-top:1px solid var(--line)}
+  @media(max-width:600px){.specs{grid-template-columns:1fr;gap:0}}
+  .spec{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .spec .k{color:var(--muted);font-size:.92rem}
+  .spec .v{font-weight:600;text-align:right}
+
+  /* CTA */
+  .cta-block{background:linear-gradient(135deg,var(--surface),var(--navy2));border:1px solid var(--line);border-radius:22px;padding:52px;text-align:center}
+  .cta-block h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:14px}
+  .cta-block p{color:var(--muted);max-width:52ch;margin:0 auto 28px}
+
+  /* FOOTER */
+  footer{margin-top:auto;border-top:1px solid var(--line);padding:36px 0;color:var(--faint);font-size:.85rem}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  [hidden]{display:none!important}
+  .prod-shot{display:block;max-width:520px;width:90%;margin:36px auto 0;border-radius:14px;overflow:hidden}
+  .prod-shot img{width:100%;height:auto;display:block}
+  .prod-shot.transparent{background:transparent;filter:drop-shadow(0 20px 40px rgba(0,0,0,.55))}
+  .prod-shot.card{background:var(--surface);border:1px solid var(--line)}
+  .dl{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:18px;justify-content:center}
+  .dl .dl-lbl{font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
+  .dl a{display:inline-flex;align-items:center;gap:5px;font-size:.75rem;font-weight:700;color:var(--cyan);
+        border:1px solid rgba(55,198,201,.4);background:rgba(55,198,201,.10);padding:4px 12px;border-radius:999px;transition:.15s}
+  .dl a:hover{background:rgba(55,198,201,.2);transform:translateY(-1px)}
+  .dl a:before{content:"↓";font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <img src="/logo_marexi_light.png" alt="Marexi" style="height:44px;width:auto;display:block;">
+    </a>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="cat cat-vision" data-es="Visión">Vision</span>
+    <div class="eyebrow" data-es="Control de calidad en acuicultura · Marexi">Aquaculture quality control · Marexi</div>
+    <h1 data-es="Detección y separación automática de alevines con malformaciones, en tiempo real.">Automatic real-time detection and separation of deformed aquaculture fry.</h1>
+    <p class="lede" data-es="Aquadef® es el primer sistema automático para detectar y separar alevines con malformaciones en tiempo real. Cuenta, mide y segrega lotes por talla simultáneamente — eliminando el error humano en la fase más crítica de la producción acuícola.">Aquadef® is the first automatic system to detect and separate deformed fry in real time. It counts, measures and segregates batches by size simultaneously — eliminating human error at the most critical stage of aquaculture production.</p>
+    <div class="cta-row">
+      <a class="btn" href="mailto:info@marexi.com" data-es="Solicitar información">Request information</a>
+      <a class="btn ghost" href="#detection" data-es="Ver algoritmos de detección">Detection algorithms</a>
+    </div>
+    <div class="dl">
+      <span class="dl-lbl" data-es="Catálogo">Catalogue</span>
+      <a href="catalogo_en.pdf" target="_blank" data-es="EN">EN</a>
+      <a href="catalogo_es.pdf" target="_blank" data-es="ES">ES</a>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <strong>4</strong>
+        <span data-es="Algoritmos de detección">Detection algorithms</span>
+      </div>
+      <div class="stat">
+        <strong data-es="Tiempo real">Real-time</strong>
+        <span data-es="Detección y separación">Detection &amp; separation</span>
+      </div>
+      <div class="stat">
+        <strong data-es="Multi-especie">Multi-species</strong>
+        <span data-es="Acuicultura marina y continental">Marine &amp; freshwater</span>
+      </div>
+      <div class="stat">
+        <strong data-es="Remota">Remote</strong>
+        <span data-es="Asistencia técnica por internet">Technical assistance</span>
+      </div>
+    </div>
+    <div class="prod-shot transparent">
+      <img src="../aquadef_1.png" alt="Aquadef® — automatic fry quality control system">
+    </div>
+  </div>
+</section>
+
+<!-- DETECTION ALGORITHMS -->
+<section class="block" id="detection">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Detección de malformaciones">Malformation detection</div>
+    <h2 data-es="Cuatro algoritmos de visión por computador.">Four computer vision algorithms.</h2>
+    <p style="color:var(--muted);max-width:62ch;font-size:.97rem;line-height:1.7;margin-bottom:0" data-es="El sistema analiza simultáneamente cuatro zonas anatómicas clave de cada alevín, detectando las malformaciones más frecuentes y clínicamente relevantes en la producción acuícola.">The system simultaneously analyses four key anatomical zones of each fry, detecting the most frequent and clinically relevant malformations in aquaculture production.</p>
+    <div class="algo-grid">
+      <div class="algo">
+        <h4 data-es="Opérculo">Operculum</h4>
+        <p data-es="Detecta la exposición branquial mediante coordenadas de color, identificando alevines con el opérculo anómalo que quedan expuestos a infecciones y estrés respiratorio.">Detects exposed gill using colour coordinates, identifying fry with anomalous opercula that are vulnerable to infection and respiratory stress.</p>
+      </div>
+      <div class="algo">
+        <h4 data-es="Morro / Boca">Snout / Mouth</h4>
+        <p data-es="Detecta la angulación incorrecta de la boca mediante análisis de silueta, identificando malformaciones que impiden una alimentación eficiente y reducen la supervivencia del alevín.">Detects incorrect mouth angle via silhouette analysis, identifying malformations that impair efficient feeding and reduce fry survival rates.</p>
+      </div>
+      <div class="algo">
+        <h4 data-es="Columna vertebral">Spinal column</h4>
+        <p data-es="Detecta cambios angulares en la silueta del pez para identificar desviaciones vertebrales (escoliosis, lordosis, cifosis) que afectan al desarrollo y la conversión de alimento.">Detects angular changes in the fish silhouette to identify spinal deviations (scoliosis, lordosis, kyphosis) affecting development and feed conversion.</p>
+      </div>
+      <div class="algo">
+        <h4 data-es="Aleta dorsal">Dorsal fin</h4>
+        <p data-es="Detecta cambios angulares en la zona dorsal de la silueta, identificando malformaciones en la aleta que son indicadores tempranos de problemas estructurales en el alevín.">Detects angular changes in the dorsal silhouette zone, identifying fin malformations that are early indicators of structural problems in the fry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="block" id="capabilities">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Capacidades">Capabilities</div>
+    <h2 data-es="Más que detección — control biométrico completo.">More than detection — complete biometric control.</h2>
+    <div class="caps">
+      <div class="cap">
+        <h3 data-es="Detección y separación">Detection &amp; separation</h3>
+        <p data-es="Detecta y separa físicamente los alevines con malformaciones en tiempo real, sin necesidad de intervención manual. Proceso continuo adaptado al ritmo de producción.">Detects and physically separates deformed fry in real time, with no manual intervention. Continuous process matched to production rate.</p>
+      </div>
+      <div class="cap">
+        <h3 data-es="Conteo de precisión">Precision counting</h3>
+        <p data-es="Cuenta los alevines con alta precisión durante el proceso, proporcionando datos exactos de efectivos por lote para gestión de inventario y planificación de cultivo.">Counts fry with high precision during the process, providing accurate batch population data for inventory management and cultivation planning.</p>
+      </div>
+      <div class="cap">
+        <h3 data-es="Talla y peso medio">Size &amp; average weight</h3>
+        <p data-es="Mide la talla individual de cada ejemplar y calcula el peso medio del lote, generando perfiles biométricos que permiten optimizar la alimentación y el crecimiento.">Measures individual size and calculates average batch weight, generating biometric profiles that enable feed and growth optimisation.</p>
+      </div>
+      <div class="cap">
+        <h3 data-es="Segregación por talla">Size segregation</h3>
+        <p data-es="Segrega lotes por talla en distintos canales de forma simultánea, reduciendo la competencia intraespecífica y mejorando la homogeneidad y supervivencia del cultivo.">Segregates batches by size into separate channels simultaneously, reducing intraspecific competition and improving culture homogeneity and survival.</p>
+      </div>
+      <div class="cap">
+        <h3 data-es="Informes automáticos">Automated reports</h3>
+        <p data-es="Genera informes detallados por lote con datos biométricos y morfológicos, porcentajes de malformación por tipo y estadísticas de producción estandarizadas.">Generates detailed batch reports with biometric and morphological data, malformation percentages by type and standardised production statistics.</p>
+      </div>
+      <div class="cap">
+        <h3 data-es="Asistencia remota">Remote assistance</h3>
+        <p data-es="Conectividad a internet para asistencia técnica internacional en tiempo real. Bajo mantenimiento y actualizaciones de software remotas.">Internet connectivity for real-time international technical assistance. Low maintenance with remote software updates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS BENEFITS -->
+<section class="block" id="benefits">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Impacto en el negocio">Business impact</div>
+    <h2 data-es="Reducción de costes en toda la cadena de cultivo.">Cost reduction across the cultivation chain.</h2>
+    <div class="benefits">
+      <div class="benefit">
+        <h4 data-es="Eliminación temprana">Early elimination</h4>
+        <p data-es="Al retirar los alevines no aptos en las primeras fases, se evita el coste de alimentarlos, tratarlos y mantenerlos en tanque hasta que el problema es visible a simple vista.">Removing unsuitable fry early avoids the cost of feeding, treating and maintaining them in tanks until the problem becomes visible to the naked eye.</p>
+      </div>
+      <div class="benefit">
+        <h4 data-es="Optimización de tanques">Tank optimisation</h4>
+        <p data-es="Menor densidad de animales no productivos reduce los costes de volumen de agua, alimentación y tratamientos farmacológicos, y acorta los tiempos entre fases de cultivo.">Lower density of non-productive animals reduces costs of water volume, feed and treatments, and shortens transition times between cultivation phases.</p>
+      </div>
+      <div class="benefit">
+        <h4 data-es="Calidad de stock">Stock quality</h4>
+        <p data-es="Los lotes homogéneos y libres de malformaciones presentan mayor supervivencia, mejor conversión de alimento y mayor valor comercial en las fases siguientes del ciclo productivo.">Homogeneous, deformity-free batches show higher survival, better feed conversion and greater commercial value in subsequent production cycle stages.</p>
+      </div>
+      <div class="benefit">
+        <h4 data-es="Estandarización del control de calidad">Standardised QC</h4>
+        <p data-es="Los criterios de aceptación se definen por el cliente y se aplican de forma objetiva y reproducible, eliminando la variabilidad del juicio humano en la selección de alevines.">Acceptance criteria are defined by the client and applied objectively and reproducibly, eliminating variability from human judgement in fry selection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section class="block" id="specs">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Especificaciones">Specifications</div>
+    <h2 data-es="Ficha técnica">Technical sheet</h2>
+    <div class="specs">
+      <div class="spec">
+        <span class="k" data-es="Tecnología">Technology</span>
+        <span class="v" data-es="Visión por computador + IA">Computer vision + AI</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Algoritmos de detección">Detection algorithms</span>
+        <span class="v">4</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Detección">Detection</span>
+        <span class="v" data-es="Tiempo real">Real-time</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Separación">Separation</span>
+        <span class="v" data-es="Automática">Automatic</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Conteo">Counting</span>
+        <span class="v" data-es="Alta precisión">High precision</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Medición de talla">Size measurement</span>
+        <span class="v" data-es="Individual">Individual</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Segregación">Segregation</span>
+        <span class="v" data-es="Por talla, múltiples canales">By size, multiple channels</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Especies">Species</span>
+        <span class="v" data-es="Multi-especie">Multi-species</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Mantenimiento">Maintenance</span>
+        <span class="v" data-es="Bajo">Low</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Asistencia técnica">Technical support</span>
+        <span class="v" data-es="Remota (internet)">Remote (internet)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block">
+  <div class="wrap">
+    <div class="cta-block">
+      <div class="eyebrow" data-es="Contacto">Contact</div>
+      <h2 data-es="¿Quiere optimizar su producción de alevines?">Ready to optimise your fry production?</h2>
+      <p data-es="Contacte con el equipo de Marexi para una demostración, especificaciones detalladas o una propuesta adaptada a su instalación.">Contact the Marexi team for a demonstration, detailed specifications or a proposal tailored to your facility.</p>
+      <a class="btn" href="mailto:info@marexi.com" data-es="Contactar con Marexi">Contact Marexi</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>© 2026 Marexi · Marine technology</div>
+    <a href="/" target="_top" style="color:var(--faint);transition:.15s" onmouseover="this.style.color='#eef4fb'" onmouseout="this.style.color=''" data-es="← Volver a productos">← Back to products</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    });
+    document.getElementById('btn-en').classList.toggle('on', lang==='en');
+    document.getElementById('btn-es').classList.toggle('on', lang==='es');
+    try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
+    if(saved === 'es') setLang('es');
+  })();
+</script>
+</body>
+</html>

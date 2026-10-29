@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marexi — Marine technology</title>
+<meta name="description" content="Marexi — acoustic, computer vision and environmental technology for the wider maritime &amp; scientific sectors. 20+ years of applied R&amp;D from Spain. Products: Pinger®, Anisakischeck®, Tunascan® and more.">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<style>
+:root{
+  --navy:#060f1d;
+  --navy2:#0b1d32;
+  --surface:rgba(12,32,54,.68);
+  --surface-solid:#0c2036;
+  --surface2:rgba(20,49,79,.72);
+  --line:rgba(30,65,95,.8);
+  --ink:#eef4fb;
+  --muted:#9fb4cc;
+  --faint:#6f88a3;
+  --accent:#ff6a4d;
+  --accent-soft:#ff8b74;
+  --cyan:#37c6c9;
+  --gold:#e8b04b;
+  --violet:#a78bfa;
+  --green:#4ade80;
+  --maxw:1280px;
+  --radius:20px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--navy);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;width:100%}
+h1,h2,h3{line-height:1.12;letter-spacing:-.025em;font-weight:700}
+.eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:.68rem;font-weight:700;color:var(--accent);margin-bottom:14px}
+
+/* ── SCROLL FADE-IN ───────────────────── */
+.fi{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.fi.in{opacity:1;transform:none}
+.fi.d1{transition-delay:.08s}
+.fi.d2{transition-delay:.16s}
+.fi.d3{transition-delay:.24s}
+.fi.d4{transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){.fi{opacity:1;transform:none;transition:none}}
+
+/* ── NAV ──────────────────────────────── */
+header.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(6,15,29,.85);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border-bottom:1px solid rgba(55,198,201,.1);
+}
+.nav-inner{display:flex;align-items:center;height:96px;max-width:var(--maxw);margin:0 auto;padding:0 48px;gap:24px}
+.brand{display:flex;align-items:center}
+.nav-links{margin-left:auto;display:flex;gap:38px;align-items:center}
+.nav-links a{color:var(--muted);font-size:1rem;font-weight:500;transition:color .2s;letter-spacing:.01em}
+.nav-links a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.85rem;font-weight:600}
+.lang button{background:none;border:0;color:var(--muted);padding:7px 15px;cursor:pointer;transition:.2s}
+.lang button.on{background:var(--accent);color:#0a1524}
+.nav-right{display:flex;align-items:center;gap:22px}
+.shop-nav-link{
+  color:var(--accent)!important;border:1px solid rgba(255,106,77,.33);
+  border-radius:999px;padding:8px 20px;font-size:.92rem;font-weight:700;
+  transition:.2s;background:rgba(255,106,77,.04);
+}
+.shop-nav-link:hover{background:rgba(255,106,77,.1);border-color:var(--accent)!important;box-shadow:0 0 18px rgba(255,106,77,.18)}
+
+/* ── HERO ─────────────────────────────── */
+.hero{position:relative;overflow:hidden;min-height:92vh;display:flex;align-items:center;padding:120px 0 100px}
+/* animated orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(96px);pointer-events:none;will-change:transform}
+.orb-c{width:920px;height:720px;right:-220px;top:-260px;
+  background:radial-gradient(ellipse,rgba(55,198,201,.22) 0%,transparent 70%);
+  animation:orb 22s ease-in-out infinite alternate}
+.orb-a{width:700px;height:600px;left:-180px;bottom:-160px;
+  background:radial-gradient(ellipse,rgba(255,106,77,.16) 0%,transparent 70%);
+  animation:orb 28s ease-in-out infinite alternate-reverse}
+.orb-v{width:480px;height:480px;left:36%;top:18%;
+  background:radial-gradient(ellipse,rgba(167,139,250,.1) 0%,transparent 70%);
+  animation:orb 34s ease-in-out infinite alternate;animation-delay:-10s}
+@keyframes orb{
+  0%{transform:translate(0,0) scale(1)}
+  40%{transform:translate(38px,-28px) scale(1.07)}
+  70%{transform:translate(-24px,36px) scale(.94)}
+  100%{transform:translate(14px,-14px) scale(1.04)}
+}
+/* mesh grid */
+.hero-mesh{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(55,198,201,.038) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(55,198,201,.038) 1px,transparent 1px);
+  background-size:58px 58px;
+  -webkit-mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black 20%,transparent 75%);
+  mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black 20%,transparent 75%);
+}
+.hero .wrap{position:relative;z-index:2;text-align:center;width:100%}
+.hero h1{
+  font-size:clamp(2.3rem,5.5vw,4rem);
+  margin:0 auto 22px;max-width:15ch;
+  background:linear-gradient(155deg,#eef4fb 35%,rgba(55,198,201,.8) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero .lede{font-size:clamp(1.05rem,1.7vw,1.2rem);color:var(--muted);max-width:58ch;margin:0 auto}
+/* KPI glass strip */
+.kpi{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:0;margin-top:56px;
+  border:1px solid rgba(30,65,95,.9);border-radius:18px;overflow:hidden;
+  background:rgba(11,29,50,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+@media(max-width:800px){.kpi{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.kpi{grid-template-columns:repeat(2,1fr)}}
+.kpi-item{
+  text-align:center;padding:26px 14px;
+  border-right:1px solid var(--line);position:relative;
+}
+.kpi-item:last-child{border-right:none}
+.kpi-item::after{
+  content:"";position:absolute;top:0;left:20%;right:20%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(55,198,201,.25),transparent);
+}
+.kpi-item strong{display:block;font-size:1.55rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1}
+.kpi-item span{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:5px;display:block}
+/* scroll cue */
+.hero-cue{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--faint);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+}
+.cue-mouse{width:20px;height:30px;border:1.5px solid rgba(111,136,163,.3);border-radius:10px;
+  display:flex;align-items:flex-start;justify-content:center;padding-top:5px}
+.cue-dot{width:3px;height:7px;background:rgba(111,136,163,.5);border-radius:2px;
+  animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateY(0);opacity:.8}55%{transform:translateY(9px);opacity:.2}}
+
+/* ── PRODUCTS ─────────────────────────── */
+.products{padding:40px 0 80px}
+.products .eyebrow{text-align:center}
+/* filters */
+.filter-block{margin-top:32px;display:flex;flex-direction:column;gap:10px}
+.filter-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px}
+.filter-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.filters button{
+  background:rgba(11,29,50,.5);border:1px solid var(--line);color:var(--muted);
+  font:inherit;font-size:.83rem;font-weight:600;padding:7px 17px;border-radius:999px;
+  cursor:pointer;transition:.2s;backdrop-filter:blur(8px);
+}
+.filters button:hover{color:var(--ink);border-color:rgba(111,136,163,.55)}
+.filters button.on{background:var(--accent);border-color:var(--accent);color:#0a1524}
+.filters.sector button.on{background:var(--cyan);border-color:var(--cyan);color:#081627}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+/* card base */
+.card{
+  position:relative;display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);overflow:hidden;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.card::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(55,198,201,.22),transparent);
+  pointer-events:none;
+}
+.card.live{cursor:pointer}
+.card.live:hover{
+  transform:translateY(-5px);
+  border-color:rgba(55,198,201,.28);
+  box-shadow:0 24px 56px -20px rgba(0,0,0,.75),0 0 0 1px rgba(55,198,201,.08) inset;
+}
+.card.enquiry{cursor:pointer}
+.card.enquiry:hover{
+  transform:translateY(-5px);
+  border-color:rgba(167,139,250,.32);
+  box-shadow:0 24px 56px -20px rgba(0,0,0,.75),0 0 0 1px rgba(167,139,250,.08) inset;
+}
+.card.soon{opacity:.82}
+.card.soon:hover{transform:translateY(-2px)}
+.card-ph{
+  width:100%;height:176px;
+  background:linear-gradient(135deg,rgba(20,49,79,.9) 0%,rgba(11,29,50,.9) 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--faint);font-size:.66rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.card-ph img{width:100%;height:100%;object-fit:cover;display:block;}
+/* card body */
+.card-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.tagline{font-size:.78rem;font-weight:600;letter-spacing:.05em;color:var(--cyan);text-transform:uppercase;margin-bottom:12px}
+.card.enquiry .tagline{color:var(--violet)}
+.card.soon .tagline{color:var(--gold)}
+.card p{color:var(--muted);font-size:.87rem;line-height:1.62;flex:1}
+/* category chip */
+.cat{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
+  margin-bottom:13px;font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:4px 11px;border-radius:999px;
+}
+.cat::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.cat-acoustic{color:var(--cyan);background:rgba(55,198,201,.1);border:1px solid rgba(55,198,201,.28)}
+.cat-vision{color:var(--violet);background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.32)}
+.cat-testing{color:var(--accent);background:rgba(255,106,77,.1);border:1px solid rgba(255,106,77,.32)}
+.cat-microwave{color:#f0a500;background:rgba(240,165,0,.08);border:1px solid rgba(240,165,0,.28)}
+.cats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:13px}
+.cats .cat{margin-bottom:0}
+/* badge */
+.badge{
+  position:absolute;top:14px;right:14px;z-index:2;
+  font-size:.59rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;backdrop-filter:blur(8px);
+}
+.badge.soon{background:rgba(232,176,75,.15);color:var(--gold);border:1px solid rgba(232,176,75,.4)}
+.badge.enquiry{background:rgba(167,139,250,.15);color:var(--violet);border:1px solid rgba(167,139,250,.4)}
+
+/* ── IN DEVELOPMENT ───────────────────── */
+.indev{padding:52px 0 72px}
+.indev-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
+.indev-header .rule{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.indev-header .rule:last-child{background:linear-gradient(270deg,transparent,var(--gold))}
+.indev-header h2{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.25em;color:var(--gold);white-space:nowrap}
+.dev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
+.dev-grid+.dev-grid{margin-top:16px;grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){.dev-grid{grid-template-columns:repeat(2,1fr)}.dev-grid+.dev-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.dev-grid{grid-template-columns:1fr}.dev-grid+.dev-grid{grid-template-columns:1fr}}
+.dev-card{
+  background:rgba(11,29,50,.62);border:1px solid var(--line);border-radius:16px;padding:24px;
+  backdrop-filter:blur(8px);transition:border-color .25s,transform .25s;
+}
+.dev-card:hover{border-color:rgba(232,176,75,.28);transform:translateY(-2px)}
+.dev-status{
+  display:inline-block;font-size:.59rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;
+  background:rgba(232,176,75,.1);color:var(--gold);border:1px solid rgba(232,176,75,.3);
+  margin-bottom:14px;
+}
+.dev-card h3{font-size:.98rem;font-weight:700;margin-bottom:10px;color:var(--ink)}
+.dev-card p{font-size:.84rem;color:var(--muted);line-height:1.62}
+.dev-portal-link{display:inline-block;margin-top:14px;font-size:.8rem;font-weight:700;color:var(--cyan);letter-spacing:.03em;transition:opacity .2s}
+.dev-portal-link:hover{opacity:.75}
+.dev-card-img{width:calc(100% + 48px);margin:-24px -24px 20px;height:160px;overflow:hidden;border-radius:15px 15px 0 0;}
+.dev-card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ── TECHNOLOGIES ─────────────────────── */
+.tech-strip{
+  padding:68px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--navy2);position:relative;overflow:hidden;
+}
+.tech-strip::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 1000px 450px at 50% 50%,rgba(55,198,201,.045),transparent 70%);
+}
+.tech-strip .eyebrow{text-align:center}
+.tech-strip h2{text-align:center;font-size:clamp(1.5rem,3vw,2rem);margin-bottom:48px}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+@media(max-width:860px){.tech-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.tech-grid{grid-template-columns:1fr}}
+.tech-card{
+  display:flex;flex-direction:column;gap:18px;
+  background:rgba(12,32,54,.72);border:1px solid var(--line);border-radius:18px;padding:30px;
+  backdrop-filter:blur(8px);transition:border-color .25s,transform .25s;position:relative;overflow:hidden;
+}
+.tech-card::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(55,198,201,.2),transparent);
+}
+.tech-card:hover{border-color:rgba(55,198,201,.22);transform:translateY(-3px)}
+.tech-ic{width:54px;height:54px;object-fit:contain;opacity:.88;flex-shrink:0}
+.tech-card h4{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:8px}
+.tech-card p{font-size:.84rem;color:var(--muted);line-height:1.65}
+
+/* ── ABOUT ────────────────────────────── */
+.about{padding:84px 0;background:var(--navy2);position:relative;overflow:hidden}
+.about::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 700px 550px at 5% 55%,rgba(255,106,77,.055),transparent 60%);
+}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:start;position:relative}
+@media(max-width:780px){.about-inner{grid-template-columns:1fr;gap:44px}}
+.about h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:18px}
+.about p{color:var(--muted);font-size:.96rem;line-height:1.75;margin-bottom:18px}
+.about p:last-child{margin-bottom:0}
+.about-mission{border-left:2px solid var(--cyan);padding-left:16px;color:var(--ink)!important;font-size:1.05rem!important;margin-bottom:22px!important;line-height:1.6!important}
+.about-facts{display:flex;flex-direction:column;gap:14px}
+.team-photo{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;display:block}
+.about-location{width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:14px;display:block;margin-top:24px}
+.founders{display:flex;flex-direction:column;gap:12px}
+.founder{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+  background:rgba(12,32,54,.65);border:1px solid var(--line);border-radius:14px;padding:14px 18px;
+  backdrop-filter:blur(8px);
+}
+.founder-info{display:flex;flex-direction:column;flex:1}
+.founder-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--line)}
+.founder-name{font-size:.9rem;font-weight:700;color:var(--ink)}
+.founder-role{font-size:.73rem;color:var(--faint)}
+.founder-bio{font-size:.78rem;color:var(--muted);margin-top:6px;line-height:1.55}
+.li-btn{
+  display:inline-flex;align-items:center;gap:6px;font-size:.71rem;font-weight:700;
+  color:var(--muted);padding:5px 11px;border-radius:999px;border:1px solid var(--line);
+  white-space:nowrap;transition:.15s;flex-shrink:0;
+}
+.li-btn:hover{color:var(--ink);border-color:var(--faint)}
+.li-btn svg{flex:0 0 auto}
+
+/* ── FOOTER ───────────────────────────── */
+footer{margin-top:auto;padding:56px 0 38px;color:var(--faint);font-size:.85rem;position:relative}
+footer::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(55,198,201,.18) 25%,rgba(55,198,201,.18) 75%,transparent);
+}
+.foot-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+@media(max-width:680px){.foot-inner{grid-template-columns:1fr;gap:28px}}
+.foot-brand{display:flex;align-items:center;margin-bottom:14px}
+.foot-col h6{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.foot-col p,.foot-col a{display:block;color:var(--faint);margin-bottom:7px;font-size:.83rem;transition:.15s}
+.foot-col a:hover{color:var(--ink)}
+.foot-micro{
+  max-width:var(--maxw);margin:22px auto 0;padding:18px 28px 0;border-top:1px solid var(--line);
+  font-size:.7rem;color:var(--faint);display:flex;align-items:center;gap:10px;flex-wrap:wrap;line-height:1.5;
+}
+.foot-micro a{color:var(--faint);text-decoration:underline;text-underline-offset:3px;transition:.15s}
+.foot-micro a:hover{color:var(--ink)}
+.foot-micro .sep{opacity:.3}
+.foot-bottom{
+  max-width:var(--maxw);margin:22px auto 0;padding:20px 28px 0;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.78rem;color:var(--faint);
+}
+.foot-legal{display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{color:var(--faint);transition:.15s}
+.foot-legal a:hover{color:var(--ink)}
+.social-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.social-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  color:var(--muted);width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--line);transition:.2s;flex-shrink:0;
+  background:rgba(12,32,54,.45);backdrop-filter:blur(6px);
+}
+.social-btn:hover{color:var(--ink);border-color:var(--faint);background:rgba(12,32,54,.75)}
+
+/* ── MOBILE ───────────────────────────── */
+@media(max-width:680px){
+  .nav-inner{flex-wrap:wrap;height:auto;padding:10px 16px 0;gap:0}
+  .brand{padding-bottom:10px}
+  .nav-right{margin-left:auto;padding-bottom:10px}
+  .nav-links{
+    margin-left:0;order:3;width:100%;
+    justify-content:center;flex-wrap:wrap;gap:4px;
+    border-top:1px solid var(--line);padding:8px 0 10px;
+  }
+  .nav-links a{font-size:.78rem;padding:5px 13px;border:1px solid var(--line);border-radius:999px}
+  .hero{min-height:auto;padding:96px 0 80px}
+  .kpi{grid-template-columns:repeat(2,1fr)}
+  .hero-cue{display:none}
+  .hero h1{-webkit-text-fill-color:var(--ink);text-fill-color:var(--ink)}
+  /* filter rows — horizontal scroll instead of wrapping */
+  .filter-row{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+  .filter-row::-webkit-scrollbar{display:none}
+  .filter-label{flex-shrink:0}
+  .filters{flex-wrap:nowrap;justify-content:flex-start}
+  .filters button{flex-shrink:0}
+  /* orbs — reduce to single subtle glow on mobile for performance */
+  .orb-a,.orb-v{display:none}
+  .orb-c{width:500px;height:400px;filter:blur(70px);animation-duration:40s}
+}
+
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <img src="logo_marexi_light.png" alt="Marexi Marine Technology" style="height:44px;width:auto;display:block">
+    </a>
+    <nav class="nav-links" data-es-hide>
+      <a href="#products" data-es="Productos">Products</a>
+      <a href="#technologies" data-es="Tecnologías">Technologies</a>
+      <a href="#about" data-es="Empresa">Company</a>
+      <a href="#contact" data-es="Contacto">Contact</a>
+      <a href="https://shopmarexi.leeustools.com" target="_blank" rel="noopener" class="shop-nav-link" data-es="Tienda">Shop →</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb-c"></div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-v"></div>
+  <div class="hero-mesh"></div>
+  <div class="wrap">
+    <div class="eyebrow fi" data-es="Tecnología marina">Marine technology</div>
+    <h1 class="fi d1" data-es="Ingeniería para el sector marítimo.">Engineering for the maritime sector.</h1>
+    <p class="lede fi d2" data-es="Marexi desarrolla tecnología acústica, de visión artificial y medioambiental para los sectores marítimo y científico.">Marexi develops acoustic, computer vision and environmental technology for the wider maritime &amp; scientific sectors.</p>
+    <div class="kpi fi d3">
+      <div class="kpi-item">
+        <strong>2004</strong>
+        <span data-es="Fundada">Founded</span>
+      </div>
+      <div class="kpi-item">
+        <strong data-es="+20 años">20+ yrs</strong>
+        <span data-es="I+D aplicado">Applied R&amp;D</span>
+      </div>
+      <div class="kpi-item">
+        <strong>Vigo · Mallorca</strong>
+        <span data-es="Oficinas técnicas">Technical offices</span>
+      </div>
+      <div class="kpi-item">
+        <strong data-es="8 productos">8 products</strong>
+        <span data-es="Cartera activa">Active portfolio</span>
+      </div>
+      <div class="kpi-item">
+        <strong data-es="12+ patentes">12+ Patents</strong>
+        <span data-es="Propiedad intelectual">Intellectual property</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-cue" aria-hidden="true">
+    <div class="cue-mouse"><div class="cue-dot"></div></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="eyebrow fi" data-es="Productos">Products</div>
+
+    <div class="filter-block fi d1">
+      <div class="filter-row">
+        <span class="filter-label" data-es="Tecnología">Technology</span>
+        <div class="filters" role="group" aria-label="Filter by technology">
+          <button class="on" data-filter="all" onclick="filterCat('all',this)" data-es="Todas">All</button>
+          <button data-filter="acoustic" onclick="filterCat('acoustic',this)" data-es="Acústica">Acoustic</button>
+          <button data-filter="vision" onclick="filterCat('vision',this)" data-es="Visión artificial">Computer Vision</button>
+          <button data-filter="microwave" onclick="filterCat('microwave',this)" data-es="Microondas">Microwave</button>
+          <button data-filter="testing" onclick="filterCat('testing',this)" data-es="Ensayos">Testing</button>
+        </div>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label" data-es="Sector">Sector</span>
+        <div class="filters sector" role="group" aria-label="Filter by sector">
+          <button class="on" data-sector="all" onclick="filterSector('all',this)" data-es="Todos">All</button>
+          <button data-sector="aquaculture" onclick="filterSector('aquaculture',this)" data-es="Acuicultura">Aquaculture</button>
+          <button data-sector="fishing" onclick="filterSector('fishing',this)" data-es="Pesca">Fishing</button>
+          <button data-sector="food" onclick="filterSector('food',this)" data-es="Alimentación">Food processing</button>
+          <button data-sector="rd" onclick="filterSector('rd',this)" data-es="I+D / Ingeniería">R&amp;D / Engineering</button>
+          <button data-sector="security" onclick="filterSector('security',this)" data-es="Seguridad">Security</button>
+          <button data-sector="other" onclick="filterSector('other',this)" data-es="Otros">Other</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <!-- PINGER -->
+      <a class="card live fi" data-cat="acoustic" data-sector="fishing" href="/pinger/">
+        <div class="card-ph"><img src="pinger_2.png" alt="Pinger®" loading="lazy"></div>
+        <div class="card-body">
+          <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
+          <h3>Pinger®</h3>
+          <div class="tagline" data-es="Disuasorio acústico de cetáceos">Acoustic cetacean deterrent</div>
+          <p data-es="Disuasorio programable 40–400 kHz, recargable y multi-especie.">Programmable 40–400 kHz, rechargeable, multi-species.</p>
+        </div>
+      </a>
+
+      <!-- HYDROPHONES -->
+      <div class="card soon fi d1" data-cat="acoustic" data-sector="fishing rd">
+        <span class="badge soon" data-es="Próximamente">Coming soon</span>
+        <div class="card-ph"><img src="hidrofonos_2.png" alt="Hydrophones" loading="lazy"></div>
+        <div class="card-body">
+          <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
+          <h3>Hydrophones</h3>
+          <div class="tagline" data-es="Sensores acústicos subacuáticos">Underwater acoustic sensors</div>
+          <p data-es="Hidrófonos y transductores de diseño propio para caracterización, investigación y guiado de peces. Configuración singular o array. Electrónica de preamplificación, filtrado y almacenamiento / transmisión de datos.">Proprietary hydrophones and transducers for characterisation, research and fish guidance. Single and array configurations. Pre-amplification electronics, filtering and data storage / transmission.</p>
+        </div>
+      </div>
+
+      <!-- ACOUSTIC WATER TANK -->
+      <a class="card live fi d2" data-cat="acoustic testing" data-sector="rd" href="/acoustic-tank/">
+        <div class="card-ph"><img src="piscina_2.png" alt="Acoustic Water Tank" loading="lazy"></div>
+        <div class="card-body">
+          <span class="cat cat-testing" data-es="Ensayos">Testing</span>
+          <h3 data-es="Piscina acústica">Acoustic Water Tank</h3>
+          <div class="tagline" data-es="Ensayos hidroacústicos y de visión submarina">Hydroacoustic &amp; underwater vision testing</div>
+          <p data-es="Ensayos subacuáticos para dispositivos acústicos (hidrófonos, transductores, otros sensores) y de visión (cámaras, componentes de luz). Caracterización y calibración.">Underwater test for acoustic devices (hydrophones, transducers, other piezo or electromagnetic sensors) and vision (cameras, light components for computer vision). Characterization &amp; Calibration.</p>
+        </div>
+      </a>
+
+      <!-- HYDROSTATIC PRESSURE CYLINDER -->
+      <a class="card live fi" data-cat="testing" data-sector="rd" href="/cylinder/">
+        <div class="card-ph"><img src="cilindro_hidrostatico_presion_2.png" alt="Hydrostatic Pressure Cylinder" loading="lazy"></div>
+        <div class="card-body">
+          <span class="cat cat-testing" data-es="Ensayos">Testing</span>
+          <h3 data-es="Cilindro de presión hidrostática">Hydrostatic Pressure Cylinder</h3>
+          <div class="tagline" data-es="Ensayos hidrostáticos para acústica y visión submarina">Hydrostatic testing for underwater acoustic &amp; vision</div>
+          <p data-es="Cilindro de presión hidrostática hasta 120 bar para validar componentes y electrónica. Monitorización eléctrica y de vídeo por fibra óptica en tiempo real.">Hydrostatic pressure cylinder up to 120 bar for validating components and electronics. Real-time electrical and fibre-optic video monitoring.</p>
+        </div>
+      </a>
+
+      <!-- ANISAKISCHECK -->
+      <a class="card live fi d1" data-cat="vision" data-sector="fishing food" href="/anisakischeck/">
+        <div class="card-ph"><img src="anisakischeck_2.png" alt="Anisakischeck®" loading="lazy"></div>
+        <div class="card-body">
+          <span class="cat cat-vision" data-es="Visión">Vision</span>
+          <h3>Anisakischeck®</h3>
+          <div class="tagline" data-es="Detección de Anisakis">Anisakis detection</div>
+          <p data-es="Una gama de equipos para detectar Anisakis —de la lámpara UV portátil al escáner IA en línea— en toda la cadena alimentaria. ISO/DIS 23036.">A range of products to detect Anisakis — from handheld UV lamp to AI in-line scanner — across the food chain. ISO/DIS 23036.</p>
+        </div>
+      </a>
+
+      <!-- AQUADEF -->
+      <a class="card live fi d2" href="/aquadef/" data-cat="vision" data-sector="aquaculture">
+        <div class="card-ph"><img src="aquadef_2.png" alt="Aquadef®" loading="lazy"></div>
+        <div class="card-body">
+          <span class="cat cat-vision" data-es="Visión">Vision</span>
+          <h3>Aquadef®</h3>
+          <div class="tagline" data-es="Detección de malformaciones en alevines">Fry deformity detection</div>
+          <p data-es="Detección y separación automática en tiempo real de alevines con malformaciones. Cuenta, mide y segrega lotes simultáneamente.">Automatic real-time detection and separation of deformed fry. Counts, sizes and segregates batches simultaneously.</p>
+        </div>
+      </a>
+
+      <!-- TUNASCAN -->
+      <a class="card live fi" data-cat="vision" data-sector="fishing food" href="/tunascan/">
+        <div class="card-ph"><img src="tunascan_2.png" alt="Tunascan®" loading="lazy"></div>
+        <div class="card-body">
+          <span class="cat cat-vision" data-es="Visión">Vision</span>
+          <h3>Tunascan®</h3>
+          <div class="tagline" data-es="Clasificación por especie y talla">By species &amp; size classification</div>
+          <p data-es="Clasifica atún por especie y talla automáticamente. Perfilometría láser 3D + IA. &gt;95% eficacia en especie, &gt;98% en peso. Hasta 50 t/h.">Classifies tuna by species and size automatically. 3D laser profilometry + AI. &gt;95% species accuracy, &gt;98% weight. Up to 50 t/h.</p>
+        </div>
+      </a>
+
+      <!-- TEDEPAD -->
+      <a class="card live fi d1" data-cat="microwave" data-sector="fishing food" href="/tedepad/">
+        <div class="card-ph"><img src="tedepad_2.png" alt="Tedepad®" loading="lazy"></div>
+        <div class="card-body">
+          <span class="cat cat-microwave" data-es="Microondas">Microwave</span>
+          <h3>Tedepad®</h3>
+          <div class="tagline" data-es="Inactivación de Anisakis a bordo">Onboard Anisakis inactivation</div>
+          <p data-es="Diseñado para eliminar el Anisakis y otros parásitos en los procesos de evisceración a bordo.">Designed to eliminate Anisakis &amp; other parasites in evisceration processes on board vessels.</p>
+        </div>
+      </a>
+
+      <!-- DUAL-USE -->
+      <a class="card enquiry fi d2" href="/dual-use/" data-cat="acoustic vision" data-sector="security rd">
+        <span class="badge enquiry" data-es="Por encargo">By enquiry</span>
+        <div class="card-ph"><img src="marexi_placeholder_img.png" alt="Dual-Use Technology" loading="lazy"></div>
+        <div class="card-body">
+          <div class="cats">
+            <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
+            <span class="cat cat-vision" data-es="Visión">Vision</span>
+          </div>
+          <h3 data-es="Tecnología de doble uso">Dual-Use Technology</h3>
+          <div class="tagline" data-es="Defensa y seguridad">Defence &amp; security</div>
+          <p data-es="Tecnología de sensores acústicos y ópticos adaptada para aplicaciones de defensa y seguridad. Disponible bajo consulta.">Acoustic and optical sensor technology adapted for defence and security applications. Available on direct enquiry.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- IN DEVELOPMENT -->
+<section class="indev">
+  <div class="wrap">
+    <div class="indev-header fi">
+      <div class="rule"></div>
+      <h2 data-es="En desarrollo">In development</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="dev-grid">
+      <div class="dev-card fi" data-cat="acoustic">
+        <div class="dev-card-img"><img src="seasampler_2.png" alt="SeaSampler" loading="lazy"></div>
+        <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
+        <h3>SeaSampler</h3>
+        <p data-es="Un proyecto de participación innovador basado en tecnología para la ciencia ciudadana marina. Diseñado para aumentar la implicación de los buceadores en la ciencia ciudadana marina.">An innovative technology-based participation project for marine citizen science. Designed to enhance diver engagement by turning them into active sensors and scientific observers.</p>
+        <a href="https://seascale.marexi.com/accounts/login/" target="_blank" rel="noopener noreferrer" class="dev-portal-link" data-es="Acceder al portal →">Access portal →</a>
+      </div>
+      <div class="dev-card fi d1" data-cat="vision">
+        <div class="dev-card-img"><img src="tclean_2.png" alt="T-CLEAN" loading="lazy"></div>
+        <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
+        <h3>T-CLEAN</h3>
+        <p data-es="Sistema automático de pelado de atunes mediante visión artificial y robótica de precisión. Genera un mapa 3D completo de la superficie de cada pieza para minimizar mermas a velocidad de producción.">Automated tuna peeling system combining computer vision and precision robotics. Generates a complete 3D surface map of each fish to minimise waste at full production speed.</p>
+      </div>
+      <div class="dev-card fi d2" data-cat="vision">
+        <div class="dev-card-img"><img src="img-sps-device.jpg" alt="SPS" loading="lazy"></div>
+        <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
+        <h3>SPS</h3>
+        <p data-es="Equipo industrial para el pelado automático de tiburones congelados, concebido para optimizar el procesamiento con foco en eficiencia, sostenibilidad y cumplimiento normativo.">Industrial system for the automated peeling of frozen sharks, designed to optimise processing with a focus on efficiency, sustainability and regulatory compliance.</p>
+      </div>
+      <div class="dev-card fi d3" data-cat="vision">
+        <div class="dev-card-img"><img src="img-ctun-vision.jpg" alt="C-TUNA" loading="lazy"></div>
+        <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
+        <h3>C-TUNA</h3>
+        <p data-es="Sistema automático de inspección a bordo de atunes capturados en embarcaciones atuneras, mediante visión artificial y red neuronal con anidamiento para la detección y clasificación de diferentes especies de túnidos.">Automatic on-board inspection system for tuna caught at sea. Uses advanced computer vision and a nestable neural network to detect and classify different tuna species directly on the vessel's fish deck.</p>
+      </div>
+    </div>
+    <div class="dev-grid">
+      <div class="dev-card fi" data-cat="acoustic">
+        <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
+        <h3 data-es="BIOACÚSTICA">BIOACOUSTIC</h3>
+        <p data-es="Sistema de invisibilidad acústica para ocultar un objeto subacuático de la detección por sonar o por animales marinos con ecolocalización.">Acoustic invisibility system to hide an underwater object from detection by sonar devices or by echolocating marine animals.</p>
+      </div>
+      <div class="dev-card fi d1" data-cat="testing">
+        <span class="cat cat-testing" data-es="Ensayos">Testing</span>
+        <h3 data-es="Detección de contaminantes en el mar">Contaminant detection at sea</h3>
+        <p data-es="Detección electroquímica portátil de toxinas marinas y contaminantes en el punto de captura, sin laboratorio.">Portable electrochemical sensing for marine toxins and contaminants — point-of-catch, no lab required.</p>
+      </div>
+      <div class="dev-card fi d2" data-cat="acoustic">
+        <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
+        <h3 data-es="Reducción de capturas accidentales de tiburón">Shark bycatch reduction</h3>
+        <p data-es="Sistema autónomo para reducir la captura accidental de tiburón en pesquerías industriales de atún. Disuasión selectiva sin afectar a la captura ni a las operaciones del buque.">Autonomous system to reduce accidental shark capture in industrial tuna fisheries. Targeted deterrence without affecting the catch or vessel operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section class="tech-strip" id="technologies">
+  <div class="wrap">
+    <div class="eyebrow fi" data-es="Plataformas tecnológicas">Technology platforms</div>
+    <h2 class="fi d1" data-es="Nuestra IA aplicada a Tres Pilares de I+D+i">Our best AI applied to Three Pillars of R&amp;D&amp;i</h2>
+    <div class="tech-grid">
+      <div class="tech-card fi">
+        <div>
+          <h4 data-es="Acústica">Acoustics</h4>
+          <p data-es="Generación, propagación, control y recepción de ondas sonoras subacuáticas. Efectivo para comunicación, guiado de peces y disuasión a larga distancia.">Generation, propagation, control and reception of underwater sound waves. Effective for long-range communication, fish guidance and deterrence.</p>
+        </div>
+      </div>
+      <div class="tech-card fi d1">
+        <div>
+          <h4 data-es="Visión por computador">Computer Vision</h4>
+          <p data-es="Sistemas de detección y procesamiento basados en luz para aplicaciones subacuáticas e industriales. Desde cámaras de inspección hasta escáneres de línea con IA.">Light-based detection and processing systems for underwater and industrial applications. From inspection cameras to AI-powered in-line scanners.</p>
+        </div>
+      </div>
+      <div class="tech-card fi d2">
+        <div>
+          <h4 data-es="Tecnología de microondas">Microwave technology</h4>
+          <p data-es="Generación de microondas de estado sólido (0,9 a 3,0 GHz) utilizada en nuestros desarrollos para producir calor mediante el rápido movimiento y rotación de moléculas polares por fricción entre sí.">Solid State Microwave generation (0.9 to 3.0 GHz) used in our developments to produce heat energy by the rapid movement and rotation of polar molecules by rubbing against each other.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-inner">
+      <div class="fi">
+        <div class="eyebrow" data-es="Empresa">Company</div>
+        <h2 data-es="Tecnología marina desde Vigo, desde 2004.">Marine technology from Vigo, since 2004.</h2>
+        <p class="about-mission" data-es="Aportar valor a través del desarrollo tecnológico y la ejecución de proyectos de innovación para la pesca, la acuicultura y el medioambiente.">Deliver value through technological development and innovation projects for fishing, aquaculture and the environment.</p>
+        <p data-es="Marexi fue fundada en Vigo por el tecnólogo Joaquín Gracia Salvador y el científico Iñaki Miniño. Hoy, el equipo incluye ingenieros, físicos, matemáticos y biólogos.">Marexi was founded in Vigo by technologist Joaquín Gracia Salvador and scientist Iñaki Miniño. Today the team spans engineers, physicists, mathematicians and biologists.</p>
+        <p data-es="La empresa opera desde oficinas técnicas y laboratorios de I+D en Vigo y Palma de Mallorca, diseñando, fabricando y comercializando productos propios con más de 20 años de experiencia en las industrias pesquera, acuícola y de procesamiento alimentario.">The company operates from technical offices and R&amp;D laboratories in Vigo and Palma de Mallorca, designing, manufacturing and commercialising its own products, with over 20 years of experience in the fishing, aquaculture and food processing industries.</p>
+        <img class="about-location" src="vigo.jpg" alt="Vigo headquarters">
+      </div>
+      <div class="about-facts fi d1">
+        <img class="team-photo" src="team.jpg" alt="Marexi team">
+        <div class="founders">
+          <div class="founder">
+            <img class="founder-avatar" src="ximo.jpeg" alt="Joaquín Gracia">
+            <div class="founder-info">
+              <span class="founder-name">Joaquín Gracia Salvador</span>
+              <span class="founder-role" data-es="Co-fundador · Tecnólogo">Co-founder · Technologist</span>
+              <span class="founder-bio" data-es="Formado en la James Cook University y el IIM-CSIC de Vigo. Director técnico del Proyecto Kraken; fabricó componentes del sistema WACS, premiado con el Rolex Award.">Trained at James Cook University and IIM-CSIC Vigo. Technical director of Proyecto Kraken; built components for the Rolex Award-winning WACS system.</span>
+            </div>
+            <a class="li-btn" href="https://www.linkedin.com/in/joaquin-gracia-salvador-b275b632/" target="_blank" rel="noopener">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+          <div class="founder">
+            <img class="founder-avatar" src="inaki.jpeg" alt="Iñaki Miniño Arbilla">
+            <div class="founder-info">
+              <span class="founder-name">Iñaki Miniño Arbilla</span>
+              <span class="founder-role" data-es="Co-fundador · Científico">Co-founder · Scientist</span>
+              <span class="founder-bio" data-es="Biólogo marino y ex Director General de Medio Ambiente de Palma de Mallorca. Dirigió el programa Reservas Marinas de la Fundación Cousteau.">Marine biologist; former Director General of Environment, Palma de Mallorca. Directed the Cousteau Foundation Marine Reserves programme.</span>
+            </div>
+            <a class="li-btn" href="https://www.linkedin.com/in/i%C3%B1aki-mini%C3%B1o-arbilla-62a8841a/" target="_blank" rel="noopener">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand">
+        <img src="logo_marexi_light.png" alt="Marexi Marine Technology" style="height:28px;width:auto;display:block;opacity:.75">
+      </div>
+      <div class="social-links">
+        <a class="social-btn" href="https://www.linkedin.com/company/marexi-marine-technology" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a class="social-btn" href="https://www.instagram.com/mareximarinetech/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a class="social-btn" href="https://www.facebook.com/profile.php?id=61595066648591" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a class="social-btn" href="https://www.youtube.com/channel/UC93zsvGMUHvloCqE_-iQ9pA" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a class="social-btn" href="https://x.com/marexitech" target="_blank" rel="noopener" aria-label="X / Twitter">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.258 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h6 data-es="Contacto">Contact</h6>
+      <p>info@marexi.com</p>
+      <p>+34 986 248 213</p>
+      <p>+34 986 248 214</p>
+      <p data-es="Fax: +34 902 876 815">Fax: +34 902 876 815</p>
+    </div>
+    <div class="foot-col">
+      <h6 data-es="Dirección">Address</h6>
+      <a href="https://maps.app.goo.gl/Wxqx6Kdwc1f8YQtJA" target="_blank" rel="noopener" style="display:inline-flex;align-items:flex-start;gap:7px;color:var(--muted);transition:color .15s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">
+        <span style="margin-top:2px;flex-shrink:0">📍</span>
+        <span>Jacinto Benavente, 22<br>36202 Vigo<br>Pontevedra, Spain</span>
+      </a>
+      <a href="https://www.marexi.com" target="_blank" rel="noopener" style="margin-top:8px;color:var(--muted)">www.marexi.com</a>
+    </div>
+  </div>
+  <div class="foot-micro">
+    <a href="/certifications/" data-es="Certificaciones →">Certifications →</a>
+    <span class="sep">|</span>
+    <a href="/experience/" data-es="Experiencia →">Experience →</a>
+    <span class="sep">|</span>
+    <a href="/clients/" data-es="Clientes →">Clients →</a>
+    <span class="sep">·</span>
+    <a href="/funding/" data-es="Ayudas públicas →">Public funding →</a>
+  </div>
+  <div class="foot-bottom">
+    <div>© 2026 Marexi · Tecnología Marina Ximo, S.L. · CIF B36944999</div>
+    <div class="foot-legal">
+      <a href="legal.html" data-es="Aviso Legal">Legal Notice</a>
+      <a href="legal.html#privacy" data-es="Privacidad">Privacy Policy</a>
+      <a href="legal.html#terms" data-es="Condiciones">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Language toggle ──────────────────────────────────────
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-es]').forEach(function(el){
+    if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+    el.innerHTML = el.getAttribute(lang==='es' ? 'data-es' : 'data-en');
+  });
+  document.getElementById('btn-en').classList.toggle('on', lang==='en');
+  document.getElementById('btn-es').classList.toggle('on', lang==='es');
+  try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+}
+(function(){
+  var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
+  if(saved==='es') setLang('es');
+})();
+
+// ── Product filters ──────────────────────────────────────
+var _cat='all', _sector='all';
+function applyFilters(){
+  document.querySelectorAll('.grid .card').forEach(function(c){
+    var cats    = (c.getAttribute('data-cat')    || '').split(' ');
+    var sectors = (c.getAttribute('data-sector') || '').split(' ');
+    var catOk    = _cat    ==='all' || cats.indexOf(_cat)    !==-1;
+    var sectorOk = _sector ==='all' || sectors.indexOf(_sector) !==-1;
+    c.hidden = !(catOk && sectorOk);
+  });
+  document.querySelectorAll('.dev-card[data-cat]').forEach(function(c){
+    var cats = (c.getAttribute('data-cat') || '').split(' ');
+    var catOk = _cat === 'all' || cats.indexOf(_cat) !== -1;
+    c.hidden = !catOk;
+  });
+}
+function filterCat(cat,btn){
+  document.querySelectorAll('.filters:not(.sector) button').forEach(function(b){ b.classList.toggle('on',b===btn); });
+  _cat=cat; applyFilters();
+}
+function filterSector(sector,btn){
+  document.querySelectorAll('.filters.sector button').forEach(function(b){ b.classList.toggle('on',b===btn); });
+  _sector=sector; applyFilters();
+}
+
+// ── Smooth scroll for hash links ─────────────────────────
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[href^="#"]');
+  if(!a) return;
+  var id=a.getAttribute('href').slice(1);
+  if(!id) return;
+  var el=document.getElementById(id);
+  if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+});
+
+// ── Scroll fade-in ───────────────────────────────────────
+(function(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.fi').forEach(function(el){ obs.observe(el); });
+  // Kick hero elements in immediately
+  document.querySelectorAll('.hero .fi').forEach(function(el){
+    setTimeout(function(){ el.classList.add('in'); }, parseInt(el.className.match(/d(\d)/)?.[1]||0)*80);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<base href="https://marexi.com/tedepad/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tedepad® — Onboard microwave parasite inactivation</title>
+<meta name="description" content="Tedepad® by Marexi: the first system designed to treat fish viscera aboard fishing vessels using microwave technology, inactivating Anisakis parasites before waste is returned to the sea. CE certified. No consumables.">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<style>
+  :root{
+    --navy:#081627; --navy2:#0c2036; --surface:#102b47; --surface2:#14314f; --line:#1e415f;
+    --ink:#eef4fb; --muted:#9fb4cc; --faint:#6f88a3;
+    --accent:#ff6a4d; --accent-soft:#ff8b74; --cyan:#37c6c9; --gold:#e8b04b;
+    --mw:#f0a500;
+    --maxw:1080px; --radius:18px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+  h1,h2,h3{line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:16px}
+  section.block{padding:72px 0}
+  section.block+section.block{border-top:1px solid var(--line)}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(6,15,29,.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(55,198,201,.1)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;max-width:1280px;margin:0 auto;padding:0 48px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.03em;font-size:1.15rem}
+  .brand .mark{width:28px;height:28px;flex:0 0 auto}
+  .brand small{display:block;font-weight:500;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-top:1px}
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .back{font-size:.82rem;color:var(--muted);font-weight:600;transition:.15s}
+  .back:hover{color:var(--ink)}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#0a1524}
+
+  /* category pill */
+  .cat{display:inline-flex;align-items:center;gap:7px;margin-bottom:16px;font-size:.68rem;font-weight:700;
+       letter-spacing:.14em;text-transform:uppercase;padding:6px 13px;border-radius:999px}
+  .cat:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .cat-microwave{color:var(--mw);background:rgba(240,165,0,.10);border:1px solid rgba(240,165,0,.35)}
+
+  /* HERO */
+  .hero{padding:84px 0 60px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:
+     radial-gradient(1000px 500px at 80% -10%,rgba(240,165,0,.12),transparent 60%),
+     radial-gradient(700px 500px at 5% 110%,rgba(55,198,201,.09),transparent 60%);z-index:0}
+  .hero .wrap{position:relative;z-index:2;text-align:center}
+  .hero h1{font-size:clamp(2rem,5vw,3.1rem);margin:0 auto 20px;max-width:20ch}
+  .hero .lede{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);max-width:64ch;margin:0 auto 32px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0a1524;
+       font-weight:700;font-size:.95rem;padding:13px 26px;border-radius:999px;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--muted)}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+  /* KEY STATS */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:52px}
+  .stat{background:var(--surface);padding:28px 24px;text-align:center}
+  .stat strong{display:block;font-size:2rem;font-weight:800;letter-spacing:-.03em;color:var(--mw);line-height:1}
+  .stat span{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-top:6px;display:block}
+  @media(max-width:580px){.stats{grid-template-columns:1fr}}
+
+  /* PROBLEM */
+  .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  @media(max-width:720px){.problem-grid{grid-template-columns:1fr}}
+  .problem-grid h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:16px}
+  .problem-grid p{color:var(--muted);font-size:.97rem;line-height:1.7;margin-bottom:14px}
+  .problem-grid p:last-child{margin-bottom:0}
+  .impact-list{display:flex;flex-direction:column;gap:12px}
+  .impact-item{background:var(--surface);border:1px solid var(--line);border-left:2px solid var(--mw);border-radius:0 10px 10px 0;padding:16px 20px}
+  .impact-item h4{font-size:.85rem;font-weight:700;color:var(--mw);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+  .impact-item p{font-size:.86rem;color:var(--muted);margin:0;line-height:1.5}
+
+  /* HOW IT WORKS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  @media(max-width:680px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .step-num{font-size:.7rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--mw);margin-bottom:14px}
+  .step h3{font-size:1.05rem;font-weight:700;margin-bottom:10px}
+  .step p{font-size:.88rem;color:var(--muted);line-height:1.6}
+
+  /* PILLARS */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  @media(max-width:680px){.pillars{grid-template-columns:1fr}}
+  .pillar{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .pillar h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--ink)}
+  .pillar p{font-size:.9rem;color:var(--muted);line-height:1.6}
+
+  /* VALIDATION */
+  .val-grid{display:flex;flex-direction:column;gap:16px;margin-top:40px}
+  .val-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 30px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+  @media(max-width:600px){.val-card{grid-template-columns:1fr}}
+  .val-badge{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:999px;white-space:nowrap;align-self:flex-start}
+  .val-badge.eu{background:rgba(55,198,201,.12);color:var(--cyan);border:1px solid rgba(55,198,201,.35)}
+  .val-badge.es{background:rgba(240,165,0,.10);color:var(--mw);border:1px solid rgba(240,165,0,.35)}
+  .val-badge.boe{background:rgba(255,106,77,.10);color:var(--accent);border:1px solid rgba(255,106,77,.35)}
+  .val-card h4{font-size:1rem;font-weight:700;margin-bottom:6px}
+  .val-card p{font-size:.88rem;color:var(--muted);line-height:1.6}
+
+  /* SPECS */
+  .specs{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;margin-top:40px;border-top:1px solid var(--line)}
+  @media(max-width:600px){.specs{grid-template-columns:1fr;gap:0}}
+  .spec{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .spec .k{color:var(--muted);font-size:.92rem}
+  .spec .v{font-weight:600;text-align:right}
+
+  /* CTA */
+  .cta-block{background:linear-gradient(135deg,var(--surface),var(--navy2));border:1px solid var(--line);border-radius:22px;padding:52px;text-align:center}
+  .cta-block h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:14px}
+  .cta-block p{color:var(--muted);max-width:52ch;margin:0 auto 28px}
+
+  /* FOOTER */
+  footer{margin-top:auto;border-top:1px solid var(--line);padding:36px 0;color:var(--faint);font-size:.85rem}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  [hidden]{display:none!important}
+  .prod-shot{display:block;max-width:520px;width:90%;margin:36px auto 0;border-radius:14px;overflow:hidden}
+  .prod-shot img{width:100%;height:auto;display:block}
+  .prod-shot.transparent{background:transparent;filter:drop-shadow(0 20px 40px rgba(0,0,0,.55))}
+  .prod-shot.card{background:var(--surface);border:1px solid var(--line)}
+  .dl{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:18px;justify-content:center}
+  .dl .dl-lbl{font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
+  .dl a{display:inline-flex;align-items:center;gap:5px;font-size:.75rem;font-weight:700;color:var(--cyan);
+        border:1px solid rgba(55,198,201,.4);background:rgba(55,198,201,.10);padding:4px 12px;border-radius:999px;transition:.15s}
+  .dl a:hover{background:rgba(55,198,201,.2);transform:translateY(-1px)}
+  .dl a:before{content:"↓";font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <img src="/logo_marexi_light.png" alt="Marexi" style="height:44px;width:auto;display:block;">
+    </a>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="cat cat-microwave" data-es="Microondas">Microwave</span>
+    <div class="eyebrow" data-es="Tratamiento de vísceras · Marexi">Viscera treatment · Marexi</div>
+    <h1 data-es="El primer sistema de inactivación de parásitos a bordo de buques pesqueros.">The first onboard system to inactivate parasites in fish viscera at sea.</h1>
+    <p class="lede" data-es="Tedepad® aplica tecnología de microondas a las vísceras generadas durante el procesado del pescado a bordo, inactivando el parásito Anisakis antes de que los residuos sean devueltos al mar. Completamente automático. Sin consumibles. Certificado CE.">Tedepad® applies microwave technology to viscera generated during onboard fish processing, inactivating the Anisakis parasite before waste is returned to the sea. Fully automatic. No consumables. CE certified.</p>
+    <div class="cta-row">
+      <a class="btn" href="mailto:info@marexi.com" data-es="Solicitar información">Request information</a>
+      <a class="btn ghost" href="#validation" data-es="Ver validación científica">Scientific validation</a>
+    </div>
+    <div class="dl">
+      <span class="dl-lbl" data-es="Catálogo">Catalogue</span>
+      <a href="catalogo_es.pdf" target="_blank" data-es="ES">ES</a>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <strong data-es="13">13</strong>
+        <span data-es="países · Proyecto PARASITE">countries · PARASITE project</span>
+      </div>
+      <div class="stat">
+        <strong>2024</strong>
+        <span data-es="Revalidación IIM-CSIC">IIM-CSIC re-validation</span>
+      </div>
+      <div class="stat">
+        <strong>CE</strong>
+        <span data-es="Certificado · Sin consumibles">Certified · No consumables</span>
+      </div>
+    </div>
+    <div class="prod-shot card">
+      <img src="../tedepad_1.png" alt="Tedepad® — onboard parasite inactivation system">
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="block" id="problem">
+  <div class="wrap">
+    <div class="problem-grid">
+      <div>
+        <div class="eyebrow" data-es="El problema">The problem</div>
+        <h2 data-es="Las vísceras de pescado reinician el ciclo del Anisakis.">Fish viscera restarts the Anisakis cycle.</h2>
+        <p data-es="Cuando se eviscera el pescado a bordo y los residuos se vierten directamente al mar, los parásitos vivos vuelven al ecosistema marino. Crustáceos, peces y cefalópodos los ingieren, perpetuando la cadena de infección que termina llegando al consumidor humano.">When fish are eviscerated aboard a vessel and the waste is discharged directly into the sea, living parasites re-enter the marine ecosystem. Crustaceans, fish and cephalopods ingest them, perpetuating the infection chain that ultimately reaches the human consumer.</p>
+        <p data-es="El Anisakis provoca anisakiosis: una enfermedad parasitaria con respuestas alérgicas que van de leves a severas, y que genera desconfianza entre los consumidores, costes de procesado adicionales y retiradas de mercado.">Anisakis causes anisakiasis — a parasitic illness with allergic reactions ranging from mild to severe — generating consumer distrust, additional processing costs and product recalls.</p>
+      </div>
+      <div class="impact-list">
+        <div class="impact-item">
+          <h4 data-es="Ecosistema marino">Marine ecosystem</h4>
+          <p data-es="Los parásitos liberados con las vísceras reducen la capacidad reproductiva de los peces y aumentan la carga parasitaria en las zonas de pesca.">Parasites released with viscera reduce fish reproductive capacity and increase parasite load in fishing grounds.</p>
+        </div>
+        <div class="impact-item">
+          <h4 data-es="Salud humana">Human health</h4>
+          <p data-es="La anisakiosis puede causar reacciones alérgicas graves. Es una de las causas más comunes de alergia alimentaria relacionada con el pescado en Europa.">Anisakiasis can cause severe allergic reactions. It is one of the most common fish-related food allergies in Europe.</p>
+        </div>
+        <div class="impact-item">
+          <h4 data-es="Industria pesquera">Fishing industry</h4>
+          <p data-es="La presencia de Anisakis genera desconfianza en el consumidor, aumenta los costes de control de calidad y puede resultar en retiradas de producto costosas.">Anisakis presence erodes consumer confidence, increases quality-control costs and can result in costly product recalls.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Cómo funciona">How it works</div>
+    <h2 data-es="Tratamiento directo en la línea de extracción de vísceras.">Direct treatment in the viscera extraction pipeline.</h2>
+    <p style="color:var(--muted);max-width:60ch;font-size:.97rem;line-height:1.7" data-es="Tedepad® se intercala directamente en la tubería de extracción de vísceras existente a bordo del buque, sin necesidad de modificaciones mayores. El proceso es completamente automático y transparente para las operaciones diarias.">Tedepad® intercalates directly into the vessel's existing viscera extraction pipeline, with no major modifications required. The process is fully automatic and transparent to daily onboard operations.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num" data-es="Paso 01">Step 01</div>
+        <h3 data-es="Evisceración">Evisceration</h3>
+        <p data-es="El pescado se eviscera a bordo siguiendo el proceso habitual. Las vísceras son conducidas hacia la tubería de extracción de residuos del buque.">Fish are eviscerated aboard as usual. Viscera are directed into the vessel's existing waste extraction pipeline.</p>
+      </div>
+      <div class="step">
+        <div class="step-num" data-es="Paso 02">Step 02</div>
+        <h3 data-es="Tratamiento por microondas">Microwave treatment</h3>
+        <p data-es="Tedepad® aplica energía de microondas a las vísceras en tránsito, inactivando el Anisakis y otros parásitos presentes. El proceso es automático y no requiere operación manual.">Tedepad® applies microwave energy to viscera in transit, inactivating Anisakis and other parasites present. The process is automatic and requires no manual operation.</p>
+      </div>
+      <div class="step">
+        <div class="step-num" data-es="Paso 03">Step 03</div>
+        <h3 data-es="Vertido seguro">Safe discharge</h3>
+        <p data-es="Los residuos tratados, libres de parásitos viables, se devuelven al mar sin dañar el ecosistema marino ni reintroducir el ciclo parasitario.">Treated waste — free of viable parasites — is returned to the sea without harming the marine ecosystem or restarting the parasite cycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="block" id="pillars">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Tres pilares">Three pillars</div>
+    <h2 data-es="Innovación, tecnología y sostenibilidad.">Innovation, technology and sustainability.</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <h3 data-es="Innovación">Innovation</h3>
+        <p data-es="El primer sistema diseñado específicamente para tratar las vísceras generadas a bordo de buques pesqueros mediante tecnología de microondas, atacando el problema en su origen.">The first system specifically designed to treat viscera generated aboard fishing vessels using microwave technology — addressing the problem at its source.</p>
+      </div>
+      <div class="pillar">
+        <h3 data-es="Tecnología">Technology</h3>
+        <p data-es="Completamente automático, sin consumibles y sin necesidad de modificaciones mayores en el buque. Se integra directamente en la línea de extracción existente y opera sin interferir con el trabajo diario a bordo.">Fully automatic, no consumables and no major vessel modifications required. Integrates directly into the existing extraction line and operates without interfering with daily work aboard.</p>
+      </div>
+      <div class="pillar">
+        <h3 data-es="Sostenibilidad">Sustainability</h3>
+        <p data-es="Al inactivar los parásitos antes del vertido, se reduce la carga parasitaria en los caladeros, se protege la biodiversidad marina y se contribuye a la sostenibilidad de los recursos pesqueros a largo plazo.">By inactivating parasites before discharge, Tedepad® reduces the parasite load in fishing grounds, protects marine biodiversity and contributes to the long-term sustainability of fish stocks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALIDATION -->
+<section class="block" id="validation">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Validación científica">Scientific validation</div>
+    <h2 data-es="Respaldado por la ciencia y reconocido oficialmente.">Backed by science. Officially recognised.</h2>
+    <div class="val-grid">
+      <div class="val-card">
+        <span class="val-badge eu" data-es="UE · 7.º PM">EU · 7th FP</span>
+        <div>
+          <h4 data-es="Proyecto PARASITE — 13 países">PARASITE project — 13 countries</h4>
+          <p data-es="Tedepad® fue validado en el marco del proyecto europeo PARASITE, financiado por el Séptimo Programa Marco de la UE. El proyecto reunió a instituciones de 13 países para evaluar sistemas de tratamiento de parásitos en la cadena alimentaria del pescado.">Tedepad® was validated within the European PARASITE project, funded by the EU Seventh Framework Programme. The project brought together institutions from 13 countries to evaluate parasite treatment systems across the fish food chain.</p>
+        </div>
+      </div>
+      <div class="val-card">
+        <span class="val-badge es" data-es="GESTPAR · 2024">GESTPAR · 2024</span>
+        <div>
+          <h4 data-es="Revalidación IIM-CSIC — 2024">IIM-CSIC re-validation — 2024</h4>
+          <p data-es="En 2024, el Instituto de Investigaciones Marinas (IIM-CSIC), en el marco del programa GESTPAR de la Secretaría General de Pesca (MAPA), confirmó la eficacia de Tedepad® para la inactivación de parásitos a bordo de buques pesqueros.">In 2024, the Instituto de Investigaciones Marinas (IIM-CSIC), under the GESTPAR programme of Spain's Secretaría General de Pesca (MAPA), confirmed Tedepad®'s effectiveness for parasite inactivation aboard fishing vessels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section class="block" id="specs">
+  <div class="wrap">
+    <div class="eyebrow" data-es="Especificaciones">Specifications</div>
+    <h2 data-es="Ficha técnica">Technical sheet</h2>
+    <div class="specs">
+      <div class="spec">
+        <span class="k" data-es="Tecnología">Technology</span>
+        <span class="v" data-es="Electromagnetismo">Electromagnetism</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Consumibles">Consumables</span>
+        <span class="v" data-es="Ninguno">None</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Operación">Operation</span>
+        <span class="v" data-es="Completamente automática">Fully automatic</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Certificación">Certification</span>
+        <span class="v">CE</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Instalación">Installation</span>
+        <span class="v" data-es="Sin modificaciones mayores">No major vessel modifications</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Integración">Integration</span>
+        <span class="v" data-es="En línea (tubería de extracción)">In-line (extraction pipeline)</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Objetivo">Target organism</span>
+        <span class="v">Anisakidae spp.</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Limpieza">Cleaning</span>
+        <span class="v" data-es="Automática">Automated</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Aplicación">Application</span>
+        <span class="v" data-es="Buques pesqueros comerciales">Commercial fishing vessels</span>
+      </div>
+      <div class="spec">
+        <span class="k" data-es="Fabricación">Manufacturing</span>
+        <span class="v">Made in EU</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block">
+  <div class="wrap">
+    <div class="cta-block">
+      <div class="eyebrow" data-es="Contacto">Contact</div>
+      <h2 data-es="¿Interesado en Tedepad® para su flota?">Interested in Tedepad® for your fleet?</h2>
+      <p data-es="Contacte con el equipo de Marexi para más información, especificaciones técnicas o una demostración a bordo.">Contact the Marexi team for more information, technical specifications or an onboard demonstration.</p>
+      <a class="btn" href="mailto:info@marexi.com" data-es="Contactar con Marexi">Contact Marexi</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>© 2026 Marexi · Marine technology</div>
+    <a href="/" target="_top" style="color:var(--faint);transition:.15s" onmouseover="this.style.color='#eef4fb'" onmouseout="this.style.color=''" data-es="← Volver a productos">← Back to products</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    });
+    document.getElementById('btn-en').classList.toggle('on', lang==='en');
+    document.getElementById('btn-es').classList.toggle('on', lang==='es');
+    try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
+    if(saved === 'es') setLang('es');
+  })();
+</script>
+</body>
+</html>

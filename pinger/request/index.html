@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Pinger — Request a pilot or quote · Marexi</title>
+<meta name="description" content="Request a Pinger pilot deployment or a quote — the new-generation acoustic cetacean deterrent by Marexi: programmable 40–400 kHz, rechargeable, multi-species.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23081627'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23ff6a4d' stroke-width='1.5' opacity='.55'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='%2337c6c9' stroke-width='1.5' opacity='.8'/%3E%3Ccircle cx='16' cy='16' r='2.4' fill='%2337c6c9'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --navy:#081627; --navy2:#0c2036; --surface:#102b47; --surface2:#14314f; --line:#1e415f;
+    --ink:#eef4fb; --muted:#9fb4cc; --faint:#6f88a3;
+    --accent:#ff6a4d; --accent-soft:#ff8b74; --cyan:#37c6c9;
+    --maxw:920px; --radius:16px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:var(--cyan)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+  h1,h2,h3{line-height:1.15;letter-spacing:-.02em;font-weight:700}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(8,22,39,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.03em;font-size:1.12rem;color:var(--ink);text-decoration:none}
+  .brand:hover{color:var(--cyan)}
+  .brand .mark{width:27px;height:27px;flex:0 0 auto}
+  .brand small{display:block;font-weight:500;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-top:1px}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#0a1524}
+
+  /* HERO */
+  .hero{padding:54px 0 26px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:
+     radial-gradient(900px 460px at 84% -20%,rgba(55,198,201,.13),transparent 60%),
+     radial-gradient(680px 460px at 2% 120%,rgba(255,106,77,.10),transparent 60%);z-index:0}
+  .hero .wrap{position:relative;z-index:2}
+  .cat{display:inline-flex;align-items:center;gap:7px;margin-bottom:16px;font-size:.68rem;font-weight:700;
+       letter-spacing:.14em;text-transform:uppercase;padding:6px 13px;border-radius:999px;
+       color:#37c6c9;background:rgba(55,198,201,.12);border:1px solid rgba(55,198,201,.35)}
+  .cat:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .hero h1{font-size:clamp(1.9rem,4.4vw,2.7rem);max-width:20ch;margin-bottom:14px}
+  .hero .lede{font-size:clamp(1.02rem,1.5vw,1.16rem);color:var(--muted);max-width:64ch}
+  .usps{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px}
+  .usps span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.84rem;color:var(--ink)}
+  .usps b{color:var(--cyan);font-weight:700}
+
+  /* FORM CARD */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px 30px 26px;margin:22px 0 12px}
+  .card h2{font-size:1.28rem;margin-bottom:4px}
+  .card .cardsub{color:var(--muted);font-size:.94rem;margin-bottom:22px}
+
+  .fs{border:0;margin:0 0 22px;padding:0}
+  .fs > legend{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--accent);
+       margin-bottom:14px;padding:0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field.full{grid-column:1/-1}
+  label.k{font-size:.86rem;font-weight:600;color:var(--ink)}
+  label.k .req{color:var(--accent)}
+  .inp{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--navy2);
+       color:var(--ink);font:inherit;font-size:.94rem;transition:border-color .15s,box-shadow .15s}
+  .inp::placeholder{color:#5f7591}
+  .inp:focus{border-color:var(--cyan);outline:none;box-shadow:0 0 0 3px rgba(55,198,201,.15)}
+  textarea.inp{min-height:110px;resize:vertical}
+  select.inp{appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239fb4cc' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+
+  /* choice chips (radios/checkboxes) */
+  .choices{display:flex;flex-wrap:wrap;gap:9px}
+  .choice{display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border:1px solid var(--line);
+       border-radius:10px;background:var(--navy2);font-size:.88rem;cursor:pointer;user-select:none;transition:.15s}
+  .choice:hover{border-color:var(--faint)}
+  .choice input{accent-color:var(--accent);width:16px;height:16px;margin:0;cursor:pointer}
+  .choice:has(input:checked){border-color:var(--accent);background:rgba(255,106,77,.10)}
+
+  .consent{display:flex;align-items:flex-start;gap:11px;background:var(--navy2);border:1px solid var(--line);
+       border-radius:10px;padding:13px 15px;font-size:.86rem;color:var(--muted)}
+  .consent input{accent-color:var(--accent);width:17px;height:17px;margin-top:2px;flex:0 0 auto;cursor:pointer}
+
+  .actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+  .btn{appearance:none;border:0;background:var(--accent);color:#0a1524;font:inherit;font-size:.96rem;font-weight:700;
+       padding:13px 26px;border-radius:999px;cursor:pointer;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--cyan);transform:none}
+  .err{color:#ffb0a0;font-size:.85rem;min-height:1.1em;margin-top:10px}
+  .ok{color:#7fe3c4;font-size:.9rem;margin-top:10px}
+  .altmail{color:var(--muted);font-size:.86rem;margin-top:6px}
+
+  footer{margin-top:auto;border-top:1px solid var(--line);padding:26px 0;color:var(--faint);font-size:.83rem}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="https://marexi.com" title="Marexi">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="14" stroke="#ff6a4d" stroke-width="1.4" opacity=".5"/>
+        <circle cx="16" cy="16" r="9" stroke="#37c6c9" stroke-width="1.4" opacity=".75"/>
+        <circle cx="16" cy="16" r="3.2" fill="#37c6c9"/>
+      </svg>
+      <span>Marexi<small data-es="Tecnología marina">Marine technology</small></span>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+      <button id="btn-es" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="cat" data-es="Acústica · Pinger">Acoustic · Pinger</span>
+    <h1 data-es="Solicite un piloto o un presupuesto de Pinger">Request a Pinger pilot or quote</h1>
+    <p class="lede" data-es="Pinger es el disuasorio acústico de cetáceos de nueva generación de Marexi. Cuéntenos su operación y le propondremos la configuración adecuada — despliegue piloto, presupuesto o briefing técnico.">Pinger is Marexi’s new-generation acoustic cetacean deterrent. Tell us about your operation and we’ll propose the right configuration — a pilot deployment, a quote, or a technical briefing.</p>
+    <div class="usps">
+      <span data-es="Programable <b>40–400 kHz</b>">Programmable <b>40–400 kHz</b></span>
+      <span data-es="<b>Recargable</b>">＋ <b>Rechargeable</b></span>
+      <span data-es="<b>Multi-especie</b>">＋ <b>Multi-species</b></span>
+      <span data-es="Un dispositivo a <b>escala de flota</b>">＋ One <b>fleet-scale</b> device</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="card">
+    <h2 data-es="Su solicitud">Your request</h2>
+    <div class="cardsub" data-es="Los campos marcados con * son obligatorios. Al enviar se abrirá su correo con la solicitud ya redactada para Marexi.">Fields marked * are required. Submitting opens your email client with the request pre-written to Marexi.</div>
+
+    <form id="leadForm" novalidate>
+
+      <fieldset class="fs">
+        <legend data-es="Qué necesita">What you need</legend>
+        <div class="choices" id="reqtype">
+          <label class="choice"><input type="radio" name="reqtype" value="Pilot deployment" checked><span data-es="Despliegue piloto">Pilot deployment</span></label>
+          <label class="choice"><input type="radio" name="reqtype" value="Quote"><span data-es="Presupuesto">Quote</span></label>
+          <label class="choice"><input type="radio" name="reqtype" value="Technical briefing"><span data-es="Briefing técnico">Technical briefing</span></label>
+          <label class="choice"><input type="radio" name="reqtype" value="Other"><span data-es="Otro">Other</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fs">
+        <legend data-es="Contacto">Contact</legend>
+        <div class="grid2">
+          <div class="field"><label class="k" for="name" data-es="Nombre <span class='req'>*</span>">Full name <span class="req">*</span></label><input class="inp" id="name" name="name" type="text" autocomplete="name"></div>
+          <div class="field"><label class="k" for="company" data-es="Empresa / organización <span class='req'>*</span>">Company / organisation <span class="req">*</span></label><input class="inp" id="company" name="company" type="text" autocomplete="organization"></div>
+          <div class="field"><label class="k" for="role" data-es="Cargo">Role</label><input class="inp" id="role" name="role" type="text" autocomplete="organization-title"></div>
+          <div class="field"><label class="k" for="email" data-es="Correo <span class='req'>*</span>">Email <span class="req">*</span></label><input class="inp" id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email"></div>
+          <div class="field"><label class="k" for="phone" data-es="Teléfono">Phone</label><input class="inp" id="phone" name="phone" type="tel" placeholder="+34 …" autocomplete="tel"></div>
+          <div class="field"><label class="k" for="country" data-es="País <span class='req'>*</span>">Country <span class="req">*</span></label><input class="inp" id="country" name="country" type="text" autocomplete="country-name"></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="fs">
+        <legend data-es="Su operación">Your operation</legend>
+        <div class="grid2">
+          <div class="field">
+            <label class="k" for="sector" data-es="Sector <span class='req'>*</span>">Sector <span class="req">*</span></label>
+            <select class="inp" id="sector" name="sector">
+              <option value="" data-es="Seleccione…">Select…</option>
+              <option data-es="Acuicultura">Aquaculture</option>
+              <option data-es="Pesca">Fishing</option>
+              <option data-es="Eólica marina / construcción marina">Offshore wind / marine construction</option>
+              <option data-es="Puertos y dársenas">Ports &amp; harbours</option>
+              <option data-es="Ciencia e investigación">Science &amp; research</option>
+              <option data-es="Defensa">Defence</option>
+              <option data-es="Náutica recreativa">Recreational boating</option>
+              <option data-es="Otro">Other</option>
+            </select>
+          </div>
+          <div class="field"><label class="k" for="scale" data-es="Escala (embarcaciones / instalaciones / dispositivos)">Scale (vessels / sites / devices)</label><input class="inp" id="scale" name="scale" type="text" placeholder="e.g. 8 vessels"></div>
+          <div class="field full"><label class="k" for="area" data-es="Especies objetivo / zona de operación">Target species / operating area</label><input class="inp" id="area" name="area" type="text" placeholder="e.g. orcas – Strait of Gibraltar"></div>
+        </div>
+        <div style="margin-top:16px">
+          <label class="k" style="display:block;margin-bottom:10px" data-es="Motivo principal (marque los que apliquen)">Primary driver (tick all that apply)</label>
+          <div class="choices" id="drivers">
+            <label class="choice"><input type="checkbox" name="driver" value="Regulatory mandate"><span data-es="Obligación regulatoria">Regulatory mandate</span></label>
+            <label class="choice"><input type="checkbox" name="driver" value="Bycatch reduction"><span data-es="Reducción de bycatch">Bycatch reduction</span></label>
+            <label class="choice"><input type="checkbox" name="driver" value="Gear & catch protection"><span data-es="Protección de aparejos y capturas">Gear &amp; catch protection</span></label>
+            <label class="choice"><input type="checkbox" name="driver" value="Depredation / orca interactions"><span data-es="Depredación / interacciones con orcas">Depredation / orca interactions</span></label>
+            <label class="choice"><input type="checkbox" name="driver" value="Safety"><span data-es="Seguridad">Safety</span></label>
+            <label class="choice"><input type="checkbox" name="driver" value="Other"><span data-es="Otro">Other</span></label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="fs">
+        <legend data-es="Detalles">Details</legend>
+        <div class="grid2">
+          <div class="field">
+            <label class="k" for="timeline" data-es="Plazo">Timeline</label>
+            <select class="inp" id="timeline" name="timeline">
+              <option value="" data-es="Seleccione…">Select…</option>
+              <option data-es="Inmediato">Immediate</option>
+              <option data-es="Esta temporada">This season</option>
+              <option data-es="3–6 meses">3–6 months</option>
+              <option data-es="Exploratorio">Exploratory</option>
+            </select>
+          </div>
+          <div class="field"><label class="k" for="ref" data-es="Referencia de proyecto (opcional)">Project reference (optional)</label><input class="inp" id="ref" name="ref" type="text"></div>
+          <div class="field full"><label class="k" for="message" data-es="Mensaje">Message</label><textarea class="inp" id="message" name="message" data-es-ph="" placeholder=""></textarea></div>
+        </div>
+      </fieldset>
+
+      <label class="consent">
+        <input type="checkbox" id="consent" name="consent">
+        <span data-es="Autorizo a Marexi a almacenar y utilizar estos datos con el único fin de responder a mi solicitud. <span class='req'>*</span>">I consent to Marexi storing and using these details for the sole purpose of responding to my request. <span class="req">*</span></span>
+      </label>
+
+      <div class="actions" style="margin-top:20px">
+        <button type="submit" class="btn" data-es="Enviar solicitud">Send request</button>
+        <button type="button" class="btn ghost" id="copyBtn" data-es="Copiar resumen">Copy summary</button>
+      </div>
+      <div class="err" id="err"></div>
+      <div class="ok" id="ok" hidden></div>
+      <div class="altmail" data-es="¿Prefiere el correo directo? Escriba a ">Prefer email directly? Write to <a href="mailto:comercial@marexi.com">comercial@marexi.com</a>.</div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div>© 2026 Marexi</div>
+    <div data-es="Confidencial · Homologación en curso">Confidential · Homologation in progress</div>
+  </div>
+</footer>
+
+<script>
+  var LEAD_TO = 'comercial@marexi.com';
+
+  // Bilingual toggle. English is source markup; ES lives in data-es (innerHTML).
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    });
+    document.getElementById('btn-en').classList.toggle('on', lang==='en');
+    document.getElementById('btn-es').classList.toggle('on', lang==='es');
+    try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+  }
+  (function(){ var s; try{ s=localStorage.getItem('marexi-lang'); }catch(e){} if(s==='es') setLang('es'); })();
+
+  var T = {
+    en:{ need:'Fill in the required fields marked *.', email:'Please enter a valid email address.',
+         consent:'Please tick the consent box so we may reply.', copied:'Summary copied to clipboard.',
+         opened:'Your email client should have opened with the request. If not, use “Copy summary” and email comercial@marexi.com.' },
+    es:{ need:'Complete los campos obligatorios marcados con *.', email:'Introduzca un correo válido.',
+         consent:'Marque la casilla de consentimiento para que podamos responderle.', copied:'Resumen copiado al portapapeles.',
+         opened:'Debería haberse abierto su correo con la solicitud. Si no, use «Copiar resumen» y escriba a comercial@marexi.com.' }
+  };
+  function t(k){ return (document.documentElement.lang==='es'?T.es:T.en)[k]; }
+
+  function val(id){ var e=document.getElementById(id); return e? e.value.trim() : ''; }
+  function drivers(){ return Array.prototype.slice.call(document.querySelectorAll('input[name=driver]:checked')).map(function(c){return c.value;}); }
+  function reqtype(){ var r=document.querySelector('input[name=reqtype]:checked'); return r?r.value:''; }
+
+  function buildSummary(){
+    var d = drivers();
+    var L = [
+      'Pinger enquiry',
+      '',
+      'Request type: ' + reqtype(),
+      '',
+      '— Contact —',
+      'Name:     ' + val('name'),
+      'Company:  ' + val('company'),
+      'Role:     ' + val('role'),
+      'Email:    ' + val('email'),
+      'Phone:    ' + val('phone'),
+      'Country:  ' + val('country'),
+      '',
+      '— Operation —',
+      'Sector:   ' + val('sector'),
+      'Scale:    ' + val('scale'),
+      'Species / area: ' + val('area'),
+      'Drivers:  ' + (d.length? d.join(', ') : '—'),
+      '',
+      '— Details —',
+      'Timeline: ' + val('timeline'),
+      'Project ref: ' + val('ref'),
+      'Message:',
+      (val('message') || '—'),
+      '',
+      '— Sent from marexi.com/pinger/request —'
+    ];
+    return L.join('\n');
+  }
+
+  function validate(){
+    var err = document.getElementById('err'); err.textContent='';
+    var required = ['name','company','email','country','sector'];
+    for(var i=0;i<required.length;i++){ if(!val(required[i])){ err.textContent=t('need'); return false; } }
+    var em = val('email');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ err.textContent=t('email'); return false; }
+    if(!document.getElementById('consent').checked){ err.textContent=t('consent'); return false; }
+    return true;
+  }
+
+  document.getElementById('leadForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validate()) return;
+    var subject = 'Pinger enquiry — ' + (val('company')||'—') + ' — ' + reqtype();
+    var body = buildSummary();
+    var href = 'mailto:' + LEAD_TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.location.href = href;
+    var ok=document.getElementById('ok'); ok.hidden=false; ok.textContent=t('opened');
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    if(!validate()) return;
+    var text = buildSummary();
+    var ok=document.getElementById('ok');
+    function done(){ ok.hidden=false; ok.textContent=t('copied'); }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text); done(); }); }
+    else { fallbackCopy(text); done(); }
+  });
+  function fallbackCopy(text){
+    var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta);
+  }
+</script>
+</body>
+</html>

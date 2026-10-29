@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal — Marexi · Marine Technology</title>
+<meta name="description" content="Legal notice, privacy policy and terms of use for the Marexi website.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<style>
+  :root{
+    --navy:#081627; --navy2:#0c2036; --surface:#102b47; --surface2:#14314f; --line:#1e415f;
+    --ink:#eef4fb; --muted:#9fb4cc; --faint:#6f88a3;
+    --accent:#ff6a4d; --accent-soft:#ff8b74; --cyan:#37c6c9;
+    --maxw:860px; --radius:12px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(6,15,29,.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(55,198,201,.1)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;max-width:1280px;margin:0 auto;padding:0 48px;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
+  .brand:hover{text-decoration:none}
+  .brand .mark{width:26px;height:26px;flex:0 0 auto}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .back-link{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:5px;white-space:nowrap}
+  .back-link:hover{color:var(--ink);text-decoration:none}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#0a1524}
+
+  /* TABS */
+  .tabs-bar{position:sticky;top:64px;z-index:40;background:var(--navy2);border-bottom:1px solid var(--line)}
+  .tabs{display:flex;max-width:var(--maxw);margin:0 auto;padding:0 24px;overflow-x:auto;gap:2px}
+  .tabs button{background:none;border:0;color:var(--muted);padding:14px 18px;font-size:.88rem;font-weight:600;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:.15s;margin-bottom:-1px}
+  .tabs button.on{color:var(--ink);border-bottom-color:var(--accent)}
+  .tabs button:hover:not(.on){color:var(--ink)}
+
+  /* CONTENT */
+  main{flex:1;padding:40px 0 80px}
+  .legal-section{display:none}
+  .legal-section.active{display:block}
+
+  .section-header{padding:28px 0 24px;border-bottom:1px solid var(--line);margin-bottom:28px}
+  .section-header h1{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+  .section-header .meta{font-size:.82rem;color:var(--faint)}
+
+  .legal-body h2{font-size:1rem;font-weight:700;margin:28px 0 10px;color:var(--ink)}
+  .legal-body p{color:var(--muted);font-size:.9rem;margin-bottom:12px}
+  .legal-body ul{color:var(--muted);font-size:.9rem;padding-left:20px;margin-bottom:12px}
+  .legal-body ul li{margin-bottom:8px;line-height:1.6}
+  .legal-body strong{color:var(--ink)}
+  .legal-body a{color:var(--cyan)}
+  .legal-body .info-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:0 0 16px}
+  .legal-body .info-box p{margin:0;font-size:.88rem}
+  .legal-body .info-box p+p{margin-top:6px}
+  .legal-body .note{color:var(--accent-soft);font-size:.82rem;font-style:italic;margin-top:4px}
+  .legal-body .updated{font-size:.8rem;color:var(--faint);margin-top:32px;padding-top:16px;border-top:1px solid var(--line)}
+
+  /* FOOTER */
+  footer{background:var(--navy2);border-top:1px solid var(--line);padding:20px 0}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:.78rem;color:var(--faint)}
+  .foot-bottom a{color:var(--faint)}
+  .foot-bottom a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="./">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="14" stroke="#ff6a4d" stroke-width="1.4" opacity=".5"/>
+        <circle cx="16" cy="16" r="9" stroke="#37c6c9" stroke-width="1.4" opacity=".75"/>
+        <circle cx="16" cy="16" r="3.2" fill="#37c6c9"/>
+      </svg>
+      Marexi
+    </a>
+    <div class="nav-right">
+      <a class="back-link" href="./">← <span data-es="Volver al sitio">Back to site</span></a>
+      <div class="lang" role="group" aria-label="Language">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <div class="tabs">
+    <button class="on" data-tab="legal" onclick="showTab('legal')" data-es="Aviso Legal">Legal Notice</button>
+    <button data-tab="privacy" onclick="showTab('privacy')" data-es="Política de Privacidad">Privacy Policy</button>
+    <button data-tab="terms" onclick="showTab('terms')" data-es="Condiciones de Uso">Terms of Use</button>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+
+    <!-- ── LEGAL NOTICE / AVISO LEGAL ── -->
+    <section id="legal" class="legal-section active">
+      <div class="section-header">
+        <h1 data-es="Aviso Legal">Legal Notice</h1>
+        <p class="meta" data-es="Información conforme al art. 10 de la Ley 34/2002, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE)">Information pursuant to Art. 10, Law 34/2002 on Information Society Services and Electronic Commerce (LSSI-CE)</p>
+      </div>
+      <div class="legal-body">
+
+        <h2 data-es="1. Identificación del titular">1. Operator identification</h2>
+        <div class="info-box">
+          <p><strong data-es="Denominación social:">Company name:</strong> Tecnología Marina Ximo, S.L.</p>
+          <p><strong data-es="Nombre comercial:">Trading name:</strong> Marexi · Marexi Marine Technology</p>
+          <p><strong>CIF:</strong> B36944999</p>
+          <p><strong data-es="Domicilio social:">Registered office:</strong> Jacinto Benavente, 22, Planta 2 — E-36202 Vigo (Pontevedra), España</p>
+          <p><strong data-es="Segunda oficina:">Second office:</strong> Palma de Mallorca, España</p>
+          <p><strong data-es="Correo electrónico:">Email:</strong> <a href="mailto:info@marexi.com">info@marexi.com</a></p>
+          <p><strong data-es="Teléfono:">Phone:</strong> +34 986 248 213 · +34 986 248 214</p>
+          <p><strong data-es="Sitio web:">Website:</strong> <a href="https://www.marexi.com" target="_blank" rel="noopener">www.marexi.com</a></p>
+          <p><strong data-es="Registro Mercantil:">Commercial Registry:</strong> Registro Mercantil de Pontevedra</p>
+        </div>
+
+        <h2 data-es="2. Objeto y ámbito de aplicación">2. Purpose and scope</h2>
+        <p data-es="El presente Aviso Legal regula el acceso y uso del sitio web de Marexi (en adelante, el «Sitio»), incluyendo todas sus páginas y subpáginas de producto. El acceso al Sitio implica la aceptación plena de las condiciones aquí establecidas.">This Legal Notice governs access to and use of the Marexi website (the "Site"), including all its product pages and subpages. Accessing the Site constitutes full acceptance of the conditions set out herein.</p>
+        <p data-es="El Sitio tiene carácter informativo y presenta los productos y servicios de Tecnología Marina Ximo, S.L. No se realizan transacciones económicas directas a través de este Sitio.">The Site is informational in nature and presents the products and services of Tecnología Marina Ximo, S.L. No direct economic transactions are conducted through this Site.</p>
+
+        <h2 data-es="3. Propiedad intelectual e industrial">3. Intellectual and industrial property</h2>
+        <p data-es="Todos los contenidos del Sitio —textos, imágenes, fotografías, vídeos, logotipos, marcas, diseños gráficos y código fuente— son titularidad de Tecnología Marina Ximo, S.L. o de terceros que han autorizado expresamente su uso, y están protegidos por la legislación española e internacional de propiedad intelectual e industrial.">All content on the Site — texts, images, photographs, videos, logos, trademarks, graphic designs and source code — is owned by Tecnología Marina Ximo, S.L. or by third parties who have expressly authorised its use, and is protected under Spanish and international intellectual and industrial property legislation.</p>
+        <p data-es="Queda expresamente prohibida su reproducción total o parcial, distribución, comunicación pública o transformación sin autorización previa y por escrito del titular.">Reproduction in whole or in part, distribution, public communication or transformation without prior written authorisation from the rights holder is expressly prohibited.</p>
+
+        <h2 data-es="4. Limitación de responsabilidad">4. Limitation of liability</h2>
+        <p data-es="Tecnología Marina Ximo, S.L. no garantiza la disponibilidad y continuidad técnica del Sitio, ni la ausencia de errores en sus contenidos. La empresa no será responsable de los daños directos o indirectos que pudieran derivarse del acceso, uso o imposibilidad de uso del Sitio.">Tecnología Marina Ximo, S.L. does not guarantee the technical availability and continuity of the Site, nor the absence of errors in its content. The company shall not be liable for any direct or indirect damages arising from access to, use of, or inability to use the Site.</p>
+        <p data-es="Las especificaciones técnicas de los productos pueden modificarse sin previo aviso. La información publicada tiene carácter orientativo y no constituye oferta contractual vinculante.">Product technical specifications may be changed without prior notice. Published information is indicative and does not constitute a binding contractual offer.</p>
+        <p data-es="Los enlaces a sitios web de terceros se facilitan únicamente como referencia; Marexi no controla ni asume responsabilidad alguna por sus contenidos, disponibilidad o exactitud.">Links to third-party websites are provided for reference only; Marexi does not control and assumes no responsibility for their content, availability or accuracy.</p>
+
+        <h2 data-es="5. Ley aplicable y jurisdicción">5. Governing law and jurisdiction</h2>
+        <p data-es="Este Aviso Legal se rige por la legislación española vigente. Para cualquier controversia que pudiera surgir en relación con el acceso o uso del Sitio, las partes se someten, con renuncia expresa a cualquier otro fuero, a los Juzgados y Tribunales de Vigo (Pontevedra), salvo que la normativa aplicable establezca otro fuero imperativo.">This Legal Notice is governed by current Spanish law. For any dispute arising in connection with access to or use of the Site, the parties submit, expressly waiving any other jurisdiction, to the Courts and Tribunals of Vigo (Pontevedra), unless applicable law provides for a mandatory alternative jurisdiction.</p>
+
+        <p class="updated" data-es="Última actualización: octubre de 2026">Last updated: October 2026</p>
+      </div>
+    </section>
+
+    <!-- ── PRIVACY POLICY / POLÍTICA DE PRIVACIDAD ── -->
+    <section id="privacy" class="legal-section">
+      <div class="section-header">
+        <h1 data-es="Política de Privacidad">Privacy Policy</h1>
+        <p class="meta" data-es="Conforme al Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018, de Protección de Datos y Garantía de los Derechos Digitales (LOPDGDD)">In accordance with Regulation (EU) 2016/679 (GDPR) and Organic Law 3/2018 on Data Protection and Digital Rights Guarantee (LOPDGDD)</p>
+      </div>
+      <div class="legal-body">
+
+        <h2 data-es="1. Responsable del tratamiento">1. Data controller</h2>
+        <div class="info-box">
+          <p><strong data-es="Responsable:">Controller:</strong> Tecnología Marina Ximo, S.L.</p>
+          <p><strong>CIF:</strong> B36944999</p>
+          <p><strong data-es="Dirección:">Address:</strong> Jacinto Benavente, 22, Planta 2 — E-36202 Vigo (Pontevedra), España</p>
+          <p><strong data-es="Contacto:">Contact:</strong> <a href="mailto:info@marexi.com">info@marexi.com</a></p>
+        </div>
+
+        <h2 data-es="2. Finalidades y bases jurídicas del tratamiento">2. Purposes and legal bases</h2>
+        <ul>
+          <li>
+            <strong data-es="Gestión de consultas:">Handling enquiries:</strong>
+            <span data-es="tramitar las solicitudes de información enviadas por correo electrónico u otras vías de contacto. Base jurídica: consentimiento del interesado (art. 6.1.a RGPD).">processing information requests submitted by email or other contact channels. Legal basis: data subject's consent (Art. 6(1)(a) GDPR).</span>
+          </li>
+          <li>
+            <strong data-es="Relación comercial:">Commercial relationship:</strong>
+            <span data-es="gestionar la relación contractual o precontractual con clientes, distribuidores y socios comerciales. Base jurídica: ejecución de un contrato (art. 6.1.b RGPD).">managing the contractual or pre-contractual relationship with customers, distributors and business partners. Legal basis: performance of a contract (Art. 6(1)(b) GDPR).</span>
+          </li>
+          <li>
+            <strong data-es="Obligaciones legales:">Legal obligations:</strong>
+            <span data-es="atender los requerimientos impuestos por la normativa aplicable (fiscal, mercantil, laboral). Base jurídica: obligación legal (art. 6.1.c RGPD).">fulfilling requirements imposed by applicable legislation (tax, commercial, employment law). Legal basis: legal obligation (Art. 6(1)(c) GDPR).</span>
+          </li>
+          <li>
+            <strong data-es="Comunicaciones comerciales propias:">Our own commercial communications:</strong>
+            <span data-es="envío de información sobre productos y servicios de Marexi a contactos con relación comercial previa. Base jurídica: interés legítimo (art. 6.1.f RGPD), de conformidad con el art. 21 LSSI. El interesado puede oponerse en cualquier momento.">sending information about Marexi products and services to contacts with a prior commercial relationship. Legal basis: legitimate interest (Art. 6(1)(f) GDPR), pursuant to Art. 21 LSSI. Data subjects may object at any time.</span>
+          </li>
+        </ul>
+
+        <h2 data-es="3. Categorías de datos tratados">3. Categories of data processed</h2>
+        <p data-es="Se tratan principalmente datos de carácter identificativo y de contacto profesional: nombre y apellidos, empresa, cargo, correo electrónico y número de teléfono, aportados voluntariamente por el interesado o en el marco de relaciones comerciales. No se recaban ni tratan datos de categorías especiales (art. 9 RGPD).">We process primarily identification and professional contact data: full name, company, job title, email address and telephone number, voluntarily provided by the data subject or obtained in the context of commercial relationships. No special-category data (Art. 9 GDPR) is collected or processed.</p>
+
+        <h2 data-es="4. Plazo de conservación">4. Retention period</h2>
+        <p data-es="Los datos se conservarán mientras dure la relación comercial o mientras el interesado no solicite su supresión. Una vez finalizada la relación, se mantendrán debidamente bloqueados durante los plazos legales de prescripción aplicables (obligaciones fiscales, mercantiles y laborales).">Data will be retained for the duration of the commercial relationship or until the data subject requests deletion. Once the relationship ends, data will be kept in a duly restricted state for the applicable legal limitation periods (tax, commercial and employment obligations).</p>
+
+        <h2 data-es="5. Destinatarios y encargados del tratamiento">5. Recipients and processors</h2>
+        <p data-es="Los datos no se cederán a terceros salvo obligación legal. Podrán acceder a los datos los encargados del tratamiento estrictamente necesarios para la prestación del servicio (proveedores de alojamiento web, plataformas de correo electrónico), que operan bajo contrato de encargado conforme al art. 28 RGPD.">Data will not be disclosed to third parties except as required by law. Processors strictly necessary for service delivery (web hosting providers, email platforms) may access data under a data processing agreement in accordance with Art. 28 GDPR.</p>
+
+        <h2 data-es="6. Transferencias internacionales">6. International transfers</h2>
+        <p data-es="En caso de que algún proveedor de servicios se encuentre fuera del Espacio Económico Europeo, las transferencias se realizarán al amparo de las garantías adecuadas previstas en el RGPD (decisión de adecuación de la Comisión Europea o cláusulas contractuales tipo).">Where any service provider is located outside the European Economic Area, transfers will be made on the basis of appropriate safeguards provided under the GDPR (European Commission adequacy decision or standard contractual clauses).</p>
+
+        <h2 data-es="7. Derechos del interesado">7. Data subject rights</h2>
+        <p data-es="El interesado puede ejercer en cualquier momento los siguientes derechos enviando un escrito a info@marexi.com, adjuntando copia de un documento identificativo:">The data subject may at any time exercise the following rights by sending a written request to <a href="mailto:info@marexi.com">info@marexi.com</a>, attaching a copy of an identity document:</p>
+        <ul>
+          <li><strong data-es="Acceso —">Access —</strong> <span data-es="conocer qué datos personales suyos están siendo tratados.">to know which of your personal data is being processed.</span></li>
+          <li><strong data-es="Rectificación —">Rectification —</strong> <span data-es="corregir datos inexactos o incompletos.">to correct inaccurate or incomplete data.</span></li>
+          <li><strong data-es="Supresión —">Erasure —</strong> <span data-es="solicitar la eliminación de sus datos cuando ya no sean necesarios para los fines para los que fueron recabados.">to request deletion of your data when it is no longer necessary for the purposes for which it was collected.</span></li>
+          <li><strong data-es="Limitación —">Restriction —</strong> <span data-es="solicitar la restricción del tratamiento en los supuestos previstos en el art. 18 RGPD.">to request restriction of processing in the cases provided for in Art. 18 GDPR.</span></li>
+          <li><strong data-es="Portabilidad —">Portability —</strong> <span data-es="recibir los datos que le conciernen en formato estructurado, de uso común y lectura mecánica.">to receive your data in a structured, commonly used and machine-readable format.</span></li>
+          <li><strong data-es="Oposición —">Objection —</strong> <span data-es="oponerse al tratamiento basado en interés legítimo, incluido el envío de comunicaciones comerciales.">to object to processing based on legitimate interest, including the sending of commercial communications.</span></li>
+        </ul>
+        <p data-es="Asimismo, tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD):">You also have the right to lodge a complaint with the Spanish Data Protection Agency (AEPD):</p>
+        <div class="info-box">
+          <p><strong>Agencia Española de Protección de Datos (AEPD)</strong></p>
+          <p>C/ Jorge Juan, 6 — 28001 Madrid</p>
+          <p><a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a></p>
+        </div>
+
+        <h2 data-es="8. Cookies y almacenamiento local">8. Cookies and local storage</h2>
+        <p data-es="Este Sitio utiliza únicamente almacenamiento local del navegador (localStorage) para guardar la preferencia de idioma del usuario. Esta finalidad es estrictamente técnica y no requiere consentimiento previo conforme al art. 22 LSSI. No se utilizan cookies analíticas, publicitarias ni de seguimiento.">This Site uses only browser local storage (localStorage) to save the user's language preference. This is strictly technical in nature and does not require prior consent pursuant to Art. 22 LSSI. No analytics, advertising or tracking cookies are used.</p>
+
+        <h2 data-es="9. Seguridad">9. Security</h2>
+        <p data-es="Tecnología Marina Ximo, S.L. ha adoptado las medidas técnicas y organizativas necesarias para garantizar la confidencialidad, integridad y disponibilidad de los datos personales, conforme al art. 32 RGPD, y para evitar su alteración, pérdida, tratamiento o acceso no autorizado.">Tecnología Marina Ximo, S.L. has implemented the technical and organisational measures necessary to ensure the confidentiality, integrity and availability of personal data in accordance with Art. 32 GDPR, and to prevent its alteration, loss, unauthorised processing or access.</p>
+
+        <h2 data-es="10. Modificaciones de la política">10. Policy amendments</h2>
+        <p data-es="Esta Política de Privacidad puede ser modificada para adaptarla a cambios legislativos, jurisprudenciales o de práctica empresarial. La versión vigente estará siempre disponible en el Sitio, con indicación de la fecha de la última actualización. Se recomienda consultarla periódicamente.">This Privacy Policy may be amended to reflect legislative, case-law or business practice changes. The current version will always be available on the Site, with the date of the last update. We recommend checking it periodically.</p>
+
+        <p class="updated" data-es="Última actualización: octubre de 2026">Last updated: October 2026</p>
+      </div>
+    </section>
+
+    <!-- ── TERMS OF USE / CONDICIONES DE USO ── -->
+    <section id="terms" class="legal-section">
+      <div class="section-header">
+        <h1 data-es="Condiciones de Uso">Terms of Use</h1>
+        <p class="meta" data-es="Condiciones que rigen el acceso y la navegación en el sitio web de Marexi">Conditions governing access to and browsing of the Marexi website</p>
+      </div>
+      <div class="legal-body">
+
+        <h2 data-es="1. Objeto">1. Subject matter</h2>
+        <p data-es="Las presentes Condiciones de Uso regulan el acceso y uso del sitio web de Tecnología Marina Ximo, S.L., operado bajo la marca comercial Marexi. El acceso al Sitio es libre y gratuito y no requiere registro previo.">These Terms of Use govern access to and use of the website of Tecnología Marina Ximo, S.L., operated under the Marexi commercial brand. Access to the Site is free and does not require prior registration.</p>
+
+        <h2 data-es="2. Uso adecuado del Sitio">2. Acceptable use</h2>
+        <p data-es="El usuario se compromete a hacer un uso lícito del Sitio, de conformidad con la legislación vigente, la buena fe y el orden público, sin vulnerar los derechos e intereses de terceros. Queda especialmente prohibido:">Users undertake to use the Site lawfully, in good faith and in accordance with public order, without violating the rights and interests of third parties. The following is expressly prohibited:</p>
+        <ul>
+          <li data-es="Reproducir, copiar, distribuir, comercializar o modificar los contenidos sin autorización previa y por escrito del titular.">Reproducing, copying, distributing, commercialising or modifying content without prior written authorisation from the rights holder.</li>
+          <li data-es="Utilizar el Sitio para transmitir contenidos falsos, difamatorios, ilícitos o que atenten contra la propiedad intelectual de terceros.">Using the Site to transmit false, defamatory, unlawful content or content that infringes third-party intellectual property rights.</li>
+          <li data-es="Interferir en el funcionamiento técnico del Sitio o introducir malware, virus u otro código dañino.">Interfering with the technical operation of the Site or introducing malware, viruses or other harmful code.</li>
+        </ul>
+
+        <h2 data-es="3. Propiedad intelectual">3. Intellectual property</h2>
+        <p data-es="Todos los contenidos del Sitio —incluyendo textos, imágenes, vídeos, logotipos, marcas registradas, diseños gráficos y código fuente— son titularidad de Tecnología Marina Ximo, S.L. o de los respectivos titulares de derechos, y están protegidos por la legislación de propiedad intelectual e industrial vigente en España y a nivel internacional.">All content on the Site — including texts, images, videos, logos, registered trademarks, graphic designs and source code — is owned by Tecnología Marina Ximo, S.L. or the respective rights holders, and is protected under intellectual and industrial property legislation in force in Spain and internationally.</p>
+        <p data-es="El usuario queda únicamente autorizado a consultar y utilizar los contenidos para uso personal y privado, sin que pueda ceder dicho acceso a terceros. Cualquier otro uso requiere autorización expresa y por escrito.">Users are authorised only to view and use the content for personal and private purposes, and may not grant such access to third parties. Any other use requires express written authorisation.</p>
+
+        <h2 data-es="4. Exclusión de garantías y limitación de responsabilidad">4. Disclaimer and limitation of liability</h2>
+        <p data-es="La información publicada en el Sitio tiene carácter orientativo y meramente informativo. Tecnología Marina Ximo, S.L. no garantiza la exactitud, integridad, actualidad ni adecuación a un fin específico de dicha información, y no asume responsabilidad por las decisiones adoptadas sobre la base de la misma.">Information published on the Site is indicative and informational only. Tecnología Marina Ximo, S.L. does not warrant the accuracy, completeness, currency or fitness for a specific purpose of such information, and assumes no liability for decisions made on the basis thereof.</p>
+        <p data-es="Las especificaciones técnicas y comerciales de los productos pueden ser modificadas por Marexi en cualquier momento y sin previo aviso. Su publicación en el Sitio no constituye una oferta contractual vinculante.">Technical and commercial specifications of products may be changed by Marexi at any time and without prior notice. Their publication on the Site does not constitute a binding contractual offer.</p>
+
+        <h2 data-es="5. Enlaces a terceros">5. Third-party links</h2>
+        <p data-es="El Sitio puede contener enlaces a sitios web de terceros. Marexi no controla dichos sitios ni se responsabiliza de sus contenidos, políticas de privacidad, disponibilidad o exactitud. La inclusión de un enlace no implica que Marexi avale o recomiende el sitio enlazado.">The Site may contain links to third-party websites. Marexi does not control such sites and is not responsible for their content, privacy policies, availability or accuracy. The inclusion of a link does not imply that Marexi endorses or recommends the linked site.</p>
+
+        <h2 data-es="6. Modificaciones">6. Amendments</h2>
+        <p data-es="Tecnología Marina Ximo, S.L. se reserva el derecho de modificar, suspender o interrumpir, en cualquier momento y sin previo aviso, el acceso al Sitio o a sus contenidos, así como las presentes Condiciones de Uso. La versión vigente será siempre la publicada en el Sitio.">Tecnología Marina Ximo, S.L. reserves the right to modify, suspend or discontinue, at any time and without prior notice, access to the Site or its content, as well as these Terms of Use. The current version will always be the one published on the Site.</p>
+
+        <h2 data-es="7. Ley aplicable y jurisdicción">7. Governing law and jurisdiction</h2>
+        <p data-es="Las presentes Condiciones se rigen por la legislación española. Para la resolución de cualquier controversia derivada del acceso o uso del Sitio, las partes, con renuncia expresa a cualquier otro fuero que pudiera corresponderles, se someten a la jurisdicción de los Juzgados y Tribunales de Vigo (Pontevedra), salvo que la normativa aplicable establezca otro fuero imperativo.">These Terms are governed by Spanish law. For the resolution of any dispute arising from access to or use of the Site, the parties, expressly waiving any other jurisdiction to which they may be entitled, submit to the jurisdiction of the Courts and Tribunals of Vigo (Pontevedra), unless applicable law provides for a mandatory alternative jurisdiction.</p>
+
+        <p class="updated" data-es="Última actualización: octubre de 2026">Last updated: October 2026</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-bottom">
+      <div>© 2026 Marexi · Tecnología Marina Ximo, S.L. · CIF B36944999</div>
+      <div><a href="./" data-es="← Volver al sitio">← Back to site</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showTab(id){
+    document.querySelectorAll('.legal-section').forEach(function(s){
+      s.classList.toggle('active', s.id === id);
+    });
+    document.querySelectorAll('.tabs button').forEach(function(b){
+      b.classList.toggle('on', b.dataset.tab === id);
+    });
+  }
+
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    });
+    document.getElementById('btn-en').classList.toggle('on', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('on', lang === 'es');
+    try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+  }
+
+  (function(){
+    var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
+    var hash = location.hash.replace('#', '');
+    var validTabs = ['legal','privacy','terms'];
+    if(validTabs.indexOf(hash) !== -1) showTab(hash);
+    if(saved === 'es') setLang('es');
+  })();
+</script>
+</body>
+</html>

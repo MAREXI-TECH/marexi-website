@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marexi — Page not found</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<style>
+  :root{
+    --navy:#081627;--surface:#102b47;--line:#1e415f;
+    --ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;
+    --accent:#ff6a4d;--cyan:#37c6c9;
+    --maxw:960px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--navy);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:16px}
+
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(6,15,29,.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(55,198,201,.1)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;max-width:1280px;margin:0 auto;padding:0 48px}
+  .brand img{height:44px;display:block}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#0a1524}
+  @media (max-width:600px){.nav-inner{padding:0 20px;height:76px}.brand img{height:36px}}
+
+  main{flex:1;display:flex;align-items:center;padding:72px 0}
+  .box{text-align:center}
+  .code{font-size:clamp(4.5rem,16vw,8rem);font-weight:800;line-height:1;letter-spacing:-0.04em;
+        background:linear-gradient(135deg,var(--cyan),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px}
+  h1{font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px}
+  p{color:var(--muted);font-size:1.05rem;max-width:52ch;margin:0 auto 32px}
+  .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0a1524;font-weight:700;
+       font-size:.92rem;padding:11px 22px;border-radius:999px;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--cyan)}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:.85rem}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/"><img src="/logo_marexi_light.png" alt="Marexi"></a>
+    <div class="lang">
+      <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+      <button id="btn-es" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap box">
+    <div class="code">404</div>
+    <div class="eyebrow" data-es="Página no encontrada">Page not found</div>
+    <h1 data-es="Esta página se ha ido a pique">This page has sunk out of reach</h1>
+    <p data-es="Puede que el enlace sea antiguo o que la página se haya movido. Vuelva al inicio para encontrar nuestros productos y soluciones de tecnología marina.">The link may be outdated or the page may have moved. Head back to the homepage to find our marine technology products and solutions.</p>
+    <div class="actions">
+      <a class="btn" href="/" data-es="← Ir al inicio">← Go to homepage</a>
+      <a class="btn ghost" href="mailto:info@marexi.com" data-es="Contactar">Contact us</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 Tecnología Marina Ximo, S.L.</span>
+    <a href="/legal.html" data-es="Aviso legal">Legal notice</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    });
+    document.getElementById('btn-en').classList.toggle('on', lang==='en');
+    document.getElementById('btn-es').classList.toggle('on', lang==='es');
+    try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
+    if(saved === 'es' || (!saved && /^es\b/i.test(navigator.language || ''))) setLang('es');
+  })();
+</script>
+
+</body>
+</html>

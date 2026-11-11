@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marexi — Experience</title>
+<title data-es="Marexi — Experiencia y proyectos">Marexi — Experience &amp; projects</title>
 <meta name="description" content="20+ years of applied R&D in marine technology. Sector platform memberships and institutional collaborations of Tecnología Marina Ximo, S.L.">
 <link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">
 <link rel="apple-touch-icon" href="../favicon.png">
@@ -51,6 +51,11 @@
   .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
   .card h3{font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--cyan)}
   .card p{color:var(--muted);font-size:.9rem;line-height:1.6}
+  .proj-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+  .proj{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .proj h3{font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+  .proj .meta{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;display:block}
+  .proj p{color:var(--muted);font-size:.86rem;line-height:1.55}
   .logo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
   .logo-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;transition:background .2s,border-color .2s}
   .logo-card:hover{background:rgba(55,198,201,.06);border-color:rgba(55,198,201,.2)}
@@ -128,6 +133,41 @@
 </section>
 
 <!-- SECTOR PLATFORMS -->
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-title" data-es="Proyectos recientes y en curso">Recent &amp; ongoing projects</div>
+    <div class="proj-list">
+      <div class="proj"><h3>Anisakischeck®</h3><span class="meta" data-es="CDTI · 2021–2023">CDTI · 2021–2023</span><p data-es="Proyecto de I+D con Pescanova España: visión artificial e inteligencia artificial para la detección en tiempo real, en línea, de larvas de Anisakis en la producción industrial de bacalao.">R&amp;D project with Pescanova España: computer vision and AI for real-time, in-line detection of Anisakis larvae in industrial cod processing.</p></div>
+      <div class="proj"><h3>InnovaPeme 2020</h3><span class="meta" data-es="Xunta de Galicia · FEDER">Xunta de Galicia · FEDER</span><p data-es="Plan de innovación de Marexi cofinanciado por el Fondo Europeo de Desarrollo Regional (procedimiento IN848D).">Marexi innovation plan co-financed by the European Regional Development Fund (procedure IN848D).</p></div>
+      <div class="proj"><h3>SeaSampler</h3><span class="meta" data-es="Ciencia ciudadana">Citizen science</span><p data-es="Proyecto de participación basado en tecnología que convierte a los buceadores en sensores activos y observadores científicos.">Technology-based participation project that turns recreational divers into active sensors and scientific observers.</p></div>
+      <div class="proj"><h3>T-CLEAN</h3><span class="meta" data-es="Visión artificial · Robótica">Computer vision · Robotics</span><p data-es="Sistema automático de pelado de atunes que combina visión artificial, mapa 3D de la superficie y robótica de precisión.">Automated tuna peeling system combining computer vision, 3D surface mapping and precision robotics.</p></div>
+      <div class="proj"><h3>SPS</h3><span class="meta" data-es="Visión artificial">Computer vision</span><p data-es="Equipo industrial para el pelado automático de tiburones congelados.">Industrial system for the automated peeling of frozen sharks.</p></div>
+      <div class="proj"><h3>C-TUNA</h3><span class="meta" data-es="Visión artificial · IA">Computer vision · AI</span><p data-es="Sistema de inspección a bordo que detecta y clasifica especies de túnidos en la cubierta de los atuneros.">On-board inspection system that detects and classifies tuna species on the fish deck of tuna vessels.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-title" data-es="Proyectos anteriores">Earlier projects</div>
+    <div class="proj-list">
+      <div class="proj"><h3>Rodaplan</h3><span class="meta" data-es="Acuicultura">Aquaculture</span><p data-es="Desarrollo de un sistema de visión artificial control del tallado de rodaballo combinado con un sistema de marcaje por láser para granjas de acuicultura.">Computer vision system to control turbot size grading, combined with laser marking, for aquaculture farms.</p></div>
+      <div class="proj"><h3>Parasite</h3><span class="meta" data-es="Seguridad alimentaria">Food safety</span><p data-es="Pretende ofrecer nuevas pruebas científicas y desarrollos tecnológicos para detectar, controlar y mitigar los impactos de los parásitos presentes en los productos de la pesca.">New scientific evidence and technology to detect, control and mitigate the impact of parasites in fishery products.</p></div>
+      <div class="proj"><h3>Faros</h3><span class="meta" data-es="Pesca">Fishing</span><p data-es="Desarrollo de un sistema de información global en tiempo real para la industria pesquera, que gestione de manera eficiente los descartes y su valorización óptima para la industria alimentaria y farmacéutica.">Real-time global information system for the fishing industry to manage discards efficiently and add value to them for the food and pharmaceutical industries.</p></div>
+      <div class="proj"><h3>Epistock</h3><span class="meta" data-es="Pesca · Seguridad alimentaria">Fishing · Food safety</span><p data-es="Estudio piloto para el establecimiento de un Servicio Tecnológico de Alerta en origen de parasitosis en pesquerías comerciales.">Pilot study for a technological early-warning service for parasitosis at source in commercial fisheries.</p></div>
+      <div class="proj"><h3>Netcontrol</h3><span class="meta" data-es="Pesca">Fishing</span><p data-es="Desarrollo de un sistema de control y monitorización de última generación de redes de arrastre en tiempo real.">State-of-the-art real-time control and monitoring system for trawl nets.</p></div>
+      <div class="proj"><h3>3RFish</h3><span class="meta" data-es="Medio ambiente">Environment</span><p data-es="Proyecto para la recuperación y reciclaje de los residuos sólidos propios de la actividad pesquera y portuaria (3RFISH).">Recovery and recycling of solid waste generated by fishing and port activity.</p></div>
+      <div class="proj"><h3>Redes</h3><span class="meta" data-es="Pesca">Fishing</span><p data-es="Desarrollo de innovaciones tecnológicas aplicadas a las artes y elementos de pesca para la reducción de las capturas de las especies marinas no deseadas.">Technological innovations for fishing gear to reduce catches of unwanted marine species.</p></div>
+      <div class="proj"><h3>Promares</h3><span class="meta" data-es="Medio ambiente">Environment</span><p data-es="Desarrollo de tecnologías para mejorar la capacidad de control y monitorización de la calidad de las aguas, así como la prevención, predicción, control y mitigación de la contaminación marina.">Technologies to improve water-quality control and monitoring, and the prevention, prediction, control and mitigation of marine pollution.</p></div>
+      <div class="proj"><h3>Ping Air</h3><span class="meta" data-es="Acústica · Capturas accidentales">Acoustics · Bycatch</span><p data-es="Desarrollo de dispositivos que, mediante la emisión de burbujas de aire comprimido, generen barreras submarinas que eviten su posible captura accidental en redes de pesca.">Devices that emit compressed-air bubbles to create underwater barriers that prevent accidental capture in fishing nets.</p></div>
+      <div class="proj"><h3>Sear</h3><span class="meta" data-es="Acústica">Acoustics</span><p data-es="Boya autónoma de registro acústico submarino y aéreo adaptada a las frecuencias emitidas por mamíferos marinos, con procesado en tiempo real y emisión de los datos resultantes.">Autonomous buoy recording underwater and airborne sound at marine-mammal frequencies, with real-time processing and data transmission.</p></div>
+      <div class="proj"><h3>WACS</h3><span class="meta" data-es="Acústica">Acoustics</span><p data-es="Desarrollo de un sonar pasivo de localización 3D para detectar cetáceos con el objetivo de prevenir y evitar las frecuentes colisiones entre buques y cetáceos.">Passive 3D-localisation sonar to detect cetaceans and prevent collisions between ships and cetaceans.</p></div>
+      <div class="proj"><h3>Hvapas</h3><span class="meta" data-es="Acústica · Investigación">Acoustics · Research</span><p data-es="Instrumento compacto para la estimulación acústica y lectura de estímulos cerebrales en delfines varados.">Compact instrument for acoustic stimulation and reading of brain responses in stranded dolphins.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="wrap">
     <div class="section-title" data-es="Membresías en plataformas sectoriales">Sector platform memberships</div>

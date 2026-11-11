@@ -91,6 +91,8 @@
   .nav-ext:after{content:" \2197";opacity:.6;font-size:.85em}
   .btn.nav-cta{padding:9px 18px;font-size:.85rem;box-shadow:0 6px 18px -8px rgba(255,106,77,.6)}
   .btn.nav-cta:hover{transform:translateY(-1px)}
+  /* texto oscuro en el botón del menú (el gris de .nav-links a lo hacía ilegible) */
+  .nav-links a.btn.nav-cta,.nav-links a.btn.nav-cta:hover{color:#0a1524;font-weight:700}
   @media(min-width:821px){
     .nav-links{flex:1;margin-left:44px}
     .nav-push{margin-left:auto}
@@ -281,6 +283,13 @@
   .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
 
   [hidden]{display:none!important}
+
+  /* PINGER EVO banner */
+  .evo-banner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:12px 20px;
+    background:linear-gradient(90deg,rgba(26,163,217,.16),rgba(55,198,201,.10));border-bottom:1px solid rgba(26,163,217,.35);
+    font-size:.92rem;color:var(--ink);text-align:center;transition:background .2s}
+  .evo-banner:hover{background:linear-gradient(90deg,rgba(26,163,217,.26),rgba(55,198,201,.16))}
+  .evo-go{color:var(--cyan);font-weight:700}
 </style>
 </head>
 <body>
@@ -328,6 +337,13 @@
 </header>
 
 <a id="top"></a>
+
+<!-- PINGER EVO (convive con el Pinger actual mientras haya stock) -->
+<a class="evo-banner" href="/pinger/evo/">
+  <span data-es="&lt;b&gt;PINGER® EVO&lt;/b&gt; — sistema disuasorio acústico para orcas, para embarcaciones de recreo">
+    <b>PINGER® EVO</b> — acoustic deterrent system for orcas, for recreational vessels</span>
+  <span class="evo-go" data-es="Descubrir →">Discover →</span>
+</a>
 
 <!-- HERO -->
 <section class="hero">

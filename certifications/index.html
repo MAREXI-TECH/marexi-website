@@ -43,6 +43,8 @@
   .section{padding:0 0 64px}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
   .logo-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;transition:background .2s,border-color .2s}
+  a.logo-card{display:block;color:inherit;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+  a.logo-card:hover{transform:translateY(-3px);border-color:rgba(55,198,201,.45);box-shadow:0 12px 28px -14px rgba(0,0,0,.8)}
   .logo-card:hover{background:rgba(55,198,201,.06);border-color:rgba(55,198,201,.2)}
   .logo-card .logo-img{background:#fff;padding:24px 20px;display:flex;align-items:center;justify-content:center;min-height:130px}
   .logo-card .logo-img img{max-height:90px;max-width:180px;width:auto;object-fit:contain}
@@ -94,30 +96,30 @@
   <div class="wrap">
     <div class="grid">
 
-      <div class="logo-card">
+      <a class="logo-card" href="https://www.ciencia.gob.es/Innovar/Sello-PYME-innovadora.html" target="_blank" rel="noopener" title="Pyme Innovadora">
         <div class="logo-img"><img src="logos/empresa-entidades-01.png" alt="Pyme Innovadora"></div>
         <div class="logo-body"><p data-es="Certificada como pyme innovadora por el Ministerio de Economía, Industria y Competitividad de España.">Certified as an innovative SME by the Ministerio de Economía, Industria y Competitividad of Spain.</p></div>
-      </div>
+      </a>
 
-      <div class="logo-card">
+      <a class="logo-card" href="https://www.xunta.gal/" target="_blank" rel="noopener" title="Xunta de Galicia I.E.B.T.">
         <div class="logo-img"><img src="logos/empresa-entidades-02.png" alt="Xunta de Galicia I.E.B.T."></div>
         <div class="logo-body"><p data-es="Calificada por la Xunta de Galicia como empresa de la Iniciativa de Empleo de Base Tecnológica (I.E.B.T.). Respaldada por el Fondo Social Europeo.">Qualified by the Xunta de Galicia as a Technology-Based Employment Initiative (I.E.B.T.) company. Backed by the EU Social Fund.</p></div>
-      </div>
+      </a>
 
-      <div class="logo-card">
+      <a class="logo-card" href="https://www.cdti.es/" target="_blank" rel="noopener" title="CDTI 7º FORONEOTEC">
         <div class="logo-img"><img src="logos/empresa-entidades-03.png" alt="CDTI 7º FORONEOTEC"></div>
         <div class="logo-body"><p data-es="Empresa seleccionada en el 7º foro FORONEOTEC, evento de referencia para empresas de base tecnológica en el sector gallego de pesca y acuicultura.">Selected company at the 7th FORONEOTEC forum, a benchmark event for technology-based companies in the Galician fisheries sector.</p></div>
-      </div>
+      </a>
 
-      <div class="logo-card">
+      <a class="logo-card" href="https://www.enisa.es/" target="_blank" rel="noopener" title="ENISA">
         <div class="logo-img"><img src="logos/empresa-entidades-04.png" alt="ENISA"></div>
         <div class="logo-body"><p data-es="Empresa financiada por ENISA (Empresa Nacional de Innovación) mediante préstamos participativos.">Company financed by ENISA (Empresa Nacional de Innovación) through participative loans.</p></div>
-      </div>
+      </a>
 
-      <div class="logo-card">
+      <a class="logo-card" href="https://europa.eu/youreurope/business/product-rules-compliance/general-product-compliance/ce-marking/index_es.htm" target="_blank" rel="noopener" title="CE Marking">
         <div class="logo-img"><img src="logos/ce-mark.png" alt="CE Marking"></div>
         <div class="logo-body"><p data-es="Todos los productos Marexi llevan el marcado CE, que certifica la plena conformidad con las normas aplicables de la UE en materia de salud, seguridad y protección del medio ambiente.">All Marexi products carry the CE marking, certifying full conformity with applicable EU health, safety and environmental protection standards.</p></div>
-      </div>
+      </a>
 
     </div>
   </div>

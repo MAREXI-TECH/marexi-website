@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marexi — Marine technology</title>
-<meta name="description" content="Marexi — acoustic, computer vision and environmental technology for the wider maritime &amp; scientific sectors. 20+ years of applied R&amp;D from Spain. Products: Pinger®, Anisakischeck®, Tunascan® and more.">
+<title data-es="Marexi — Tecnología marina">Marexi — Marine technology</title>
+<meta name="description" content="Marexi — acoustic, computer vision and environmental technology for the wider maritime &amp; scientific sectors. 20+ years of applied R&amp;D from Spain. Products: Pinger®, Anisakischeck®, Tunascan® and more." data-es-content="Marexi — tecnología acústica, de visión artificial y medioambiental para los sectores marítimo y científico. Más de 20 años de I+D aplicado desde España. Productos: Pinger®, Anisakischeck®, Tunascan® y más.">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <style>
@@ -105,6 +105,17 @@ header.nav{
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .hero .lede{font-size:clamp(1.05rem,1.7vw,1.2rem);color:var(--muted);max-width:58ch;margin:0 auto}
+/* foto de fondo de la portada (provisional hasta la sesión de fotos) */
+.hero-photo{position:absolute;inset:0;background:url("img-factory-floor.jpg") center/cover no-repeat;opacity:.34;filter:saturate(.75)}
+.hero-photo::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 80% at 50% 45%,rgba(6,15,29,.35) 0%,rgba(6,15,29,.92) 100%)}
+.hero .lede{color:#c3d3e4}
+/* botones de acción */
+.hero-cta{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.98rem;padding:13px 26px;border-radius:999px;transition:transform .15s,box-shadow .2s}
+.hero-btn:hover{transform:translateY(-2px)}
+.hero-btn.primary{background:var(--accent);color:#0a1524;box-shadow:0 10px 30px -10px rgba(255,106,77,.6)}
+.hero-btn.ghost{border:1px solid rgba(238,244,251,.3);color:var(--ink);background:rgba(6,15,29,.45);backdrop-filter:blur(8px)}
+.hero-btn.ghost:hover{border-color:var(--cyan)}
 /* KPI glass strip */
 .kpi{
   display:grid;grid-template-columns:repeat(5,1fr);
@@ -193,6 +204,9 @@ header.nav{
   overflow:hidden;
 }
 .card-ph img{width:100%;height:100%;object-fit:cover;display:block;}
+/* ilustración en lugar de foto (mismo estilo que las tarjetas "En desarrollo") */
+.card-ph.icons{gap:26px;color:var(--faint)}
+.card-ph.icons svg{opacity:.6}
 /* card body */
 .card-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
 .card h3{font-size:1.1rem;font-weight:700;margin-bottom:4px}
@@ -219,8 +233,8 @@ header.nav{
   font-size:.59rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
   padding:4px 10px;border-radius:999px;backdrop-filter:blur(8px);
 }
-.badge.soon{background:rgba(232,176,75,.15);color:var(--gold);border:1px solid rgba(232,176,75,.4)}
-.badge.enquiry{background:rgba(167,139,250,.15);color:var(--violet);border:1px solid rgba(167,139,250,.4)}
+.badge.soon{background:rgba(6,15,29,.86);color:#f2c46a;border:1px solid rgba(232,176,75,.65);box-shadow:0 4px 14px -6px rgba(0,0,0,.6)}
+.badge.enquiry{background:rgba(6,15,29,.86);color:#c4b5fd;border:1px solid rgba(167,139,250,.65);box-shadow:0 4px 14px -6px rgba(0,0,0,.6)}
 
 /* ── IN DEVELOPMENT ───────────────────── */
 .indev{padding:52px 0 72px}
@@ -228,14 +242,30 @@ header.nav{
 .indev-header .rule{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 .indev-header .rule:last-child{background:linear-gradient(270deg,transparent,var(--gold))}
 .indev-header h2{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.25em;color:var(--gold);white-space:nowrap}
-.dev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
-.dev-grid+.dev-grid{margin-top:16px;grid-template-columns:repeat(3,1fr)}
-@media(max-width:860px){.dev-grid{grid-template-columns:repeat(2,1fr)}.dev-grid+.dev-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.dev-grid{grid-template-columns:1fr}.dev-grid+.dev-grid{grid-template-columns:1fr}}
+/* 8 columnas, cada tarjeta ocupa 2 → 4 por fila; filas de igual altura; la última fila (3) centrada */
+.dev-grid{display:grid;grid-template-columns:repeat(8,1fr);grid-auto-rows:1fr;gap:16px}
+.dev-grid>.dev-card{grid-column:span 2}
+.dev-grid>.dev-card:nth-child(5){grid-column:2 / span 2}
+@media(max-width:860px){
+  .dev-grid{grid-template-columns:repeat(4,1fr)}
+  .dev-grid>.dev-card:nth-child(5){grid-column:span 2}
+  .dev-grid>.dev-card:nth-child(7){grid-column:2 / span 2}
+}
+@media(max-width:480px){
+  .dev-grid{grid-template-columns:1fr;grid-auto-rows:auto}
+  .dev-grid>.dev-card,.dev-grid>.dev-card:nth-child(5),.dev-grid>.dev-card:nth-child(7){grid-column:auto}
+}
 .dev-card{
+  display:flex;flex-direction:column;align-items:flex-start;
   background:rgba(11,29,50,.62);border:1px solid var(--line);border-radius:16px;padding:24px;
   backdrop-filter:blur(8px);transition:border-color .25s,transform .25s;
 }
+.dev-card p{flex:1}
+.dev-more{margin-top:14px;font-size:.74rem;font-weight:600;color:var(--gold);letter-spacing:.03em;opacity:.85}
+.dev-card-img.ph{display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(20,49,79,.95) 0%,rgba(11,29,50,.95) 100%);
+  border-bottom:1px solid var(--line);color:var(--faint);font-size:.66rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.dev-card-img.ph svg{opacity:.55}
 .dev-card:hover{border-color:rgba(232,176,75,.28);transform:translateY(-2px)}
 .dev-status{
   display:inline-block;font-size:.59rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
@@ -278,6 +308,31 @@ header.nav{
 .tech-card h4{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:8px}
 .tech-card p{font-size:.84rem;color:var(--muted);line-height:1.65}
 
+/* ── TRUST ────────────────────────────── */
+.trust{padding:72px 0}
+.trust .eyebrow,.trust h2{text-align:center}
+.trust h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:34px}
+.trust-logos{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+@media(max-width:860px){.trust-logos{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:480px){.trust-logos{grid-template-columns:repeat(3,1fr)}}
+.trust-logos img{background:#fff;border-radius:12px;padding:14px;height:84px;width:100%;object-fit:contain}
+.trust-logos a{display:block;border-radius:12px;transition:transform .2s,box-shadow .2s}
+.trust-logos a:hover{transform:translateY(-3px);box-shadow:0 10px 24px -10px rgba(0,0,0,.7),0 0 0 2px rgba(55,198,201,.45)}
+.trust-logos a img{display:block}
+.trust-logos.small{display:flex;flex-wrap:wrap;gap:10px}
+.trust-logos.small img{height:64px;width:auto;max-width:150px;padding:10px 12px}
+.trust-row{display:grid;grid-template-columns:1fr 2fr;gap:18px;margin-top:22px}
+@media(max-width:780px){.trust-row{grid-template-columns:1fr}}
+.trust-box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+.trust-box h3{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.trust-box p{color:var(--muted);font-size:.86rem;margin-top:12px}
+.trust-partner a{display:inline-block;padding:6px 0;transition:opacity .2s}
+.trust-partner a:hover{opacity:.8}
+.trust-partner img{height:40px;width:auto;display:block}
+.trust-links{display:flex;justify-content:center;flex-wrap:wrap;gap:22px;margin-top:26px;font-weight:700;font-size:.92rem}
+.trust-links a{color:var(--cyan)}
+.trust-links a:hover{color:var(--ink)}
+
 /* ── ABOUT ────────────────────────────── */
 .about{padding:84px 0;background:var(--navy2);position:relative;overflow:hidden}
 .about::before{
@@ -311,6 +366,39 @@ header.nav{
 }
 .li-btn:hover{color:var(--ink);border-color:var(--faint)}
 .li-btn svg{flex:0 0 auto}
+
+/* ── CONTACT ──────────────────────────── */
+.contact{padding:84px 0;position:relative}
+.contact-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+@media(max-width:860px){.contact-inner{grid-template-columns:1fr;gap:36px}}
+.contact h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:14px}
+.contact-info p{color:var(--muted);margin-bottom:22px}
+.contact-list{list-style:none;display:grid;gap:14px}
+.contact-list li{display:flex;flex-direction:column;gap:2px}
+.contact-list span{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.contact-list a{color:var(--ink)}
+.contact-list a:hover{color:var(--cyan)}
+.contact-form{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;display:grid;gap:14px;backdrop-filter:blur(10px)}
+.contact-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.contact-form .row2{grid-template-columns:1fr}}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:.8rem;font-weight:600;color:var(--muted)}
+.contact-form input,.contact-form select,.contact-form textarea{
+  font:inherit;font-size:.95rem;color:var(--ink);background:rgba(6,15,29,.6);border:1px solid var(--line);
+  border-radius:10px;padding:11px 12px;outline:none;transition:border-color .2s}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--cyan)}
+.contact-form textarea{resize:vertical;min-height:120px}
+.contact-form select option{background:#0c2036}
+.contact-form .check{flex-direction:row;align-items:flex-start;gap:10px;font-weight:500}
+.contact-form .check input{margin-top:3px;accent-color:var(--accent)}
+.contact-form .check a{color:var(--cyan);text-decoration:underline}
+.contact-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.contact-form button{justify-self:start;border:0;cursor:pointer;font-family:inherit}
+.contact-form .invalid{border-color:var(--accent)!important}
+.form-msg{font-size:.88rem;min-height:1.2em}
+.form-msg.ok{color:var(--green)}.form-msg.err{color:var(--accent)}
+
+/* ── NAV: sección activa ──────────────── */
+.nav-links a.active{color:var(--ink);box-shadow:inset 0 -2px 0 var(--accent)}
 
 /* ── FOOTER ───────────────────────────── */
 footer{margin-top:auto;padding:56px 0 38px;color:var(--faint);font-size:.85rem;position:relative}
@@ -405,6 +493,7 @@ footer::before{
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
   <div class="orb orb-c"></div>
   <div class="orb orb-a"></div>
   <div class="orb orb-v"></div>
@@ -413,6 +502,10 @@ footer::before{
     <div class="eyebrow fi" data-es="Tecnología marina">Marine technology</div>
     <h1 class="fi d1" data-es="Ingeniería para el sector marítimo.">Engineering for the maritime sector.</h1>
     <p class="lede fi d2" data-es="Marexi desarrolla tecnología acústica, de visión artificial y medioambiental para los sectores marítimo y científico.">Marexi develops acoustic, computer vision and environmental technology for the wider maritime &amp; scientific sectors.</p>
+    <div class="hero-cta fi d2">
+      <a class="hero-btn primary" href="#products" data-es="Ver productos">View products</a>
+      <a class="hero-btn ghost" href="#contact" data-es="Contactar">Contact us</a>
+    </div>
     <div class="kpi fi d3">
       <div class="kpi-item">
         <strong>2004</strong>
@@ -485,13 +578,24 @@ footer::before{
         </div>
       </a>
 
+      <!-- PINGER EVO -->
+      <a class="card live fi d1" data-cat="acoustic" data-sector="other" href="/pinger/evo/">
+        <div class="card-ph"><img src="pinger/evo/pinger-evo-card.png" alt="PINGER® EVO" loading="lazy"></div>
+        <div class="card-body">
+          <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
+          <h3>PINGER® EVO</h3>
+          <div class="tagline" data-es="Sistema disuasorio acústico para orcas">Acoustic deterrent system for orcas</div>
+          <p data-es="Dispositivo acústico submarino inteligente y recargable para embarcaciones de recreo. Perfiles específicos para orcas, 20–200 kHz, base de carga inteligente y App.">Smart, rechargeable underwater acoustic device for recreational vessels. Orca-specific profiles, 20–200 kHz, smart charging dock and App.</p>
+        </div>
+      </a>
+
       <!-- HYDROPHONES -->
       <div class="card soon fi d1" data-cat="acoustic" data-sector="fishing rd">
         <span class="badge soon" data-es="Próximamente">Coming soon</span>
         <div class="card-ph"><img src="hidrofonos_2.png" alt="Hydrophones" loading="lazy"></div>
         <div class="card-body">
           <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
-          <h3>Hydrophones</h3>
+          <h3 data-es="Hidrófonos">Hydrophones</h3>
           <div class="tagline" data-es="Sensores acústicos subacuáticos">Underwater acoustic sensors</div>
           <p data-es="Hidrófonos y transductores de diseño propio para caracterización, investigación y guiado de peces. Configuración singular o array. Electrónica de preamplificación, filtrado y almacenamiento / transmisión de datos.">Proprietary hydrophones and transducers for characterisation, research and fish guidance. Single and array configurations. Pre-amplification electronics, filtering and data storage / transmission.</p>
         </div>
@@ -523,7 +627,7 @@ footer::before{
       <a class="card live fi d1" data-cat="vision" data-sector="fishing food" href="/anisakischeck/">
         <div class="card-ph"><img src="anisakischeck_2.png" alt="Anisakischeck®" loading="lazy"></div>
         <div class="card-body">
-          <span class="cat cat-vision" data-es="Visión">Vision</span>
+          <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
           <h3>Anisakischeck®</h3>
           <div class="tagline" data-es="Detección de Anisakis">Anisakis detection</div>
           <p data-es="Una gama de equipos para detectar Anisakis —de la lámpara UV portátil al escáner IA en línea— en toda la cadena alimentaria. ISO/DIS 23036.">A range of products to detect Anisakis — from handheld UV lamp to AI in-line scanner — across the food chain. ISO/DIS 23036.</p>
@@ -534,7 +638,7 @@ footer::before{
       <a class="card live fi d2" href="/aquadef/" data-cat="vision" data-sector="aquaculture">
         <div class="card-ph"><img src="aquadef_2.png" alt="Aquadef®" loading="lazy"></div>
         <div class="card-body">
-          <span class="cat cat-vision" data-es="Visión">Vision</span>
+          <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
           <h3>Aquadef®</h3>
           <div class="tagline" data-es="Detección de malformaciones en alevines">Fry deformity detection</div>
           <p data-es="Detección y separación automática en tiempo real de alevines con malformaciones. Cuenta, mide y segrega lotes simultáneamente.">Automatic real-time detection and separation of deformed fry. Counts, sizes and segregates batches simultaneously.</p>
@@ -545,7 +649,7 @@ footer::before{
       <a class="card live fi" data-cat="vision" data-sector="fishing food" href="/tunascan/">
         <div class="card-ph"><img src="tunascan_2.png" alt="Tunascan®" loading="lazy"></div>
         <div class="card-body">
-          <span class="cat cat-vision" data-es="Visión">Vision</span>
+          <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
           <h3>Tunascan®</h3>
           <div class="tagline" data-es="Clasificación por especie y talla">By species &amp; size classification</div>
           <p data-es="Clasifica atún por especie y talla automáticamente. Perfilometría láser 3D + IA. &gt;95% eficacia en especie, &gt;98% en peso. Hasta 50 t/h.">Classifies tuna by species and size automatically. 3D laser profilometry + AI. &gt;95% species accuracy, &gt;98% weight. Up to 50 t/h.</p>
@@ -566,11 +670,11 @@ footer::before{
       <!-- DUAL-USE -->
       <a class="card enquiry fi d2" href="/dual-use/" data-cat="acoustic vision" data-sector="security rd">
         <span class="badge enquiry" data-es="Por encargo">By enquiry</span>
-        <div class="card-ph"><img src="marexi_placeholder_img.png" alt="Dual-Use Technology" loading="lazy"></div>
+        <div class="card-ph icons" aria-hidden="true"><svg width="54" height="34" viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 17h6M12 9v16M18 4v26M24 11v12M30 6v22M36 13v8M42 8v18M48 15v4"/></svg><svg width="48" height="34" viewBox="0 0 48 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17C8 7.5 15.5 3 24 3s16 4.5 22 14c-6 9.5-13.5 14-22 14S8 26.5 2 17z"/><circle cx="24" cy="17" r="6.5"/><circle cx="24" cy="17" r="1.6" fill="currentColor"/></svg></div>
         <div class="card-body">
           <div class="cats">
             <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
-            <span class="cat cat-vision" data-es="Visión">Vision</span>
+            <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
           </div>
           <h3 data-es="Tecnología de doble uso">Dual-Use Technology</h3>
           <div class="tagline" data-es="Defensa y seguridad">Defence &amp; security</div>
@@ -603,35 +707,42 @@ footer::before{
         <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
         <h3>T-CLEAN</h3>
         <p data-es="Sistema automático de pelado de atunes mediante visión artificial y robótica de precisión. Genera un mapa 3D completo de la superficie de cada pieza para minimizar mermas a velocidad de producción.">Automated tuna peeling system combining computer vision and precision robotics. Generates a complete 3D surface map of each fish to minimise waste at full production speed.</p>
+        <span class="dev-more" data-es="Más información próximamente">More information coming soon</span>
       </div>
       <div class="dev-card fi d2" data-cat="vision">
         <div class="dev-card-img"><img src="img-sps-device.jpg" alt="SPS" loading="lazy"></div>
         <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
         <h3>SPS</h3>
         <p data-es="Equipo industrial para el pelado automático de tiburones congelados, concebido para optimizar el procesamiento con foco en eficiencia, sostenibilidad y cumplimiento normativo.">Industrial system for the automated peeling of frozen sharks, designed to optimise processing with a focus on efficiency, sustainability and regulatory compliance.</p>
+        <span class="dev-more" data-es="Más información próximamente">More information coming soon</span>
       </div>
       <div class="dev-card fi d3" data-cat="vision">
         <div class="dev-card-img"><img src="img-ctun-vision.jpg" alt="C-TUNA" loading="lazy"></div>
         <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
         <h3>C-TUNA</h3>
         <p data-es="Sistema automático de inspección a bordo de atunes capturados en embarcaciones atuneras, mediante visión artificial y red neuronal con anidamiento para la detección y clasificación de diferentes especies de túnidos.">Automatic on-board inspection system for tuna caught at sea. Uses advanced computer vision and a nestable neural network to detect and classify different tuna species directly on the vessel's fish deck.</p>
+        <span class="dev-more" data-es="Más información próximamente">More information coming soon</span>
       </div>
-    </div>
-    <div class="dev-grid">
       <div class="dev-card fi" data-cat="acoustic">
+        <div class="dev-card-img ph" aria-hidden="true"><svg width="54" height="34" viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 17h6M12 9v16M18 4v26M24 11v12M30 6v22M36 13v8M42 8v18M48 15v4"/></svg></div>
         <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
         <h3 data-es="BIOACÚSTICA">BIOACOUSTIC</h3>
         <p data-es="Sistema de invisibilidad acústica para ocultar un objeto subacuático de la detección por sonar o por animales marinos con ecolocalización.">Acoustic invisibility system to hide an underwater object from detection by sonar devices or by echolocating marine animals.</p>
+        <span class="dev-more" data-es="Más información próximamente">More information coming soon</span>
       </div>
       <div class="dev-card fi d1" data-cat="testing">
+        <div class="dev-card-img ph" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6 6.6 6 11.3a6 6 0 0 1-12 0c0-4.7 6-11.3 6-11.3z"/><path d="M9 14.5a3 3 0 0 0 3 3"/></svg></div>
         <span class="cat cat-testing" data-es="Ensayos">Testing</span>
         <h3 data-es="Detección de contaminantes en el mar">Contaminant detection at sea</h3>
         <p data-es="Detección electroquímica portátil de toxinas marinas y contaminantes en el punto de captura, sin laboratorio.">Portable electrochemical sensing for marine toxins and contaminants — point-of-catch, no lab required.</p>
+        <span class="dev-more" data-es="Más información próximamente">More information coming soon</span>
       </div>
       <div class="dev-card fi d2" data-cat="acoustic">
+        <div class="dev-card-img ph" aria-hidden="true"><svg width="54" height="34" viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 17h6M12 9v16M18 4v26M24 11v12M30 6v22M36 13v8M42 8v18M48 15v4"/></svg></div>
         <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
         <h3 data-es="Reducción de capturas accidentales de tiburón">Shark bycatch reduction</h3>
         <p data-es="Sistema autónomo para reducir la captura accidental de tiburón en pesquerías industriales de atún. Disuasión selectiva sin afectar a la captura ni a las operaciones del buque.">Autonomous system to reduce accidental shark capture in industrial tuna fisheries. Targeted deterrence without affecting the catch or vessel operations.</p>
+        <span class="dev-more" data-es="Más información próximamente">More information coming soon</span>
       </div>
     </div>
   </div>
@@ -665,6 +776,49 @@ footer::before{
   </div>
 </section>
 
+<!-- TRUST: clientes, socios y certificaciones -->
+<section class="trust" id="trust">
+  <div class="wrap">
+    <div class="eyebrow fi" data-es="Confianza">Trust</div>
+    <h2 class="fi d1" data-es="Trabajan con nosotros">They work with us</h2>
+    <div class="trust-logos fi d1">
+      <a href="https://calvo.es/" target="_blank" rel="noopener" title="Calvo"><img src="clients/logos/clientes-calvo.png" alt="Calvo" loading="lazy"></a>
+      <a href="https://www.nuevapescanova.com/" target="_blank" rel="noopener" title="Pescanova"><img src="clients/logos/clientes-pescanova.png" alt="Pescanova" loading="lazy"></a>
+      <a href="https://www.mercadona.es/" target="_blank" rel="noopener" title="Mercadona"><img src="clients/logos/clientes-mercadona.png" alt="Mercadona" loading="lazy"></a>
+      <a href="https://www.iberdrola.com/" target="_blank" rel="noopener" title="Iberdrola"><img src="clients/logos/clientes-iberdrola.png" alt="Iberdrola" loading="lazy"></a>
+      <a href="https://www.ferrovial.com/" target="_blank" rel="noopener" title="Ferrovial"><img src="clients/logos/clientes-ferrovial.png" alt="Ferrovial" loading="lazy"></a>
+      <a href="https://www.csic.es/" target="_blank" rel="noopener" title="CSIC"><img src="clients/logos/clientes-csic.png" alt="CSIC" loading="lazy"></a>
+      <a href="https://ieo.csic.es/" target="_blank" rel="noopener" title="IEO"><img src="clients/logos/clientes-ieo.png" alt="IEO" loading="lazy"></a>
+      <a href="https://www.nationalgeographic.com/" target="_blank" rel="noopener" title="National Geographic"><img src="clients/logos/clientes-national-geographic.png" alt="National Geographic" loading="lazy"></a>
+      <a href="https://www.apvigo.es/" target="_blank" rel="noopener" title="Puerto de Vigo"><img src="clients/logos/clientes-apvigo.png" alt="Puerto de Vigo" loading="lazy"></a>
+      <a href="https://fundacion-biodiversidad.es/" target="_blank" rel="noopener" title="Fundación Biodiversidad"><img src="clients/logos/clientes-biodiversidad.png" alt="Fundación Biodiversidad" loading="lazy"></a>
+      <a href="https://cetmar.org/" target="_blank" rel="noopener" title="CETMAR"><img src="clients/logos/clientes-cetmar.png" alt="CETMAR" loading="lazy"></a>
+      <img src="clients/logos/clientes-atunlo.png" alt="Atunlo" loading="lazy">
+    </div>
+    <div class="trust-row fi d2">
+      <div class="trust-box">
+        <h3 data-es="Socios">Partners</h3>
+        <div class="trust-partner"><a href="https://ferri-sa.es/es/" target="_blank" rel="noopener" title="FERRI"><img src="pinger/evo/ferri-logo-blanco.png" width="205" height="40" alt="FERRI" loading="lazy"></a></div>
+      </div>
+      <div class="trust-box">
+        <h3 data-es="Certificaciones">Certifications</h3>
+        <div class="trust-logos small">
+          <a href="https://www.ciencia.gob.es/Innovar/Sello-PYME-innovadora.html" target="_blank" rel="noopener" title="Pyme Innovadora"><img src="certifications/logos/empresa-entidades-01.png" alt="Pyme Innovadora" loading="lazy"></a>
+          <a href="https://www.xunta.gal/" target="_blank" rel="noopener" title="Xunta de Galicia I.E.B.T."><img src="certifications/logos/empresa-entidades-02.png" alt="Xunta de Galicia I.E.B.T." loading="lazy"></a>
+          <a href="https://www.cdti.es/" target="_blank" rel="noopener" title="CDTI 7º FORONEOTEC"><img src="certifications/logos/empresa-entidades-03.png" alt="CDTI 7º FORONEOTEC" loading="lazy"></a>
+          <a href="https://www.enisa.es/" target="_blank" rel="noopener" title="ENISA"><img src="certifications/logos/empresa-entidades-04.png" alt="ENISA" loading="lazy"></a>
+          <a href="https://europa.eu/youreurope/business/product-rules-compliance/general-product-compliance/ce-marking/index_es.htm" target="_blank" rel="noopener" title="CE Marking"><img src="certifications/logos/ce-mark.png" alt="CE Marking" loading="lazy"></a>
+        </div>
+      </div>
+    </div>
+    <div class="trust-links fi d2">
+      <a href="/clients/" data-es="Ver todos los clientes →">See all clients →</a>
+      <a href="/certifications/" data-es="Certificaciones →">Certifications →</a>
+      <a href="/experience/#projects" data-es="Proyectos →">Projects →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="wrap">
@@ -684,8 +838,8 @@ footer::before{
             <img class="founder-avatar" src="ximo.jpeg" alt="Joaquín Gracia">
             <div class="founder-info">
               <span class="founder-name">Joaquín Gracia Salvador</span>
-              <span class="founder-role" data-es="Co-fundador · Tecnólogo">Co-founder · Technologist</span>
-              <span class="founder-bio" data-es="Formado en la James Cook University y el IIM-CSIC de Vigo. Director técnico del Proyecto Kraken; fabricó componentes del sistema WACS, premiado con el Rolex Award.">Trained at James Cook University and IIM-CSIC Vigo. Technical director of Proyecto Kraken; built components for the Rolex Award-winning WACS system.</span>
+              <span class="founder-role" data-es="Co-fundador">Co-founder</span>
+              <span class="founder-bio" data-es="Amplia trayectoria en el desarrollo de soluciones tecnológicas en microondas, visión artificial y acústica submarina. Ingeniero informático, técnico en electrónica digital y robótica y buzo profesional.">Extensive track record developing technology solutions in microwaves, computer vision and underwater acoustics. Computer engineer, digital electronics and robotics technician and professional diver.</span>
             </div>
             <a class="li-btn" href="https://www.linkedin.com/in/joaquin-gracia-salvador-b275b632/" target="_blank" rel="noopener">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -697,7 +851,7 @@ footer::before{
             <div class="founder-info">
               <span class="founder-name">Iñaki Miniño Arbilla</span>
               <span class="founder-role" data-es="Co-fundador · Científico">Co-founder · Scientist</span>
-              <span class="founder-bio" data-es="Biólogo marino y ex Director General de Medio Ambiente de Palma de Mallorca. Dirigió el programa Reservas Marinas de la Fundación Cousteau.">Marine biologist; former Director General of Environment, Palma de Mallorca. Directed the Cousteau Foundation Marine Reserves programme.</span>
+              <span class="founder-bio" data-es="Biólogo marino y ex Director General de Medio Ambiente de Palma de Mallorca. Dirigió el programa Reservas Marinas de la Fundación Philippe Cousteau.">Marine biologist; former Director General of Environment, Palma de Mallorca. Directed the Philippe Cousteau Foundation Marine Reserves programme.</span>
             </div>
             <a class="li-btn" href="https://www.linkedin.com/in/i%C3%B1aki-mini%C3%B1o-arbilla-62a8841a/" target="_blank" rel="noopener">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -710,8 +864,52 @@ footer::before{
   </div>
 </section>
 
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div class="contact-info fi">
+      <div class="eyebrow" data-es="Contacto">Contact</div>
+      <h2 data-es="Hablemos de su proyecto">Let's talk about your project</h2>
+      <p data-es="Cuéntenos qué necesita y le responderemos lo antes posible.">Tell us what you need and we will get back to you as soon as possible.</p>
+      <ul class="contact-list">
+        <li><span data-es="Correo">Email</span><a href="mailto:info@marexi.com">info@marexi.com</a></li>
+        <li><span data-es="Teléfono">Phone</span><div><a href="tel:+34986248213">+34 986 248 213</a> · <a href="tel:+34986248214">+34 986 248 214</a></div></li>
+        <li><span data-es="Dirección">Address</span><a href="https://maps.app.goo.gl/Wxqx6Kdwc1f8YQtJA" target="_blank" rel="noopener">Jacinto Benavente, 22 · 36202 Vigo (Pontevedra)</a></li>
+      </ul>
+    </div>
+    <!-- Formulario: si se rellena data-web3forms-key (clave de acceso de web3forms.com), se envía directamente;
+         si está vacío, abre el correo del visitante con los datos rellenados (mailto a info@marexi.com). -->
+    <form class="contact-form fi d1" id="contact-form" data-web3forms-key="" data-mailto="info@marexi.com" novalidate>
+      <div class="row2">
+        <label><span data-es="Nombre *">Name *</span><input name="name" required autocomplete="name"></label>
+        <label><span data-es="Empresa">Company</span><input name="company" autocomplete="organization"></label>
+      </div>
+      <div class="row2">
+        <label><span data-es="Correo electrónico *">Email *</span><input name="email" type="email" required autocomplete="email"></label>
+        <label><span data-es="Producto de interés">Product of interest</span>
+          <select name="product">
+            <option value="" data-es="— Seleccione —">— Select —</option>
+            <option>Pinger®</option><option>PINGER® EVO</option><option>Anisakischeck®</option><option>Aquadef®</option>
+            <option>Tunascan®</option><option>Tedepad®</option>
+            <option value="Acoustic Water Tank" data-es="Piscina acústica">Acoustic Water Tank</option>
+            <option value="Hydrostatic Pressure Cylinder" data-es="Cilindro de presión hidrostática">Hydrostatic Pressure Cylinder</option>
+            <option value="Dual-Use" data-es="Tecnología de doble uso">Dual-Use Technology</option>
+            <option value="Other" data-es="Otro">Other</option>
+          </select>
+        </label>
+      </div>
+      <label><span data-es="Mensaje *">Message *</span><textarea name="message" rows="5" required></textarea></label>
+      <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="check"><input type="checkbox" name="privacy" required>
+        <span data-es="He leído y acepto la &lt;a href=&quot;legal.html#privacy&quot; target=&quot;_blank&quot;&gt;política de privacidad&lt;/a&gt;. *">I have read and accept the <a href="legal.html#privacy" target="_blank">privacy policy</a>. *</span></label>
+      <button type="submit" class="hero-btn primary" data-es="Enviar">Send</button>
+      <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
 <!-- FOOTER -->
-<footer id="contact">
+<footer>
   <div class="foot-inner">
     <div>
       <div class="foot-brand">
@@ -740,7 +938,6 @@ footer::before{
       <p>info@marexi.com</p>
       <p>+34 986 248 213</p>
       <p>+34 986 248 214</p>
-      <p data-es="Fax: +34 902 876 815">Fax: +34 902 876 815</p>
     </div>
     <div class="foot-col">
       <h6 data-es="Dirección">Address</h6>
@@ -821,6 +1018,61 @@ document.addEventListener('click',function(e){
   var el=document.getElementById(id);
   if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
 });
+
+// ── Menú: resaltar la sección visible ────────────────────
+(function(){
+  var links={}, ids=['products','technologies','about','contact'];
+  document.querySelectorAll('.nav-links a[href*="#"]').forEach(function(a){ links[a.getAttribute('href').split('#')[1]]=a; });
+  function update(){
+    var mid=window.innerHeight*0.35, current=null;
+    ids.forEach(function(id){
+      var el=document.getElementById(id); if(!el) return;
+      var r=el.getBoundingClientRect();
+      if(r.top<=mid && r.bottom>mid) current=id;
+    });
+    // al final de la página, la última sección (Contacto) es la activa
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4) current='contact';
+    Object.keys(links).forEach(function(id){ links[id].classList.toggle('active', id===current); });
+  }
+  window.addEventListener('scroll',update,{passive:true}); window.addEventListener('resize',update); update();
+})();
+
+// ── Formulario de contacto ───────────────────────────────
+(function(){
+  var f=document.getElementById('contact-form'); if(!f) return;
+  var msg=document.getElementById('form-msg');
+  function es(){ return document.documentElement.lang==='es'; }
+  function say(cls,en,esTxt){ msg.className='form-msg '+cls; msg.textContent=es()?esTxt:en; }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=true;
+    ['name','email','message'].forEach(function(n){
+      var el=f.elements[n], bad=!el.value.trim()||(n==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value.trim()));
+      el.classList.toggle('invalid',bad); if(bad) ok=false;
+    });
+    if(!ok){ say('err','Please fill in name, a valid email and your message.','Rellene el nombre, un correo válido y el mensaje.'); return; }
+    if(!f.elements.privacy.checked){ say('err','Please accept the privacy policy.','Debe aceptar la política de privacidad.'); return; }
+    if(f.elements.botcheck.value){ return; } // antispam: campo trampa rellenado por un robot
+    var d={name:f.elements.name.value.trim(),company:f.elements.company.value.trim(),email:f.elements.email.value.trim(),
+           product:f.elements.product.value,message:f.elements.message.value.trim()};
+    var subject='Web marexi.com — '+(d.product||'Consulta')+' — '+d.name;
+    var key=f.getAttribute('data-web3forms-key');
+    if(key){
+      say('', 'Sending…', 'Enviando…');
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({access_key:key,subject:subject,from_name:'Web marexi.com',replyto:d.email,
+          name:d.name,company:d.company,email:d.email,product:d.product,message:d.message,botcheck:''})})
+      .then(function(r){return r.json();}).then(function(j){
+        if(j.success){ f.reset(); say('ok','Thank you! We have received your message.','¡Gracias! Hemos recibido su mensaje.'); }
+        else throw new Error(j.message);
+      }).catch(function(){ say('err','The message could not be sent. Please write to info@marexi.com.','No se pudo enviar. Escríbanos a info@marexi.com.'); });
+    } else {
+      var body='Nombre / Name: '+d.name+'\nEmpresa / Company: '+d.company+'\nCorreo / Email: '+d.email+'\nProducto / Product: '+d.product+'\n\n'+d.message;
+      window.location.href='mailto:'+f.getAttribute('data-mailto')+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      say('ok','Your email program has been opened with the message ready to send.','Se ha abierto su programa de correo con el mensaje listo para enviar.');
+    }
+  });
+})();
 
 // ── Scroll fade-in ───────────────────────────────────────
 (function(){

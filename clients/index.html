@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marexi — Clients</title>
+<title data-es="Marexi — Clientes y socios">Marexi — Clients &amp; partners</title>
 <meta name="description" content="Clients and partners of Tecnología Marina Ximo, S.L. (Marexi) — fishing, aquaculture, research and food processing organisations.">
 <link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">
 <link rel="apple-touch-icon" href="../favicon.png">
@@ -40,9 +40,12 @@
   .hero p{color:var(--muted);font-size:1.05rem;max-width:60ch;margin:0 auto}
 
   /* CLIENT GRID */
-  .section{padding:0 0 64px}
+  .section{padding:0 0 56px}
+  .group-title{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px}
   .client-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
   .logo-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;transition:background .2s,border-color .2s}
+  a.logo-card{display:block;color:inherit;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+  a.logo-card:hover{transform:translateY(-3px);border-color:rgba(55,198,201,.45);box-shadow:0 12px 28px -14px rgba(0,0,0,.8)}
   .logo-card:hover{background:rgba(55,198,201,.06);border-color:rgba(55,198,201,.18)}
   .logo-card .logo-img{background:#fff;padding:24px 20px;display:flex;align-items:center;justify-content:center;min-height:120px}
   .logo-card .logo-img img{height:72px;max-width:200px;width:auto;object-fit:contain}
@@ -80,29 +83,64 @@
 <section class="hero">
   <div class="wrap">
     <div class="eyebrow" data-es="Confianza">Trust</div>
-    <h1 data-es="Clientes">Clients</h1>
-    <p data-es="Más de 15 años trabajando con empresas pesqueras, institutos de investigación, procesadores de alimentos y organizaciones medioambientales en España e internacionalmente.">Over 15 years working with fishing companies, research institutions, food processors and environmental organisations across Spain and internationally.</p>
+    <h1 data-es="Clientes y socios">Clients &amp; partners</h1>
+    <p data-es="Más de 20 años trabajando con empresas pesqueras, institutos de investigación, universidades, procesadores de alimentos y organizaciones medioambientales en España e internacionalmente.">Over 20 years working with fishing companies, research institutions, universities, food processors and environmental organisations across Spain and internationally.</p>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="group-title" data-es="Socios">Partners</h2>
+    <div class="client-grid">
+      <a class="logo-card" href="https://ferri-sa.es/es/" target="_blank" rel="noopener" title="FERRI"><div class="logo-img"><img src="logos/socio-ferri.webp" alt="FERRI"></div><span data-es="Socio · PINGER® EVO">Partner · PINGER® EVO</span></a>
+    </div>
   </div>
 </section>
 
 <!-- CLIENTS -->
 <section class="section">
   <div class="wrap">
+    <h2 class="group-title" data-es="Clientes">Clients</h2>
     <div class="client-grid">
+      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-aido.jpg" alt="AIDO" loading="lazy"></div><span data-es="Centro tecnológico">Technology centre</span></div>
+      <a class="logo-card" href="https://www.aimen.es/" target="_blank" rel="noopener" title="AIMEN"><div class="logo-img"><img src="logos/clientes-aimen.jpg" alt="AIMEN" loading="lazy"></div><span data-es="Centro tecnológico">Technology centre</span></a>
+      <a class="logo-card" href="https://www.alnus2005.com/" target="_blank" rel="noopener" title="Alnus 2005"><div class="logo-img"><img src="logos/clientes-alnus2005.jpg" alt="Alnus 2005" loading="lazy"></div><span data-es="Medio ambiente">Environment</span></a>
       <div class="logo-card"><div class="logo-img"><img src="logos/clientes-atunlo.png" alt="Atunlo"></div><span data-es="Procesado alimentario">Food processing</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-calvo.png" alt="Calvo"></div><span data-es="Procesado alimentario">Food processing</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-cetmar.png" alt="CETMAR"></div><span data-es="Investigación">Research</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-csic.png" alt="CSIC"></div><span data-es="Investigación">Research</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-ferrovial.png" alt="Ferrovial"></div><span data-es="Infraestructura">Infrastructure</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-biodiversidad.png" alt="Fundación Biodiversidad"></div><span data-es="Medio ambiente">Environment</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-iberdrola.png" alt="Iberdrola"></div><span data-es="Energía">Energy</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-ieo.png" alt="IEO"></div><span data-es="Investigación">Research</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-mascato.png" alt="Mascato"></div><span data-es="Pesca">Fishing</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-mercadona.png" alt="Mercadona"></div><span data-es="Distribución">Retail</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-national-geographic.png" alt="National Geographic"></div><span data-es="Medios / Ciencia">Media / Science</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-pereira-2.png" alt="Pereira"></div><span data-es="Pesca">Fishing</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-pescanova.png" alt="Pescanova"></div><span data-es="Pesca">Fishing</span></div>
-      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-apvigo.png" alt="Puerto de Vigo"></div><span data-es="Autoridad portuaria">Port authority</span></div>
+      <a class="logo-card" href="https://calvo.es/" target="_blank" rel="noopener" title="Calvo"><div class="logo-img"><img src="logos/clientes-calvo.png" alt="Calvo"></div><span data-es="Procesado alimentario">Food processing</span></a>
+      <a class="logo-card" href="https://cetmar.org/" target="_blank" rel="noopener" title="CETMAR"><div class="logo-img"><img src="logos/clientes-cetmar.png" alt="CETMAR"></div><span data-es="Investigación">Research</span></a>
+      <a class="logo-card" href="https://www.csic.es/" target="_blank" rel="noopener" title="CSIC"><div class="logo-img"><img src="logos/clientes-csic.png" alt="CSIC"></div><span data-es="Investigación">Research</span></a>
+      <a class="logo-card" href="https://cim.uvigo.gal/ecimat" target="_blank" rel="noopener" title="ECIMAT"><div class="logo-img"><img src="logos/clientes-ecimat.png" alt="ECIMAT" loading="lazy"></div><span data-es="Investigación">Research</span></a>
+      <a class="logo-card" href="https://www.ferrovial.com/" target="_blank" rel="noopener" title="Ferrovial"><div class="logo-img"><img src="logos/clientes-ferrovial.png" alt="Ferrovial"></div><span data-es="Infraestructura">Infrastructure</span></a>
+      <a class="logo-card" href="https://fundacion-biodiversidad.es/" target="_blank" rel="noopener" title="Fundación Biodiversidad"><div class="logo-img"><img src="logos/clientes-biodiversidad.png" alt="Fundación Biodiversidad"></div><span data-es="Medio ambiente">Environment</span></a>
+      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-fundacion-puerto-vigo.jpg" alt="Fundación Puerto de Vigo" loading="lazy"></div><span data-es="Fundación portuaria">Port foundation</span></div>
+      <a class="logo-card" href="https://www.iberdrola.com/" target="_blank" rel="noopener" title="Iberdrola"><div class="logo-img"><img src="logos/clientes-iberdrola.png" alt="Iberdrola"></div><span data-es="Energía">Energy</span></a>
+      <a class="logo-card" href="https://ieo.csic.es/" target="_blank" rel="noopener" title="IEO"><div class="logo-img"><img src="logos/clientes-ieo.png" alt="IEO"></div><span data-es="Investigación">Research</span></a>
+      <a class="logo-card" href="https://iim.csic.es/" target="_blank" rel="noopener" title="IIM-CSIC"><div class="logo-img"><img src="logos/clientes-iim-csic.png" alt="IIM-CSIC" loading="lazy"></div><span data-es="Investigación">Research</span></a>
+      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-insuina.jpg" alt="Insuiña" loading="lazy"></div><span data-es="Acuicultura">Aquaculture</span></div>
+      <a class="logo-card" href="https://www.intecmar.gal/" target="_blank" rel="noopener" title="INTECMAR"><div class="logo-img"><img src="logos/clientes-intecmar.jpg" alt="INTECMAR" loading="lazy"></div><span data-es="Investigación">Research</span></a>
+      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-kronomav.gif" alt="Kronomav" loading="lazy"></div><span data-es="Ingeniería">Engineering</span></div>
+      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-kronotec.png" alt="Kronotec" loading="lazy"></div><span data-es="Ingeniería">Engineering</span></div>
+      <a class="logo-card" href="https://www.mascato.com/" target="_blank" rel="noopener" title="Mascato"><div class="logo-img"><img src="logos/clientes-mascato.png" alt="Mascato"></div><span data-es="Pesca">Fishing</span></a>
+      <a class="logo-card" href="https://www.mercadona.es/" target="_blank" rel="noopener" title="Mercadona"><div class="logo-img"><img src="logos/clientes-mercadona.png" alt="Mercadona"></div><span data-es="Distribución">Retail</span></a>
+      <a class="logo-card" href="https://www.meteogalicia.gal/" target="_blank" rel="noopener" title="MeteoGalicia"><div class="logo-img"><img src="logos/clientes-meteogalicia.jpg" alt="MeteoGalicia" loading="lazy"></div><span data-es="Administración pública">Public administration</span></a>
+      <a class="logo-card" href="https://museodomar.xunta.gal/" target="_blank" rel="noopener" title="Museo do Mar de Galicia"><div class="logo-img"><img src="logos/clientes-museo-do-mar.gif" alt="Museo do Mar de Galicia" loading="lazy"></div><span data-es="Cultura">Culture</span></a>
+      <a class="logo-card" href="https://www.nationalgeographic.com/" target="_blank" rel="noopener" title="National Geographic"><div class="logo-img"><img src="logos/clientes-national-geographic.png" alt="National Geographic"></div><span data-es="Medios / Ciencia">Media / Science</span></a>
+      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-optiva-media.jpg" alt="Optiva Media" loading="lazy"></div><span data-es="Medios / Tecnología">Media / Technology</span></div>
+      <a class="logo-card" href="https://www.miteco.gob.es/es/parques-nacionales-oapn/red-parques-nacionales/parques-nacionales/cabrera.html" target="_blank" rel="noopener" title="P.N. Archipiélago de Cabrera"><div class="logo-img"><img src="logos/clientes-pn-cabrera.gif" alt="P.N. Archipiélago de Cabrera" loading="lazy"></div><span data-es="Espacio protegido">Protected area</span></a>
+      <a class="logo-card" href="https://www.iatlanticas.es/" target="_blank" rel="noopener" title="P.N. Islas Atlánticas de Galicia"><div class="logo-img"><img src="logos/clientes-pn-islas-atlanticas.gif" alt="P.N. Islas Atlánticas de Galicia" loading="lazy"></div><span data-es="Espacio protegido">Protected area</span></a>
+      <a class="logo-card" href="https://palmaaquarium.com/" target="_blank" rel="noopener" title="Palma Aquarium"><div class="logo-img"><img src="logos/clientes-palma-aquarium.jpg" alt="Palma Aquarium" loading="lazy"></div><span data-es="Acuario">Aquarium</span></a>
+      <a class="logo-card" href="https://www.armadorapereira.com/" target="_blank" rel="noopener" title="Pereira"><div class="logo-img"><img src="logos/clientes-pereira-2.png" alt="Pereira"></div><span data-es="Pesca">Fishing</span></a>
+      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-pescafresca.jpg" alt="Pescafresca" loading="lazy"></div><span data-es="Pesca">Fishing</span></div>
+      <a class="logo-card" href="https://www.nuevapescanova.com/" target="_blank" rel="noopener" title="Pescanova"><div class="logo-img"><img src="logos/clientes-pescanova.png" alt="Pescanova"></div><span data-es="Pesca">Fishing</span></a>
+      <a class="logo-card" href="https://www.apvigo.es/" target="_blank" rel="noopener" title="Puerto de Vigo"><div class="logo-img"><img src="logos/clientes-apvigo.png" alt="Puerto de Vigo"></div><span data-es="Autoridad portuaria">Port authority</span></a>
+      <div class="logo-card"><div class="logo-img"><img src="logos/clientes-quota-research.png" alt="Quota Research" loading="lazy"></div><span data-es="Consultoría">Consultancy</span></div>
+      <a class="logo-card" href="https://www.repsol.com/" target="_blank" rel="noopener" title="Repsol"><div class="logo-img"><img src="logos/clientes-repsol.jpg" alt="Repsol" loading="lazy"></div><span data-es="Energía">Energy</span></a>
+      <a class="logo-card" href="https://www.udc.gal/" target="_blank" rel="noopener" title="Universidade da Coruña"><div class="logo-img"><img src="logos/clientes-udc.jpg" alt="Universidade da Coruña" loading="lazy"></div><span data-es="Universidad">University</span></a>
+      <a class="logo-card" href="https://www.uvigo.gal/" target="_blank" rel="noopener" title="Universidade de Vigo"><div class="logo-img"><img src="logos/clientes-uvigo.jpg" alt="Universidade de Vigo" loading="lazy"></div><span data-es="Universidad">University</span></a>
+      <a class="logo-card" href="https://www.uib.es/" target="_blank" rel="noopener" title="Universitat de les Illes Balears"><div class="logo-img"><img src="logos/clientes-uib.jpg" alt="Universitat de les Illes Balears" loading="lazy"></div><span data-es="Universidad">University</span></a>
+      <a class="logo-card" href="https://www.upc.edu/" target="_blank" rel="noopener" title="UPC"><div class="logo-img"><img src="logos/clientes-upc.gif" alt="UPC" loading="lazy"></div><span data-es="Universidad">University</span></a>
+      <a class="logo-card" href="https://www.xesgalicia.org/" target="_blank" rel="noopener" title="XesGalicia"><div class="logo-img"><img src="logos/clientes-xesgalicia.gif" alt="XesGalicia" loading="lazy"></div><span data-es="Inversión">Investment</span></a>
     </div>
   </div>
 </section>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marexi — Dual-Use Technology</title>
-<meta name="description" content="Acoustic and optical sensor technology adapted for defence and security applications. Available on direct enquiry.">
+<title data-es="Marexi — Tecnología de doble uso">Marexi — Dual-Use Technology</title>
+<meta name="description" content="Acoustic and optical sensor technology adapted for defence and security applications. Available on direct enquiry." data-es-content="Tecnología de sensores acústicos y ópticos adaptada para aplicaciones de defensa y seguridad. Disponible bajo consulta.">
 <link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">
 <link rel="apple-touch-icon" href="../favicon.png">
 <style>
@@ -28,6 +28,9 @@
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;max-width:1280px;margin:0 auto;padding:0 48px}
   .brand img{height:44px;width:auto;display:block}
   .nav-right{display:flex;align-items:center;gap:18px}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent,#ff6a4d);color:#0a1524}
   .back{font-size:.82rem;color:var(--muted);font-weight:600;transition:.15s}
   .back:hover{color:var(--ink)}
   .badge-nav{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
@@ -69,6 +72,10 @@
   .card .icon{font-size:1.5rem;margin-bottom:14px}
   .card-img{margin:-28px -28px 20px;border-radius:var(--radius) var(--radius) 0 0;overflow:hidden;height:180px}
   .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+  /* ilustración (mismo estilo que la ficha de Doble uso de la portada) */
+  .card-img.icons{display:flex;align-items:center;justify-content:center;gap:26px;color:var(--faint);
+    background:linear-gradient(135deg,rgba(20,49,79,.9) 0%,rgba(11,29,50,.9) 100%);border-bottom:1px solid var(--line)}
+  .card-img.icons svg{opacity:.6}
 
   /* HERO IMAGE */
   .hero-img{margin:36px auto 0;max-width:860px;border-radius:20px;overflow:hidden;
@@ -114,8 +121,12 @@
       <img src="../logo_marexi_light.png" alt="Marexi">
     </a>
     <div class="nav-right">
-      <span class="badge-nav">By enquiry</span>
-      <a class="back" href="/">← All products</a>
+      <span class="badge-nav" data-es="Por encargo">By enquiry</span>
+      <a class="back" href="/" data-es="← Todos los productos">← All products</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
     </div>
   </div>
 </header>
@@ -123,26 +134,26 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow">Security · Defence</div>
-    <h1>Dual-Use Technology</h1>
-    <p>Underwater acoustic and computer vision systems originally developed for marine environmental and food-chain applications — now adapted for defence, security and surveillance. Available on direct enquiry.</p>
+    <div class="eyebrow" data-es="Seguridad · Defensa">Security · Defence</div>
+    <h1 data-es="Tecnología de doble uso">Dual-Use Technology</h1>
+    <p data-es="Sistemas de acústica submarina y visión artificial desarrollados originalmente para aplicaciones medioambientales marinas y de la cadena alimentaria, ahora adaptados a defensa, seguridad y vigilancia. Disponible bajo consulta.">Underwater acoustic and computer vision systems originally developed for marine environmental and food-chain applications — now adapted for defence, security and surveillance. Available on direct enquiry.</p>
     <div class="chips">
-      <span class="chip">Acoustic area isolation</span>
-      <span class="chip">Underwater noise mapping</span>
-      <span class="chip">Image segmentation</span>
-      <span class="chip">Video surveillance</span>
-      <span class="chip">Multispectral analysis</span>
+      <span class="chip" data-es="Aislamiento acústico de zonas">Acoustic area isolation</span>
+      <span class="chip" data-es="Mapeo de ruido submarino">Underwater noise mapping</span>
+      <span class="chip" data-es="Segmentación de imagen">Image segmentation</span>
+      <span class="chip" data-es="Videovigilancia">Video surveillance</span>
+      <span class="chip" data-es="Análisis multiespectral">Multispectral analysis</span>
     </div>
     <div class="cta-row">
-      <a class="btn" href="mailto:info@marexi.com?subject=Dual-Use%20Technology%20Enquiry">Contact us</a>
-      <a class="btn ghost" href="/">← All products</a>
+      <a class="btn" href="mailto:info@marexi.com?subject=Dual-Use%20Technology%20Enquiry" data-es="Contactar">Contact us</a>
+      <a class="btn ghost" href="/" data-es="← Todos los productos">← All products</a>
     </div>
   </div>
 </section>
 
 <!-- NOTICE -->
 <div class="wrap">
-  <div class="notice">
+  <div class="notice" data-es="&lt;strong&gt;Disponible bajo consulta directa.&lt;/strong&gt; Esta tecnología no está disponible en la tienda. Contacte con nosotros en &lt;a href=&quot;mailto:info@marexi.com&quot; style=&quot;color:var(--violet)&quot;&gt;info@marexi.com&lt;/a&gt; o llame al &lt;a href=&quot;tel:+34986248213&quot; style=&quot;color:var(--violet)&quot;&gt;+34 986 248 213&lt;/a&gt;.">
     <strong>Available on direct enquiry.</strong> This technology is not available through the standard store. Please contact us directly at <a href="mailto:info@marexi.com" style="color:var(--violet)">info@marexi.com</a> or call <a href="tel:+34986248213" style="color:var(--violet)">+34 986 248 213</a>.
   </div>
 </div>
@@ -150,27 +161,27 @@
 <!-- CAPABILITIES -->
 <section class="section">
   <div class="wrap">
-    <div class="section-title">Capabilities</div>
+    <div class="section-title" data-es="Capacidades">Capabilities</div>
     <div class="grid">
       <div class="card">
         <div class="card-img"><img src="img-acoustic.jpeg" alt="Underwater Pinger® array for acoustic area isolation"></div>
-        <h3>Acoustic area isolation</h3>
-        <p>Arrays of Pinger® acoustic deterrent devices define and protect marine zones — keeping animals clear during military exercises, high-power sonar tests, underwater diving operations and acoustic surveys. Reduces environmental impact while securing the perimeter.</p>
+        <h3 data-es="Aislamiento acústico de zonas">Acoustic area isolation</h3>
+        <p data-es="Conjuntos de disuasores acústicos Pinger® que delimitan y protegen zonas marinas, manteniendo alejados a los animales durante ejercicios militares, pruebas de sónar de alta potencia, operaciones de buceo y estudios acústicos. Reduce el impacto ambiental a la vez que asegura el perímetro.">Arrays of Pinger® acoustic deterrent devices define and protect marine zones — keeping animals clear during military exercises, high-power sonar tests, underwater diving operations and acoustic surveys. Reduces environmental impact while securing the perimeter.</p>
       </div>
       <div class="card">
         <div class="card-img"><img src="img-noise.jpeg" alt="Aerial view of underwater sensor array for noise mapping"></div>
-        <h3>Underwater noise mapping</h3>
-        <p>Real-time marine mammal monitoring to prevent environmental impacts during sensitive operations. Complex multi-sensor data flows for continuous mapping and recording of underwater acoustic environments.</p>
+        <h3 data-es="Mapeo de ruido submarino">Underwater noise mapping</h3>
+        <p data-es="Monitorización en tiempo real de mamíferos marinos para evitar impactos ambientales durante operaciones sensibles. Flujos de datos multisensor complejos para el mapeo y registro continuo del entorno acústico submarino.">Real-time marine mammal monitoring to prevent environmental impacts during sensitive operations. Complex multi-sensor data flows for continuous mapping and recording of underwater acoustic environments.</p>
       </div>
       <div class="card">
-        <div class="card-img"><img src="../marexi_placeholder_img.png" alt="AI image segmentation"></div>
-        <h3>AI image segmentation</h3>
-        <p>Computer vision system that divides imagery into precise regions for object detection and classification. Applied to defence, robotics and medicine: object recognition, pattern detection, video surveillance and autonomous navigation.</p>
+        <div class="card-img icons" role="img" aria-label="AI image segmentation"><svg width="54" height="34" viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 17h6M12 9v16M18 4v26M24 11v12M30 6v22M36 13v8M42 8v18M48 15v4"/></svg><svg width="48" height="34" viewBox="0 0 48 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17C8 7.5 15.5 3 24 3s16 4.5 22 14c-6 9.5-13.5 14-22 14S8 26.5 2 17z"/><circle cx="24" cy="17" r="6.5"/><circle cx="24" cy="17" r="1.6" fill="currentColor"/></svg></div>
+        <h3 data-es="Segmentación de imagen con IA">AI image segmentation</h3>
+        <p data-es="Sistema de visión artificial que divide la imagen en regiones precisas para detectar y clasificar objetos. Aplicado a defensa, robótica y medicina: reconocimiento de objetos, detección de patrones, videovigilancia y navegación autónoma.">Computer vision system that divides imagery into precise regions for object detection and classification. Applied to defence, robotics and medicine: object recognition, pattern detection, video surveillance and autonomous navigation.</p>
       </div>
       <div class="card">
-        <div class="card-img"><img src="../marexi_placeholder_img.png" alt="Multispectral analysis"></div>
-        <h3>Multispectral analysis</h3>
-        <p>Spectral signature analysis to identify specific elements in aerial imagery. Multispectral imaging, photointerpretation and remote sensing — operational and reflectance channel analysis for surface classification.</p>
+        <div class="card-img icons" role="img" aria-label="Multispectral analysis"><svg width="54" height="34" viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 17h6M12 9v16M18 4v26M24 11v12M30 6v22M36 13v8M42 8v18M48 15v4"/></svg><svg width="48" height="34" viewBox="0 0 48 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17C8 7.5 15.5 3 24 3s16 4.5 22 14c-6 9.5-13.5 14-22 14S8 26.5 2 17z"/><circle cx="24" cy="17" r="6.5"/><circle cx="24" cy="17" r="1.6" fill="currentColor"/></svg></div>
+        <h3 data-es="Análisis multiespectral">Multispectral analysis</h3>
+        <p data-es="Análisis de firmas espectrales para identificar elementos concretos en imágenes aéreas. Imagen multiespectral, fotointerpretación y teledetección: análisis de canales operativos y de reflectancia para clasificar superficies.">Spectral signature analysis to identify specific elements in aerial imagery. Multispectral imaging, photointerpretation and remote sensing — operational and reflectance channel analysis for surface classification.</p>
       </div>
     </div>
   </div>
@@ -179,30 +190,30 @@
 <!-- TECHNOLOGY -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="section-title">Technology pillars</div>
+    <div class="section-title" data-es="Pilares tecnológicos">Technology pillars</div>
     <div class="tech-row" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
       <div class="tech-pill">
         <div>
-          <h4>Acoustics</h4>
-          <p>Production, control, transmission and reception of sound. In marine environments, the most effective medium for energy and information transfer over long distances.</p>
+          <h4 data-es="Acústica">Acoustics</h4>
+          <p data-es="Producción, control, transmisión y recepción del sonido. En el medio marino, el medio más eficaz para transferir energía e información a largas distancias.">Production, control, transmission and reception of sound. In marine environments, the most effective medium for energy and information transfer over long distances.</p>
         </div>
       </div>
       <div class="tech-pill">
         <div>
-          <h4>Computer Vision</h4>
-          <p>Photonics and AI-powered image segmentation. Proven in food-chain inspection (Anisakischeck®, Tunascan®) — now applied to surveillance and autonomous navigation.</p>
+          <h4 data-es="Visión artificial">Computer Vision</h4>
+          <p data-es="Fotónica y segmentación de imagen con IA. Probada en la inspección de la cadena alimentaria (Anisakischeck®, Tunascan®) y aplicada ahora a vigilancia y navegación autónoma.">Photonics and AI-powered image segmentation. Proven in food-chain inspection (Anisakischeck®, Tunascan®) — now applied to surveillance and autonomous navigation.</p>
         </div>
       </div>
       <div class="tech-pill">
         <div>
-          <h4>Microwave</h4>
-          <p>Electromagnetic radiation 300 MHz–300 GHz. Though attenuated in water, interaction with the sea surface and upper atmosphere is highly valuable for detection.</p>
+          <h4 data-es="Microondas">Microwave</h4>
+          <p data-es="Radiación electromagnética de 300 MHz a 300 GHz. Aunque se atenúa en el agua, su interacción con la superficie del mar y la atmósfera es muy valiosa para la detección.">Electromagnetic radiation 300 MHz–300 GHz. Though attenuated in water, interaction with the sea surface and upper atmosphere is highly valuable for detection.</p>
         </div>
       </div>
       <div class="tech-pill">
         <div>
-          <h4>Artificial Intelligence</h4>
-          <p>Machine simulation of human intelligence — learning, reasoning and self-correction. Applied to pattern recognition, anomaly detection and autonomous decision-making.</p>
+          <h4 data-es="Inteligencia artificial">Artificial Intelligence</h4>
+          <p data-es="Simulación por máquina de la inteligencia humana: aprendizaje, razonamiento y autocorrección. Aplicada al reconocimiento de patrones, la detección de anomalías y la toma de decisiones autónoma.">Machine simulation of human intelligence — learning, reasoning and self-correction. Applied to pattern recognition, anomaly detection and autonomous decision-making.</p>
         </div>
       </div>
     </div>
@@ -213,8 +224,8 @@
 <section class="section" style="padding-top:0">
   <div class="wrap">
     <div class="contact-box">
-      <h2>Enquire about this technology</h2>
-      <p>All enquiries are handled directly and confidentially. We work under NDA on request.</p>
+      <h2 data-es="Consulte por esta tecnología">Enquire about this technology</h2>
+      <p data-es="Todas las consultas se atienden de forma directa y confidencial. Trabajamos bajo acuerdo de confidencialidad (NDA) si se solicita.">All enquiries are handled directly and confidentially. We work under NDA on request.</p>
       <a class="btn" href="mailto:info@marexi.com?subject=Dual-Use%20Technology%20Enquiry">info@marexi.com</a>
     </div>
   </div>
@@ -223,7 +234,7 @@
 <!-- LEGAL NOTE -->
 <div class="legal-note">
   <div class="wrap">
-    Tecnología Marina Ximo, S.L. · CIF B36944999 · Jacinto Benavente 22, 36202 Vigo, Pontevedra, Spain.<br>
+    <span data-es="Tecnología Marina Ximo, S.L. · CIF B36944999 · Jacinto Benavente 22, 36202 Vigo, Pontevedra, España.">Tecnología Marina Ximo, S.L. · CIF B36944999 · Jacinto Benavente 22, 36202 Vigo, Pontevedra, Spain.</span><br>
     Tel: <a href="tel:+34986248213">+34 986 248 213</a> · <a href="mailto:info@marexi.com">info@marexi.com</a>
   </div>
 </div>
@@ -231,9 +242,26 @@
 <footer>
   <div class="foot-inner">
     <span>© 2026 Tecnología Marina Ximo, S.L.</span>
-    <a href="/">← Back to Marexi</a>
+    <a href="/" data-es="← Volver a Marexi">← Back to Marexi</a>
   </div>
 </footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    });
+    document.getElementById('btn-en').classList.toggle('on', lang==='en');
+    document.getElementById('btn-es').classList.toggle('on', lang==='es');
+    try{ localStorage.setItem('marexi-lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
+    if(saved === 'es') setLang('es');
+  })();
+</script>
 
 </body>
 </html>

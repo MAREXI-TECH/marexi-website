@@ -23,8 +23,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
+      # Genera la web publicable en _site/ (copia del sitio + páginas en español en /es/)
+      - name: Build site (EN + /es/)
+        run: node tools/build-es.mjs --out _site
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: .
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v5

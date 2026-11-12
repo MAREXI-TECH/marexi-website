@@ -52,7 +52,17 @@
   </url>
   <url>
     <loc>https://marexi.com/pinger/</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/shop/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/pinger/v2-3/</loc>
+    <lastmod>2026-11-12</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -74,5 +84,80 @@
     <loc>https://marexi.com/tunascan/</loc>
     <lastmod>2026-11-11</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/hydrophones/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/seasampler/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/t-clean/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/sfs/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/c-tuna/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/bioacoustics/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/contaminant-detection/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/shark-bycatch/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/anisakischeck/handheld/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/anisakischeck/retroled/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/anisakischeck/matrixled/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/anisakischeck/scanisakis/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/anisakischeck/inline/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/anisakischeck/uvpress/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/usv-victoria/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>

@@ -10,6 +10,7 @@
 // - En ambas versiones añade <link rel="canonical"> y <link rel="alternate" hreflang> para Google,
 //   y hace que el botón EN/ES cambie de dirección (/x ↔ /es/x) en lugar de traducir en la misma página.
 // - Añade las URLs /es/ al sitemap.xml de salida.
+// - Justifica el texto de todas las páginas (ver JUSTIFY).
 // Las páginas de origen NO se modifican: se sigue editando el HTML en inglés con su data-es="…".
 import fs from 'node:fs';
 import path from 'node:path';
@@ -69,6 +70,32 @@ function swapInner(html) {
 }
 
 function headInject(html, extra) { return html.replace(/<head>/i, '<head>\n' + extra); }
+
+// Texto justificado en toda la web: párrafos y listas de texto alineados a la izquierda → justificados (sin partir palabras:
+// si una palabra no cabe, salta entera a la línea siguiente);
+// los centrados de varias líneas → justificados con la última línea centrada. Los alineados a la izquierda
+// ocupan además todo el ancho de su contenedor (sin max-width), para no dejar hueco a la derecha. Se excluyen menús, botones y textos cortos.
+const JUSTIFY = `<style>.mx-j{text-align:justify!important;-webkit-hyphens:manual;hyphens:manual;overflow-wrap:normal;word-break:normal}.mx-jc{text-align-last:center}.mx-w{max-width:none!important}</style>
+<script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('p,li,dd,blockquote').forEach(function(e){
+if(e.closest('nav,header,footer,button,.chips,.chip,.facts,.pfacts,.lang'))return;var t=(e.textContent||'').trim();if(t.length<90)return;
+var cs=getComputedStyle(e);if(cs.display.indexOf('flex')>-1||cs.display.indexOf('inline')>-1)return;var a=cs.textAlign;
+if(a==='left'||a==='start'||a==='justify')e.classList.add('mx-j','mx-w');else if(a==='center')e.classList.add('mx-j','mx-jc');});});</script>`;
+// Cabecera/menú con las mismas medidas en todas las páginas (alto, ancho, márgenes, logo y tamaño de los enlaces).
+const HEADER = `<style>header.nav{position:sticky;top:0;z-index:50}
+header.nav>.nav-inner{height:96px!important;max-width:1280px!important;margin:0 auto!important;padding:0 48px!important;box-sizing:border-box!important}
+header.nav .brand img{height:44px!important;width:auto!important;display:block}
+header.nav .lang{font-size:.78rem!important}header.nav .lang button{padding:5px 11px!important}
+header.nav .nav-links>a:not(.btn):not(.shop-nav-link),header.nav .navgroup-trigger,header.nav .navgroup-menu a,header.nav .back,header.nav .back-link,header.nav .storehome,header.nav .catmenu a,header.nav .cartlink{font-size:15px!important}
+@media(max-width:640px){header.nav>.nav-inner{height:auto!important;min-height:72px!important;padding:0 20px!important}header.nav .brand img{height:36px!important}}</style>`;
+// Panel superior (hero) uniforme en todas las páginas interiores: mismo margen superior/inferior, mismo tamaño de h1
+// y contenido de los heros a dos columnas alineado arriba (la portada, con .hero-photo, no se toca).
+const HERO = `<style>section.hero:not(:has(.hero-photo)){padding-top:84px!important;padding-bottom:56px!important}
+section.hero:not(:has(.hero-photo)) h1{font-size:clamp(2rem,5vw,3.1rem)!important;line-height:1.15!important;margin-bottom:16px!important}
+section.hero:not(:has(.hero-photo)) .wrap{max-width:1120px!important}
+section.hero .h1top{margin:0 0 16px!important}
+section.hero .hero-split,section.hero .hero-grid,section.hero .hsplit,section.hero>.wrap{align-items:start!important}
+@media(max-width:640px){section.hero:not(:has(.hero-photo)){padding-top:56px!important;padding-bottom:44px!important}}</style>`;
+const withJustify = html => /<\/head>/i.test(html) ? html.replace(/<\/head>/i, JUSTIFY + '\n' + HEADER + '\n' + HERO + '\n</head>') : html;
 function bodyInject(html, extra) { const i = html.lastIndexOf('</body>'); return html.slice(0, i) + extra + '\n' + html.slice(i); }
 
 function langScripts(lang, enUrl, esUrl) {
@@ -92,7 +119,7 @@ for (const rel of pages) {
   const src = fs.readFileSync(path.join(ROOT, rel), 'utf8');
   const enUrl = urlOf(rel);
   let en = fixBase(src);
-  if (!esPages.has(rel)) { fs.writeFileSync(path.join(OUT, rel), en); continue; }
+  if (!esPages.has(rel)) { fs.writeFileSync(path.join(OUT, rel), withJustify(en)); continue; }
   const esUrl = '/es' + enUrl;
   const dirUrl = enUrl.endsWith('/') ? enUrl : enUrl.replace(/[^/]*$/, '');
 
@@ -100,7 +127,7 @@ for (const rel of pages) {
   const L = langScripts('en', enUrl, esUrl);
   en = headInject(en, L.pre + '\n' + alternates(enUrl, esUrl, enUrl));
   en = bodyInject(en, L.post);
-  fs.writeFileSync(path.join(OUT, rel), en);
+  fs.writeFileSync(path.join(OUT, rel), withJustify(en));
 
   // --- versión española
   let es = fixBase(src);
@@ -128,7 +155,7 @@ for (const rel of pages) {
   es = bodyInject(es, S.post);
   const outFile = path.join(OUT, 'es', rel);
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
-  fs.writeFileSync(outFile, es);
+  fs.writeFileSync(outFile, withJustify(es));
   made++;
 }
 

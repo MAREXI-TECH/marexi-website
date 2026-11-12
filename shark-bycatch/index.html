@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-es="Reducción de capturas accidentales de tiburón — Marexi">Shark bycatch reduction — Marexi</title>
+<meta name="description" content="Autonomous system to reduce accidental shark capture in industrial tuna fisheries. Targeted deterrence without affecting the catch or vessel operations." data-es-content="Sistema autónomo para reducir la captura accidental de tiburón en pesquerías industriales de atún. Disuasión selectiva sin afectar a la captura ni a las operaciones del buque.">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<style>
+  :root{
+    --navy:#081627; --navy2:#0c2036; --surface:#102b47; --surface2:#14314f; --line:#1e415f;
+    --ink:#eef4fb; --muted:#9fb4cc; --faint:#6f88a3;
+    --accent:#ff6a4d; --cyan:#37c6c9; --gold:#e8b04b; --violet:#a78bfa;
+    --maxw:1080px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--navy);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+  h1,h2{line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:700;color:var(--gold);margin-bottom:16px}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(6,15,29,.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(55,198,201,.1)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;max-width:1280px;margin:0 auto;padding:0 48px}
+  @media(max-width:640px){.nav-inner{height:72px;padding:0 20px}}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .back{font-size:.86rem;color:var(--muted);font-weight:600}
+  .back:hover{color:var(--ink)}
+  @media(max-width:480px){.back{display:none}}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:none;border:0;color:var(--muted);padding:5px 11px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#0a1524}
+  .hero{padding:84px 0 56px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:
+     radial-gradient(1000px 500px at 82% -12%,rgba(55,198,201,.14),transparent 60%),
+     radial-gradient(760px 520px at 4% 120%,rgba(255,106,77,.10),transparent 60%);z-index:0}
+  .hero .wrap{position:relative;z-index:2;text-align:center}
+  .hero h1{font-size:clamp(2rem,5vw,3.1rem);margin:0 auto 12px;max-width:22ch}
+  .tagline{color:var(--cyan);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.82rem;margin-bottom:18px}
+  .hero .lede{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);max-width:64ch;margin:0 auto}
+  .cat{display:inline-flex;align-items:center;gap:7px;margin-bottom:16px;font-size:.68rem;font-weight:700;
+       letter-spacing:.14em;text-transform:uppercase;padding:6px 13px;border-radius:999px}
+  .cat:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .cat-acoustic{color:#37c6c9;background:rgba(55,198,201,.12);border:1px solid rgba(55,198,201,.35)}
+  .cat-testing{color:#ff6a4d;background:rgba(255,106,77,.12);border:1px solid rgba(255,106,77,.4)}
+  .cat-vision{color:var(--violet);background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.32)}
+  .art{display:flex;align-items:center;justify-content:center;max-width:560px;height:220px;margin:36px auto 0;
+       background:#0b1a2c;border:1px solid var(--line);border-radius:16px;color:var(--faint);padding:34px 44px}
+  .art svg{opacity:.7}
+  .art img{max-width:100%;max-height:100%;width:auto;height:auto;display:block}
+  .cta{margin-top:28px;display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#0a1524;
+       font-weight:700;font-size:.98rem;padding:13px 26px;border-radius:999px;transition:transform .15s}
+  .cta:hover{transform:translateY(-2px)}
+  .note{margin:26px auto 0;color:var(--gold);font-weight:600;font-size:.9rem}
+  .contact-band{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0;margin-top:40px}
+  .contact-band .wrap{text-align:center}
+  .contact-band .eyebrow{color:var(--accent)}
+  .contact-band h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:14px}
+  .contact-band p{color:var(--muted);font-size:1.05rem;max-width:60ch;margin:0 auto 28px}
+  .contact-band a.mailto{display:inline-flex;align-items:center;gap:10px;background:var(--accent);
+    color:#0a1524;font-weight:700;padding:13px 28px;border-radius:999px;font-size:1rem;transition:transform .15s}
+  .contact-band a.mailto:hover{transform:translateY(-2px)}
+  footer{margin-top:auto;border-top:1px solid var(--line);padding:30px 0;color:var(--faint);font-size:.85rem;background:var(--navy)}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .foot-legal{display:flex;gap:14px;flex-wrap:wrap}
+  .foot-legal a:hover{color:var(--ink)}
+</style>
+<style>/* Contacto + pie de la portada (idénticos en todas las páginas de producto) */
+.hf-root{--navy:#060f1d;--surface:rgba(12,32,54,.68);--line:rgba(30,65,95,.8);--ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;--accent:#ff6a4d;--cyan:#37c6c9;--green:#4ade80;--maxw:1280px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.65;color:var(--ink);text-align:left}
+.hf-root *{box-sizing:border-box}
+.hf-root h2,.hf-root h6,.hf-root p,.hf-root ul,.hf-root form{margin:0;padding:0;max-width:none}
+.hf-root h2{line-height:1.12;letter-spacing:-.025em;font-weight:700;color:var(--ink)}
+.hf-root .hf-wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;width:100%}
+.hf-root footer.hf-footer{background:none;border:0;text-align:left;display:block}
+.hf-root a{text-decoration:none}
+.hf-root .hf-hero-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.98rem;padding:13px 26px;border-radius:999px;transition:transform .15s,box-shadow .2s}
+.hf-root .hf-hero-btn:hover{transform:translateY(-2px)}
+.hf-root .hf-hero-btn.hf-primary{background:var(--accent);color:#0a1524;box-shadow:0 10px 30px -10px rgba(255,106,77,.6)}
+.hf-root .hf-eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:.68rem;font-weight:700;color:var(--accent);margin-bottom:14px}
+.hf-root .hf-contact{padding:84px 0;position:relative}
+.hf-root .hf-contact-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+@media(max-width:860px){.hf-root .hf-contact-inner{grid-template-columns:1fr;gap:36px}}
+.hf-root .hf-contact h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:14px}
+.hf-root .hf-contact-info p{color:var(--muted);margin-bottom:22px}
+.hf-root .hf-contact-list{list-style:none;display:grid;gap:14px}
+.hf-root .hf-contact-list li{display:flex;flex-direction:column;gap:2px}
+.hf-root .hf-contact-list span{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.hf-root .hf-contact-list a{color:var(--ink)}
+.hf-root .hf-contact-list a:hover{color:var(--cyan)}
+.hf-root .hf-contact-form{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;display:grid;gap:14px;backdrop-filter:blur(10px)}
+.hf-root .hf-contact-form .hf-row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.hf-root .hf-contact-form .hf-row2{grid-template-columns:1fr}}
+.hf-root .hf-contact-form label{display:flex;flex-direction:column;gap:6px;font-size:.8rem;font-weight:600;color:var(--muted)}
+.hf-root .hf-contact-form input,.hf-root .hf-contact-form select,.hf-root .hf-contact-form textarea{
+  font:inherit;font-size:.95rem;color:var(--ink);background:rgba(6,15,29,.6);border:1px solid var(--line);
+  border-radius:10px;padding:11px 12px;outline:none;transition:border-color .2s}
+.hf-root .hf-contact-form input:focus,.hf-root .hf-contact-form select:focus,.hf-root .hf-contact-form textarea:focus{border-color:var(--cyan)}
+.hf-root .hf-contact-form textarea{resize:vertical;min-height:120px}
+.hf-root .hf-contact-form select option{background:#0c2036}
+.hf-root .hf-contact-form .hf-check{flex-direction:row;align-items:flex-start;gap:10px;font-weight:500}
+.hf-root .hf-contact-form .hf-check input{margin-top:3px;accent-color:var(--accent)}
+.hf-root .hf-contact-form .hf-check a{color:var(--cyan);text-decoration:underline}
+.hf-root .hf-contact-form .hf-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.hf-root .hf-contact-form button{justify-self:start;border:0;cursor:pointer;font-family:inherit}
+.hf-root .hf-contact-form .invalid{border-color:var(--accent)!important}
+.hf-root .hf-form-msg{font-size:.88rem;min-height:1.2em}
+.hf-root .hf-form-msg.ok{color:var(--green)}.hf-root .hf-form-msg.err{color:var(--accent)}
+
+
+
+
+
+.hf-root footer.hf-footer{margin-top:auto;padding:56px 0 38px;color:var(--faint);font-size:.85rem;position:relative}
+.hf-root footer.hf-footer::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(55,198,201,.18) 25%,rgba(55,198,201,.18) 75%,transparent);
+}
+.hf-root .hf-foot-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+@media(max-width:680px){.hf-root .hf-foot-inner{grid-template-columns:1fr;gap:28px}}
+.hf-root .hf-foot-brand{display:flex;align-items:center;margin-bottom:14px}
+.hf-root .hf-foot-col h6{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.hf-root .hf-foot-col p,.hf-root .hf-foot-col a{display:block;color:var(--faint);margin-bottom:7px;font-size:.83rem;transition:.15s}
+.hf-root .hf-foot-col a:hover{color:var(--ink)}
+.hf-root .hf-foot-sitemap{max-width:var(--maxw);margin:28px auto 0;padding:22px 28px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.hf-root .hf-foot-sitemap h6{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.hf-root .hf-foot-sitemap a{display:block;color:var(--faint);font-size:.83rem;margin-bottom:7px;transition:.15s}
+.hf-root .hf-foot-sitemap a:hover{color:var(--ink)}
+@media(max-width:640px){.hf-root .hf-foot-sitemap{grid-template-columns:1fr 1fr}}
+.hf-root .hf-foot-bottom{
+  max-width:var(--maxw);margin:22px auto 0;padding:20px 28px 0;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.78rem;color:var(--faint);
+}
+.hf-root .hf-foot-legal{display:flex;gap:14px;flex-wrap:wrap}
+.hf-root .hf-foot-legal a{color:var(--faint);transition:.15s}
+.hf-root .hf-foot-legal a:hover{color:var(--ink)}
+.hf-root .hf-social-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.hf-root .hf-social-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  color:var(--muted);width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--line);transition:.2s;flex-shrink:0;
+  background:rgba(12,32,54,.45);backdrop-filter:blur(6px);
+}
+.hf-root .hf-social-btn:hover{color:var(--ink);border-color:var(--faint);background:rgba(12,32,54,.75)}
+.hf-root .hf-foot-sitemap{margin-top:0!important;border-top:0!important;padding-top:0!important}.hf-root .hf-contact-social .hf-social-links{margin-top:6px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/"><img src="/logo_marexi_light.png" alt="Marexi" style="height:44px;width:auto;display:block;"></a>
+    <div class="nav-right">
+      <a class="back" href="/#products" data-es="← Productos">← Products</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
+    <div class="eyebrow" data-es="En desarrollo">In development</div>
+    <h1 data-es="Reducción de capturas accidentales de tiburón">Shark bycatch reduction</h1>
+    <p class="lede" data-es="Sistema autónomo para reducir la captura accidental de tiburón en pesquerías industriales de atún. Disuasión selectiva sin afectar a la captura ni a las operaciones del buque.">Autonomous system to reduce accidental shark capture in industrial tuna fisheries. Targeted deterrence without affecting the catch or vessel operations.</p>
+    <div class="art"><img src="/logos/shark-bycatch.png" alt="Shark bycatch reduction" width="717" height="158"></div>
+    <p class="note" data-es="Más información próximamente">More information coming soon</p>
+  </div>
+</section>
+
+<!-- CONTACTO + PIE (copiado de la portada) -->
+<div class="hf-root">
+<section class="hf-contact" id="contact">
+  <div class="hf-wrap hf-contact-inner">
+    <div class="hf-contact-info">
+      <div class="hf-eyebrow" data-es="Contacto">Contact</div>
+      <h2 data-es="Hablemos de su proyecto">Let's talk about your project</h2>
+      <p data-es="Cuéntenos qué necesita y le responderemos lo antes posible.">Tell us what you need and we will get back to you as soon as possible.</p>
+      <ul class="hf-contact-list">
+        <li><span data-es="Correo">Email</span><a href="mailto:info@marexi.com">info@marexi.com</a></li>
+        <li><span data-es="Teléfono">Phone</span><div><a href="tel:+34986248213">+34 986 248 213</a> · <a href="tel:+34986248214">+34 986 248 214</a></div></li>
+        <li><span data-es="Dirección">Address</span><a href="https://maps.app.goo.gl/Wxqx6Kdwc1f8YQtJA" target="_blank" rel="noopener">Jacinto Benavente, 22 · 36202 Vigo (Pontevedra)</a></li>
+        <li class="hf-contact-social"><span data-es="Redes sociales">Social media</span>
+          <div class="hf-social-links">
+          <a class="hf-social-btn" href="https://www.linkedin.com/company/marexi-marine-technology" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a class="hf-social-btn" href="https://www.instagram.com/mareximarinetech/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a class="hf-social-btn" href="https://www.facebook.com/profile.php?id=61595066648591" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a class="hf-social-btn" href="https://www.youtube.com/channel/UC93zsvGMUHvloCqE_-iQ9pA" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a class="hf-social-btn" href="https://x.com/marexitech" target="_blank" rel="noopener" aria-label="X / Twitter">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.258 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+          </a>
+      </div>
+        </li>
+      </ul>
+    </div>
+    <form class="hf-contact-form" data-product="Shark bycatch reduction" id="hf-contact-form" data-web3forms-key="" data-mailto="info@marexi.com" novalidate>
+      <div class="hf-row2">
+        <label><span data-es="Nombre *">Name *</span><input name="name" required autocomplete="name"></label>
+        <label><span data-es="Empresa">Company</span><input name="company" autocomplete="organization"></label>
+      </div>
+      <div class="hf-row2">
+        <label><span data-es="Correo electrónico *">Email *</span><input name="email" type="email" required autocomplete="email"></label>
+        <label><span data-es="Producto / servicio de interés">Product / service of interest</span>
+          <select name="product">
+            <option value="" data-es="— Seleccione —">— Select —</option>
+            <option value="Pinger® V2.3">Pinger® V2.3</option>
+            <option value="PINGER® EVO">PINGER® EVO</option>
+            <option value="Anisakischeck® Inline" data-es="Anisakischeck® en línea">Anisakischeck® Inline</option>
+            <option value="Anisakischeck Handheld">Anisakischeck Handheld</option>
+            <option value="MatrixLED">MatrixLED</option>
+            <option value="RetroLED">RetroLED</option>
+            <option value="ScanisakiS®">ScanisakiS®</option>
+            <option value="ScanisakiS UVPress®">ScanisakiS UVPress®</option>
+            <option value="Aquadef®">Aquadef®</option>
+            <option value="Tunascan®">Tunascan®</option>
+            <option value="Tedepad®">Tedepad®</option>
+            <option value="Hydrophones" data-es="Hidrófonos">Hydrophones</option>
+            <option value="SeaSampler">SeaSampler</option>
+            <option value="T-CLEAN">T-CLEAN</option>
+            <option value="SFS">SFS</option>
+            <option value="C-TUNA">C-TUNA</option>
+            <option value="Bioacoustics" data-es="Bioacústica">Bioacoustics</option>
+            <option value="Shark bycatch reduction" data-es="Reducción de capturas accidentales de tiburón">Shark bycatch reduction</option>
+            <option value="Contaminant detection at sea" data-es="Detección de contaminantes en el mar">Contaminant detection at sea</option>
+            <option value="Acoustic Water Tank" data-es="Piscina acústica">Acoustic Water Tank</option>
+            <option value="Hydrostatic Pressure Cylinder" data-es="Cilindro de presión hidrostática">Hydrostatic Pressure Cylinder</option>
+            <option value="USV Victoria">USV Victoria</option>
+            <option value="Dual-Use" data-es="Tecnología de doble uso">Dual-Use Technology</option>
+            <option value="Other" data-es="Otro">Other</option>
+          </select>
+        </label>
+      </div>
+      <label><span data-es="Mensaje *">Message *</span><textarea name="message" rows="5" required></textarea></label>
+      <input class="hf-hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="hf-check"><input type="checkbox" name="privacy" required>
+        <span data-es="He leído y acepto la &lt;a href=&quot;/legal.html#privacy&quot; target=&quot;_blank&quot;&gt;política de privacidad&lt;/a&gt;. *">I have read and accept the <a href="/legal.html#privacy" target="_blank">privacy policy</a>. *</span></label>
+      <button type="submit" class="hf-hero-btn hf-primary" data-es="Enviar">Send</button>
+      <p class="hf-form-msg" id="hf-form-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="hf-footer">
+  <nav class="hf-foot-sitemap" aria-label="Site map">
+    <div class="hf-sm-col"><h6 data-es="Productos">Products</h6><a href="/pinger/">Pinger®</a><a href="/anisakischeck/">Anisakischeck®</a><a href="/tunascan/">Tunascan®</a><a href="/aquadef/">Aquadef®</a><a href="/tedepad/">Tedepad®</a><a href="/shop/" data-es="Tienda">Store</a></div>
+    <div class="hf-sm-col"><h6 data-es="Ensayos">Testing</h6><a href="/acoustic-tank/" data-es="Piscina acústica">Acoustic water tank</a><a href="/cylinder/" data-es="Cilindro de presión">Pressure cylinder</a><a href="/usv-victoria/">USV Victoria</a></div>
+    <div class="hf-sm-col"><h6 data-es="Empresa">Company</h6><a href="/experience/" data-es="Experiencia y proyectos">Experience &amp; projects</a><a href="/clients/" data-es="Clientes">Clients</a><a href="/certifications/" data-es="Certificaciones">Certifications</a><a href="/funding/" data-es="Ayudas públicas">Public funding</a></div>
+  </nav>
+  <div class="hf-foot-bottom">
+    <div>© 2026 Marexi · Tecnología Marina Ximo, S.L. · CIF B36944999</div>
+    <div class="hf-foot-legal">
+      <a href="/legal.html" data-es="Aviso Legal">Legal Notice</a>
+      <a href="/legal.html#privacy" data-es="Privacidad">Privacy Policy</a>
+      <a href="/legal.html#terms" data-es="Condiciones">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+</div>
+
+
+<script>
+// Cambio de idioma para ver la página sin generar (la web publicada lo sustituye por el de tools/build-es.mjs).
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-es]').forEach(function(el){
+    if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+    el.innerHTML = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+  });
+  document.getElementById('btn-en').classList.toggle('on', lang==='en');
+  document.getElementById('btn-es').classList.toggle('on', lang==='es');
+}
+</script>
+<script>
+// ── Formulario de contacto ───────────────────────────────
+(function(){
+  var f=document.getElementById('hf-contact-form'); if(!f) return;
+  var msg=document.getElementById('hf-form-msg');
+  function es(){ return document.documentElement.lang==='es'; }
+  function say(cls,en,esTxt){ msg.className='hf-form-msg '+cls; msg.textContent=es()?esTxt:en; }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=true;
+    ['name','email','message'].forEach(function(n){
+      var el=f.elements[n], bad=!el.value.trim()||(n==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value.trim()));
+      el.classList.toggle('invalid',bad); if(bad) ok=false;
+    });
+    if(!ok){ say('err','Please fill in name, a valid email and your message.','Rellene el nombre, un correo válido y el mensaje.'); return; }
+    if(!f.elements.privacy.checked){ say('err','Please accept the privacy policy.','Debe aceptar la política de privacidad.'); return; }
+    if(f.elements.botcheck.value){ return; } // antispam: campo trampa rellenado por un robot
+    var d={name:f.elements.name.value.trim(),company:f.elements.company.value.trim(),email:f.elements.email.value.trim(),
+           product:f.elements.product.value,message:f.elements.message.value.trim()};
+    var subject='Web marexi.com — '+(d.product||'Consulta')+' — '+d.name;
+    var key=f.getAttribute('data-web3forms-key');
+    if(key){
+      say('', 'Sending…', 'Enviando…');
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({access_key:key,subject:subject,from_name:'Web marexi.com',replyto:d.email,
+          name:d.name,company:d.company,email:d.email,product:d.product,message:d.message,botcheck:''})})
+      .then(function(r){return r.json();}).then(function(j){
+        if(j.success){ f.reset(); say('ok','Thank you! We have received your message.','¡Gracias! Hemos recibido su mensaje.'); }
+        else throw new Error(j.message);
+      }).catch(function(){ say('err','The message could not be sent. Please write to info@marexi.com.','No se pudo enviar. Escríbanos a info@marexi.com.'); });
+    } else {
+      var body='Nombre / Name: '+d.name+'\nEmpresa / Company: '+d.company+'\nCorreo / Email: '+d.email+'\nProducto / Product: '+d.product+'\n\n'+d.message;
+      window.location.href='mailto:'+f.getAttribute('data-mailto')+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      say('ok','Your email program has been opened with the message ready to send.','Se ha abierto su programa de correo con el mensaje listo para enviar.');
+    }
+  });
+})();
+(function(){var f=document.getElementById('hf-contact-form'),p=f&&f.getAttribute('data-product');if(!p) return;var s=f.elements.product;for(var i=0;i<s.options.length;i++){var o=s.options[i];if((o.value||o.text)===p){s.selectedIndex=i;break;}}})();
+</script>
+</body>
+</html>

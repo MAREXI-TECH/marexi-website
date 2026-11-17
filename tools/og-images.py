@@ -2,7 +2,7 @@
 # Genera las imágenes para compartir (1200x630) en assets/og/: fondo azul marino de la marca, logo del producto y logo de Marexi.
 import os, json
 from PIL import Image, ImageDraw, ImageFilter
-ROOT = r'C:\dev\marexi-website'
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'assets', 'og'); os.makedirs(OUT, exist_ok=True)
 W, H = 1200, 630
 NAVY = (6, 15, 29); NAVY2 = (12, 36, 62); CYAN = (55, 198, 201); ACCENT = (255, 106, 77)

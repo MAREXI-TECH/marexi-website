@@ -71,11 +71,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://marexi.com/pinger/metstrade/</loc>
-    <lastmod>2026-11-11</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://marexi.com/tedepad/</loc>
     <lastmod>2026-11-11</lastmod>
     <priority>0.8</priority>
@@ -159,5 +154,30 @@
     <loc>https://marexi.com/usv-victoria/</loc>
     <lastmod>2026-11-12</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/shop/quote/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/shop/product/?sku=PINGER-3</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/shop/product/?sku=PINGER-5</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/shop/product/?sku=PINGER-10</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://marexi.com/shop/product/?sku=PINGER-FLEET</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>

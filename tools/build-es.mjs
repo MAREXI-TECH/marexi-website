@@ -95,7 +95,10 @@ section.hero:not(:has(.hero-photo)) .wrap{max-width:1120px!important}
 section.hero .h1top{margin:0 0 16px!important}
 section.hero .hero-split,section.hero .hero-grid,section.hero .hsplit,section.hero>.wrap{align-items:start!important}
 @media(max-width:640px){section.hero:not(:has(.hero-photo)){padding-top:56px!important;padding-bottom:44px!important}}</style>`;
-const withJustify = html => /<\/head>/i.test(html) ? html.replace(/<\/head>/i, JUSTIFY + '\n' + HEADER + '\n' + HERO + '\n</head>') : html;
+// Campos de formulario a 16 px en móvil y tableta: por debajo de 16 px, Safari en iPhone amplía la pantalla al tocarlos.
+// En escritorio no cambia nada.
+const FORMS = `<style>@media(max-width:820px){input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]),textarea,select{font-size:16px!important}}</style>`;
+const withJustify = html => /<\/head>/i.test(html) ? html.replace(/<\/head>/i, JUSTIFY + '\n' + HEADER + '\n' + HERO + '\n' + FORMS + '\n</head>') : html;
 function bodyInject(html, extra) { const i = html.lastIndexOf('</body>'); return html.slice(0, i) + extra + '\n' + html.slice(i); }
 
 function langScripts(lang, enUrl, esUrl) {

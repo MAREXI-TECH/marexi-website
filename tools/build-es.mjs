@@ -116,13 +116,40 @@ function alternates(enUrl, esUrl, self) {
 }
 const fixBase = html => html.replace(/<base\s+href="https:\/\/marexi\.com(\/[^"]*)"\s*\/?>/i, '<base href="$1">');
 
+// ---------- vista previa al compartir (Open Graph / Twitter) ----------
+// Imagen 1200x630 por página en assets/og/ (generadas con el logo de cada producto); título y descripción
+// salen del <title> y la meta description de cada idioma.
+const OG_IMG = [
+  ['anisakischeck/scanisakis/', 'scanisakis'], ['anisakischeck/matrixled/', 'matrixled'], ['anisakischeck/retroled/', 'retroled'],
+  ['anisakischeck/uvpress/', 'uvpress'], ['anisakischeck/', 'anisakischeck'], ['pinger/', 'pinger'], ['shop/', 'pinger'],
+  ['aquadef/', 'aquadef'], ['tedepad/', 'tedepad'], ['tunascan/', 'tunascan'], ['hydrophones/', 'hydrophones'],
+  ['acoustic-tank/', 'acoustic-tank'], ['cylinder/', 'cylinder'], ['usv-victoria/', 'usv-victoria'], ['dual-use/', 'dual-use'],
+  ['seasampler/', 'seasampler'], ['t-clean/', 'tclean'], ['sfs/', 'sfs'], ['c-tuna/', 'c-tuna'], ['bioacoustics/', 'bioacoustics'],
+  ['contaminant-detection/', 'contaminants'], ['shark-bycatch/', 'shark-bycatch']];
+const unesc = s => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+const attr = s => unesc(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+function ogTags(html, rel, url, lang) {
+  if (/property="og:/i.test(html)) return html;
+  const title = (html.match(/<title\b[^>]*>([^<]*)<\/title>/i) || [])[1];
+  const desc = (html.match(/<meta\s+name="description"\s+content="([^"]*)"/i) || [])[1];
+  if (!title) return html;
+  const img = (OG_IMG.find(([p]) => rel.startsWith(p)) || [null, 'marexi'])[1];
+  const t = [
+    ['og:type', 'website'], ['og:site_name', 'Marexi'], ['og:title', title.trim()], ...(desc ? [['og:description', desc]] : []),
+    ['og:url', SITE + url], ['og:image', `${SITE}/assets/og/${img}.jpg`], ['og:image:width', '1200'], ['og:image:height', '630'],
+    ['og:locale', lang === 'es' ? 'es_ES' : 'en_GB'], ['og:locale:alternate', lang === 'es' ? 'en_GB' : 'es_ES']];
+  const tags = t.map(([k, v]) => `<meta property="${k}" content="${attr(v)}">`).join('\n') + '\n' +
+    `<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="${SITE}/assets/og/${img}.jpg">`;
+  return html.replace(/<\/head>/i, tags + '\n</head>');
+}
+
 // ---------- generar ----------
 let made = 0;
 for (const rel of pages) {
   const src = fs.readFileSync(path.join(ROOT, rel), 'utf8');
   const enUrl = urlOf(rel);
   let en = fixBase(src);
-  if (!esPages.has(rel)) { fs.writeFileSync(path.join(OUT, rel), withJustify(en)); continue; }
+  if (!esPages.has(rel)) { fs.writeFileSync(path.join(OUT, rel), withJustify(ogTags(en, rel, enUrl, 'en'))); continue; }
   const esUrl = '/es' + enUrl;
   const dirUrl = enUrl.endsWith('/') ? enUrl : enUrl.replace(/[^/]*$/, '');
 
@@ -130,7 +157,7 @@ for (const rel of pages) {
   const L = langScripts('en', enUrl, esUrl);
   en = headInject(en, L.pre + '\n' + alternates(enUrl, esUrl, enUrl));
   en = bodyInject(en, L.post);
-  fs.writeFileSync(path.join(OUT, rel), withJustify(en));
+  fs.writeFileSync(path.join(OUT, rel), withJustify(ogTags(en, rel, enUrl, 'en')));
 
   // --- versión española
   let es = fixBase(src);
@@ -158,7 +185,7 @@ for (const rel of pages) {
   es = bodyInject(es, S.post);
   const outFile = path.join(OUT, 'es', rel);
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
-  fs.writeFileSync(outFile, withJustify(es));
+  fs.writeFileSync(outFile, withJustify(ogTags(es, rel, esUrl, 'es')));
   made++;
 }
 

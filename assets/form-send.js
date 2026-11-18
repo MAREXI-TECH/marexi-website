@@ -17,7 +17,7 @@
       if (hp && hp.value) p.website = hp.value;
     }
     var ctrl = window.AbortController ? new AbortController() : null;
-    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 4000);  // corto: si falla, aún se puede abrir el correo
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);  // el servidor corta el SMTP a los ~10 s: así nunca hay envío + correo duplicado
     return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p),
                         credentials: 'omit', signal: ctrl ? ctrl.signal : undefined })
       .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })

@@ -31,7 +31,8 @@
   <h1 class="sec-title" style="margin-top:34px" data-es="Pedir presupuesto / piloto">Request a quote / pilot</h1>
   <p class="sec-sub" id="qProduct"></p>
   <div class="card">
-    <form id="qForm" novalidate><input type="hidden" id="psku" value="">
+    <form id="qForm" novalidate>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"><input type="hidden" id="psku" value="">
       <fieldset class="fs"><legend data-es="Qué necesita">What you need</legend>
         <div class="choices">
           <label class="choice"><input type="radio" name="reqtype" value="Quote" checked><span data-es="Presupuesto">Quote</span></label>
@@ -103,5 +104,6 @@
   </div>
 </footer>
 <script src="/shop/shop.js"></script>
+<script src="/assets/form-send.js"></script>
 </body>
 </html>

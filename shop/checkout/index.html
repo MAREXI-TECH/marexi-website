@@ -34,6 +34,7 @@
   <div class="card">
     <div id="cartMini"></div>
     <form id="ordForm" novalidate style="margin-top:18px">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <fieldset class="fs"><legend data-es="Datos de facturación">Billing details</legend>
         <div class="grid2">
           <div class="field"><label class="k" for="name" data-es="Nombre &lt;span class='req'&gt;*&lt;/span&gt;">Full name <span class="req">*</span></label><input class="inp" id="name" autocomplete="name"></div>
@@ -77,5 +78,6 @@
   </div>
 </footer>
 <script src="/shop/shop.js"></script>
+<script src="/assets/form-send.js"></script>
 </body>
 </html>

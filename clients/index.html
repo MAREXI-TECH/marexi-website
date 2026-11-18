@@ -61,6 +61,9 @@
 
   footer{margin-top:auto;border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:.85rem}
   .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* mapa del sitio en el pie (igual que la portada) */
+.foot-sitemap{max-width:var(--maxw);margin:0 auto 22px;padding:0 24px 22px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left}.foot-sitemap h6{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}.foot-sitemap a{display:block;color:var(--faint);font-size:.83rem;margin-bottom:7px;text-decoration:none;transition:.15s}.foot-sitemap a:hover{color:var(--ink)}@media(max-width:640px){.foot-sitemap{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -154,6 +157,11 @@
 </div>
 
 <footer>
+  <nav class="foot-sitemap" aria-label="Site map">
+    <div class="sm-col"><h6 data-es="Productos" aria-level="2">Products</h6><a href="/pinger/">Pinger®</a><a href="/anisakischeck/">Anisakischeck®</a><a href="/tunascan/">Tunascan®</a><a href="/aquadef/">Aquadef®</a><a href="/tedepad/">Tedepad®</a><a href="/shop/" data-es="Tienda">Store</a></div>
+    <div class="sm-col"><h6 data-es="Ensayos" aria-level="2">Testing</h6><a href="/acoustic-tank/" data-es="Piscina acústica">Acoustic water tank</a><a href="/cylinder/" data-es="Cilindro de presión">Pressure cylinder</a><a href="/usv-victoria/">USV Victoria</a></div>
+    <div class="sm-col"><h6 data-es="Empresa" aria-level="2">Company</h6><a href="/experience/" data-es="Experiencia y proyectos">Experience &amp; projects</a><a href="/clients/" data-es="Clientes">Clients</a><a href="/certifications/" data-es="Certificaciones">Certifications</a><a href="/funding/" data-es="Ayudas públicas">Public funding</a></div>
+  </nav>
   <div class="foot-inner">
     <span>© 2026 Tecnología Marina Ximo, S.L.</span>
     <a href="/" data-es="← Volver a Marexi">← Back to Marexi</a>

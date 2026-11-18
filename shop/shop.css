@@ -119,3 +119,6 @@ footer{margin-top:auto;border-top:1px solid var(--line);padding:26px 0;color:var
 .foot-legal{display:flex;gap:14px;flex-wrap:wrap}
 .foot-legal a{color:var(--faint)}
 .foot-legal a:hover{color:var(--ink)}
+
+/* mapa del sitio en el pie (igual que la portada) */
+.foot-sitemap{max-width:var(--maxw);margin:0 auto 22px;padding:0 24px 22px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left}.foot-sitemap h6{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}.foot-sitemap a{display:block;color:var(--faint);font-size:.83rem;margin-bottom:7px;text-decoration:none;transition:.15s}.foot-sitemap a:hover{color:var(--ink)}@media(max-width:640px){.foot-sitemap{grid-template-columns:1fr 1fr}}

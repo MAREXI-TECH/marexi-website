@@ -149,7 +149,7 @@ header.nav{
 @keyframes cue{0%,100%{transform:translateY(0);opacity:.8}55%{transform:translateY(9px);opacity:.2}}
 
 /* ── PRODUCTS ─────────────────────────── */
-.products{padding:40px 0 80px}
+.products{padding:40px 0 36px}
 .products .eyebrow{text-align:center}
 /* filters */
 .filter-block{margin-top:32px;display:flex;flex-direction:column;gap:10px}
@@ -248,7 +248,7 @@ header.nav{
 .badge.enquiry{background:rgba(6,15,29,.86);color:#c4b5fd;border:1px solid rgba(167,139,250,.65);box-shadow:0 4px 14px -6px rgba(0,0,0,.6)}
 
 /* ── IN DEVELOPMENT ───────────────────── */
-.indev{padding:52px 0 72px}
+.indev{padding:28px 0 72px}
 .indev-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
 .indev-header .rule{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 .indev-header .rule:last-child{background:linear-gradient(270deg,transparent,var(--gold))}
@@ -336,19 +336,23 @@ header.nav{
 .trust-logos a{display:block;border-radius:12px;transition:transform .2s,box-shadow .2s}
 .trust-logos a:hover{transform:translateY(-3px);box-shadow:0 10px 24px -10px rgba(0,0,0,.7),0 0 0 2px rgba(55,198,201,.45)}
 .trust-logos a img{display:block}
-.trust-logos.small{display:flex;flex-wrap:wrap;gap:10px}
-.trust-logos.small img{height:64px;width:auto;max-width:150px;padding:10px 12px}
+.trust-logos.small{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.trust-logos.small img{height:120px;width:100%;padding:8px}
+@media(max-width:560px){.trust-logos.small{grid-template-columns:repeat(3,1fr)}.trust-logos.small img{height:96px}}
 .trust-row{display:grid;grid-template-columns:1fr 2fr;gap:18px;margin-top:22px}
 @media(max-width:780px){.trust-row{grid-template-columns:1fr}}
 .trust-box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
 .trust-box h3{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
 .trust-box p{color:var(--muted);font-size:.86rem;margin-top:12px}
+.trust-box:has(.trust-partner){display:flex;flex-direction:column}
+.trust-partner{flex:1;display:flex;align-items:center}
 .trust-partner a{display:inline-block;padding:6px 0;transition:opacity .2s}
 .trust-partner a:hover{opacity:.8}
 .trust-partner img{height:40px;width:auto;display:block}
 .trust-links{display:flex;justify-content:center;flex-wrap:wrap;gap:22px;margin-top:26px;font-weight:700;font-size:.92rem}
 .trust-links a{color:var(--cyan)}
 .trust-links a:hover{color:var(--ink)}
+.about .trust-links{position:relative;margin-top:48px}
 
 /* ── ABOUT ────────────────────────────── */
 .about{padding:84px 0;background:var(--navy2);position:relative;overflow:hidden}
@@ -367,15 +371,17 @@ header.nav{
 .about-location{width:100%;height:auto;aspect-ratio:16/8;object-fit:cover;border-radius:14px;display:block;margin-top:24px}
 .founders{display:flex;flex-direction:column;gap:12px}
 .founder{
-  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+  display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"av name btn" "av role btn" "bio bio bio";column-gap:16px;row-gap:2px;align-items:center;
   background:rgba(12,32,54,.65);border:1px solid var(--line);border-radius:14px;padding:14px 18px;
   backdrop-filter:blur(8px);
 }
-.founder-info{display:flex;flex-direction:column;flex:1}
-.founder-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--line)}
-.founder-name{font-size:.9rem;font-weight:700;color:var(--ink)}
-.founder-role{font-size:.73rem;color:var(--faint)}
-.founder-bio{font-size:.78rem;color:var(--muted);margin-top:6px;line-height:1.55}
+.founder-info{display:contents}
+.founder .li-btn{grid-area:btn;align-self:start}
+@media(max-width:480px){.founder{column-gap:12px;padding:14px}.founder-avatar{width:64px!important;height:64px!important}}
+.founder-avatar{grid-area:av;width:84px;height:84px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--line)}
+.founder-name{grid-area:name;align-self:end;font-size:.9rem;font-weight:700;color:var(--ink)}
+.founder-role{grid-area:role;align-self:start;font-size:.73rem;color:var(--faint)}
+.founder-bio{grid-area:bio;text-align:justify;hyphens:auto;font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.55}
 .li-btn{
   display:inline-flex;align-items:center;gap:6px;font-size:.71rem;font-weight:700;
   color:var(--muted);padding:5px 11px;border-radius:999px;border:1px solid var(--line);
@@ -941,6 +947,10 @@ footer::before{
           </div>
         </div>
       </div>
+    </div>
+    <div class="trust-links fi d2">
+      <a href="/experience/" data-es="Experiencia y proyectos →">Experience &amp; projects →</a>
+      <a href="/funding/" data-es="Ayudas públicas →">Public funding →</a>
     </div>
   </div>
 </section>

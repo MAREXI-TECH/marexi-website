@@ -228,7 +228,7 @@
       <span class="chip" data-es="Análisis multiespectral">Multispectral analysis</span>
     </div>
     <div class="cta-row">
-      <a class="btn" href="mailto:info@marexi.com?subject=Dual-Use%20Technology%20Enquiry" data-es="Contactar">Contact us</a>
+      <a class="btn" href="#contact" data-es="Contactar">Contact us</a>
       <a class="btn ghost" href="/" data-es="← Todos los productos">← All products</a>
     </div>
   </div>
@@ -309,7 +309,7 @@
     <div class="contact-box">
       <h2 data-es="Consulte por esta tecnología">Enquire about this technology</h2>
       <p data-es="Todas las consultas se atienden de forma directa y confidencial. Trabajamos bajo acuerdo de confidencialidad (NDA) si se solicita.">All enquiries are handled directly and confidentially. We work under NDA on request.</p>
-      <a class="btn" href="mailto:info@marexi.com?subject=Dual-Use%20Technology%20Enquiry">info@marexi.com</a>
+      <a class="btn" href="#contact" data-es="Enviar una consulta">Send an enquiry</a>
     </div>
   </div>
 </section>
@@ -347,7 +347,7 @@
         </li>
       </ul>
     </div>
-    <form class="hf-contact-form" data-product="Dual-Use" id="hf-contact-form" data-web3forms-key="" data-mailto="info@marexi.com" novalidate>
+    <form class="hf-contact-form" data-product="Dual-Use" id="hf-contact-form" data-mailto="info@marexi.com" novalidate>
       <div class="hf-row2">
         <label><span data-es="Nombre *">Name *</span><input name="name" required autocomplete="name"></label>
         <label><span data-es="Empresa">Company</span><input name="company" autocomplete="organization"></label>
@@ -449,24 +449,26 @@
     var d={name:f.elements.name.value.trim(),company:f.elements.company.value.trim(),email:f.elements.email.value.trim(),
            product:f.elements.product.value,message:f.elements.message.value.trim()};
     var subject='Web marexi.com — '+(d.product||'Consulta')+' — '+d.name;
-    var key=f.getAttribute('data-web3forms-key');
-    if(key){
-      say('', 'Sending…', 'Enviando…');
-      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-        body:JSON.stringify({access_key:key,subject:subject,from_name:'Web marexi.com',replyto:d.email,
-          name:d.name,company:d.company,email:d.email,product:d.product,message:d.message,botcheck:''})})
-      .then(function(r){return r.json();}).then(function(j){
-        if(j.success){ f.reset(); say('ok','Thank you! We have received your message.','¡Gracias! Hemos recibido su mensaje.'); }
-        else throw new Error(j.message);
-      }).catch(function(){ say('err','The message could not be sent. Please write to info@marexi.com.','No se pudo enviar. Escríbanos a info@marexi.com.'); });
-    } else {
-      var body='Nombre / Name: '+d.name+'\nEmpresa / Company: '+d.company+'\nCorreo / Email: '+d.email+'\nProducto / Product: '+d.product+'\n\n'+d.message;
+    var body='Nombre / Name: '+d.name+'\nEmpresa / Company: '+d.company+'\nCorreo / Email: '+d.email+'\nProducto / Product: '+d.product+'\n\n'+d.message;
+    function porCorreo(){ // plan B: si el receptor no responde, se abre el correo del visitante como antes
       window.location.href='mailto:'+f.getAttribute('data-mailto')+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
       say('ok','Your email program has been opened with the message ready to send.','Se ha abierto su programa de correo con el mensaje listo para enviar.');
     }
+    if(typeof window.marexiSend!=='function'){ porCorreo(); return; }
+    var btn=f.querySelector('[type=submit]'); if(btn) btn.disabled=true;
+    say('', 'Sending…', 'Enviando…');
+    // Envío directo al receptor del hosting (assets/form-send.js → api.marexi.com)
+    window.marexiSend('contacto',{name:d.name,company:d.company,email:d.email,subject:d.product||'',message:d.message},f).then(function(r){
+      if(btn) btn.disabled=false;
+      if(r==='ok'){ f.reset(); say('ok','Thank you! We have received your message and will get back to you soon.','¡Gracias! Hemos recibido su mensaje y le responderemos en breve.'); return; }
+      if(r==='rate'){ say('err','Too many messages in a short time. Please try again later or write to info@marexi.com.','Demasiados envíos seguidos. Inténtelo más tarde o escriba a info@marexi.com.'); return; }
+      if(r==='invalid'){ say('err','Please check the fields and try again.','Revise los campos e inténtelo de nuevo.'); return; }
+      porCorreo();
+    });
   });
 })();
 (function(){var f=document.getElementById('hf-contact-form'),p=f&&f.getAttribute('data-product');if(!p) return;var s=f.elements.product;for(var i=0;i<s.options.length;i++){var o=s.options[i];if((o.value||o.text)===p){s.selectedIndex=i;break;}}})();
 </script>
+<script src="/assets/form-send.js"></script>
 </body>
 </html>

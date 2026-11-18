@@ -163,10 +163,23 @@ function checkCommon(req, errEl) {
   return true;
 }
 function mailtoUrl(subject, body) { return 'mailto:' + SHOP_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body); }
-function sendByEmail(kind, ref, subject, body) {
-  try { sessionStorage.setItem('marexi-shop-last', JSON.stringify({ kind: kind, ref: ref, subject: subject, body: body })); } catch (e) {}
-  var a = document.createElement('a'); a.href = mailtoUrl(subject, body); document.body.appendChild(a); a.click(); a.remove();   // abre el correo (requiere el clic del usuario)
-  setTimeout(function () { location.href = base() + '/shop/done/'; }, 400);
+function sendByEmail(kind, ref, subject, body, form) {
+  var save = function (sent) { try { sessionStorage.setItem('marexi-shop-last', JSON.stringify({ kind: kind, ref: ref, subject: subject, body: body, sent: sent })); } catch (e) {} };
+  var err = document.getElementById('err'), btn = form ? form.querySelector('[type=submit]') : null;
+  if (btn) btn.disabled = true;
+  // 1) envío directo al receptor del hosting; 2) si no responde, se abre el correo del visitante como antes
+  var send = window.marexiSend ? window.marexiSend(kind === 'order' ? 'pedido' : 'presupuesto',
+    { name: val('name'), email: val('email'), company: val('company'), phone: val('phone'), country: val('country'), subject: ref, details: body }, form)
+    : Promise.resolve('error');
+  send.then(function (r) {
+    if (btn) btn.disabled = false;
+    if (r === 'ok') { save(true); location.href = base() + '/shop/done/'; return; }
+    if (r === 'rate') { if (err) err.textContent = T('Too many requests in a short time. Please try later or write to ', 'Demasiados envíos seguidos. Inténtelo más tarde o escriba a ') + SHOP_EMAIL + '.'; return; }
+    if (r === 'invalid') { if (err) err.textContent = T('Fill in the required fields *.', 'Complete los campos obligatorios *.'); return; }
+    save(false);
+    var a = document.createElement('a'); a.href = mailtoUrl(subject, body); document.body.appendChild(a); a.click(); a.remove();   // abre el correo del visitante
+    setTimeout(function () { location.href = base() + '/shop/done/'; }, 400);
+  });
 }
 function submitOrder(e) {
   e.preventDefault();
@@ -182,7 +195,7 @@ function submitOrder(e) {
     lines([[T('Full name', 'Nombre'), val('name')], [T('Company', 'Empresa'), val('company')], [T('Email', 'Correo'), val('email')],
       [T('Phone', 'Teléfono'), val('phone')], [T('Country', 'País'), val('country')], [T('VAT / tax ID', 'NIF / IVA'), val('vat')],
       [T('Shipping address / notes', 'Dirección de envío / notas'), val('notes')]]) + '\n';
-  sendByEmail('order', ref, T('Order request', 'Solicitud de pedido') + ' ' + ref + ' — ' + val('company'), body);
+  sendByEmail('order', ref, T('Order request', 'Solicitud de pedido') + ' ' + ref + ' — ' + val('company'), body, e.target);
 }
 function submitQuote(e) {
   e.preventDefault();
@@ -197,7 +210,7 @@ function submitQuote(e) {
     lines([['Sector', selText('sector')], [T('Scale (vessels / devices)', 'Escala (embarcaciones / dispositivos)'), val('scale')],
       [T('Target species / area', 'Especies objetivo / zona'), val('area')], [T('Timeline', 'Plazo'), selText('timeline')]]) +
     (val('message') ? '\n\n' + T('Message', 'Mensaje') + ':\n' + val('message') : '') + '\n';
-  sendByEmail('quote', ref, T('Quote request', 'Solicitud de presupuesto') + ' ' + ref + ' — ' + val('company'), body);
+  sendByEmail('quote', ref, T('Quote request', 'Solicitud de presupuesto') + ' ' + ref + ' — ' + val('company'), body, e.target);
 }
 function selText(id) { var s = document.getElementById(id); return s && s.value ? s.options[s.selectedIndex].text.trim() : ''; }
 
@@ -207,6 +220,17 @@ function renderDone() {
   try { d = JSON.parse(sessionStorage.getItem('marexi-shop-last') || 'null'); } catch (e) {}
   if (!d) { box.innerHTML = '<p>' + T('There is no pending request.', 'No hay ninguna solicitud pendiente.') + '</p><div class="actions"><a class="btn ghost" href="' + base() + '/shop/">' + T('← Back to store', '← Volver a la tienda') + '</a></div>'; return; }
   if (d.kind === 'order') { try { localStorage.removeItem('marexi-cart'); } catch (e) {} cartBadge(); }
+  if (d.sent) {
+    document.title = T('Request received', 'Solicitud recibida') + ' · ' + T('Pinger store', 'Tienda Pinger') + ' · Marexi';
+    box.innerHTML = '<div class="mark">✓</div>' +
+      '<h1>' + T('Request received', 'Solicitud recibida') + '</h1>' +
+      '<div class="ref">' + esc(d.ref) + '</div>' +
+      '<p>' + T('Thank you! We have received your request and will get back to you', '¡Gracias! Hemos recibido su solicitud y le responderemos') +
+        (d.kind === 'order' ? T(' with a proforma to confirm before invoicing.', ' con una proforma para confirmar antes de facturar.') : T(' shortly.', ' en breve.')) + '</p>' +
+      '<p class="small">' + T('Keep the reference above for any query: ', 'Guarde la referencia para cualquier consulta: ') + '<a href="mailto:' + SHOP_EMAIL + '">' + SHOP_EMAIL + '</a>.</p>' +
+      '<div class="actions"><a class="btn ghost" href="' + base() + '/shop/">' + T('← Back to store', '← Volver a la tienda') + '</a></div>';
+    return;
+  }
   box.innerHTML = '<div class="mark">✉</div>' +
     '<h1>' + T('Last step: send the email', 'Último paso: envíe el correo') + '</h1>' +
     '<div class="ref">' + esc(d.ref) + '</div>' +

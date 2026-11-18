@@ -133,6 +133,7 @@
     <div class="cardsub" data-es="Los campos marcados con * son obligatorios. Al enviar se abrirá su correo con la solicitud ya redactada para Marexi.">Fields marked * are required. Submitting opens your email client with the request pre-written to Marexi.</div>
 
     <form id="leadForm" novalidate>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 
       <fieldset class="fs">
         <legend data-es="Qué necesita">What you need</legend>
@@ -313,8 +314,19 @@
     var subject = 'Pinger enquiry — ' + (val('company')||'—') + ' — ' + reqtype();
     var body = buildSummary();
     var href = 'mailto:' + LEAD_TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    window.location.href = href;
-    var ok=document.getElementById('ok'); ok.hidden=false; ok.textContent=t('opened');
+    var ok=document.getElementById('ok'), err=document.getElementById('err'), btn=this.querySelector('[type=submit]');
+    if(btn) btn.disabled=true;
+    marexiSend('pinger', {name:val('name'), email:val('email'), company:val('company'), phone:val('phone'), country:val('country'),
+                          subject:reqtype(), details:body}, this).then(function(r){
+      if(btn) btn.disabled=false;
+      var es=document.documentElement.lang==='es';
+      if(r==='ok'){ ok.hidden=false; ok.textContent= es ? '¡Gracias! Hemos recibido su solicitud y le responderemos en breve.' : 'Thank you! We have received your request and will get back to you soon.'; document.getElementById('leadForm').reset(); return; }
+      if(r==='rate'){ err.textContent= es ? 'Demasiados envíos seguidos. Inténtelo más tarde o escriba a comercial@marexi.com.' : 'Too many requests in a short time. Please try later or write to comercial@marexi.com.'; return; }
+      if(r==='invalid'){ err.textContent=t('need'); return; }
+      // plan B: si el receptor no responde, se abre el correo del visitante como antes
+      window.location.href = href;
+      ok.hidden=false; ok.textContent=t('opened');
+    });
   });
 
   document.getElementById('copyBtn').addEventListener('click', function(){
@@ -330,5 +342,6 @@
     document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta);
   }
 </script>
+<script src="/assets/form-send.js"></script>
 </body>
 </html>

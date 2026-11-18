@@ -7,7 +7,7 @@
  * - Idioma: el de <html lang>. La versión /es/ la genera tools/build-es.mjs.
  */
 var SHOP_EMAIL = 'info@marexi.com';
-var IMG_PINGER = '/pinger/pinger-device.png';
+var IMG_PINGER = '/pinger/pinger-device.webp';
 
 var PRODUCTS = {
   'PINGER-3': { group: 'units', type: 'unit', price_cents: 45000, img: IMG_PINGER,

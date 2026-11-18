@@ -450,7 +450,7 @@ function setLang(lang){
     // Envío directo al receptor del hosting (assets/form-send.js → api.marexi.com)
     window.marexiSend('contacto',{name:d.name,company:d.company,email:d.email,subject:d.product||'',message:d.message},f).then(function(r){
       if(btn) btn.disabled=false;
-      if(r==='ok'){ f.reset(); say('ok','Thank you! We have received your message and will get back to you soon.','¡Gracias! Hemos recibido su mensaje y le responderemos en breve.'); return; }
+      if(r==='ok'){ f.reset(); var pp=f.getAttribute('data-product'),ps=f.elements.product; if(pp&&ps){ for(var i=0;i<ps.options.length;i++){ if((ps.options[i].value||ps.options[i].text)===pp){ ps.selectedIndex=i; break; } } } say('ok','Thank you! We have received your message and will get back to you soon.','¡Gracias! Hemos recibido su mensaje y le responderemos en breve.'); return; }
       if(r==='rate'){ say('err','Too many messages in a short time. Please try again later or write to info@marexi.com.','Demasiados envíos seguidos. Inténtelo más tarde o escriba a info@marexi.com.'); return; }
       if(r==='invalid'){ say('err','Please check the fields and try again.','Revise los campos e inténtelo de nuevo.'); return; }
       porCorreo();

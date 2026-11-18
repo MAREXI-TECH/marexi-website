@@ -333,7 +333,7 @@ header.nav{
 @media(max-width:860px){.trust-logos{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:480px){.trust-logos{grid-template-columns:repeat(3,1fr)}}
 .trust-logos img{background:#0b1a2c;border:1px solid var(--line);border-radius:12px;padding:14px;height:84px;width:100%;object-fit:contain}
-.trust-logos a{display:block;border-radius:12px;transition:transform .2s,box-shadow .2s}
+.trust-logos a{display:flex;align-items:center;justify-content:center;border-radius:12px;transition:transform .2s,box-shadow .2s}
 .trust-logos a:hover{transform:translateY(-3px);box-shadow:0 10px 24px -10px rgba(0,0,0,.7),0 0 0 2px rgba(55,198,201,.45)}
 .trust-logos a img{display:block}
 .trust-logos.small{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
@@ -345,7 +345,7 @@ header.nav{
 .trust-box h3{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
 .trust-box p{color:var(--muted);font-size:.86rem;margin-top:12px}
 .trust-box:has(.trust-partner){display:flex;flex-direction:column}
-.trust-partner{flex:1;display:flex;align-items:center}
+.trust-partner{flex:1;display:flex;align-items:center;justify-content:center}
 .trust-partner a{display:inline-block;padding:6px 0;transition:opacity .2s}
 .trust-partner a:hover{opacity:.8}
 .trust-partner img{height:40px;width:auto;display:block}

@@ -199,4 +199,37 @@ if (fs.existsSync(smPath)) {
   sm = sm.replace('</urlset>', add + '</urlset>');
   fs.writeFileSync(smPath, sm);
 }
-console.log(`Sitio generado en ${path.relative(ROOT, OUT) || OUT}: ${files.length} archivos, ${made} páginas en español.`);
+
+// ---------- redirecciones de la web antigua (WordPress hasta 2026) ----------
+// URLs antiguas que Google aún tenía (Search Console, 19/11/2026) → su equivalente actual.
+// GitHub Pages no permite redirecciones de servidor: se crea una página mínima con redirección inmediata
+// (meta refresh 0 + location.replace), que Google trata como redirección permanente, y canonical al destino.
+// No se añaden al sitemap. Si una ruta ya existe en el sitio, NO se sobrescribe (aviso y se salta).
+const REDIRECTS = {
+  'en/': '/', 'en/home/': '/', 'en/technologies/': '/',
+  'en/tedepad/': '/tedepad/', 'en/anisakischeck/': '/anisakischeck/',
+  'en/producto/pinger-5-unidades/': '/shop/product/?sku=PINGER-5',
+  'en/producto/pinger-10-units/': '/shop/product/?sku=PINGER-10',
+  'productos/': '/es/', 'photonics/': '/es/',
+  'scanisakis/': '/es/anisakischeck/scanisakis/',
+  'terminos-y-condiciones/': '/es/legal.html',
+  'producto/pinger-3-unidades/': '/es/shop/product/?sku=PINGER-3',
+  'producto/pinger-5-unidades/': '/es/shop/product/?sku=PINGER-5',
+  'producto/pinger-10-unidades/': '/es/shop/product/?sku=PINGER-10',
+};
+let redirs = 0;
+for (const [from, to] of Object.entries(REDIRECTS)) {
+  const file = path.join(OUT, from, 'index.html');
+  if (fs.existsSync(file)) { console.warn(`Redirección saltada: /${from} ya existe en el sitio`); continue; }
+  const lang = to.startsWith('/es/') ? 'es' : 'en', t = attrEsc(to);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, `<!DOCTYPE html>
+<html lang="${lang}"><head><meta charset="utf-8"><title>Marexi</title>
+<link rel="canonical" href="${SITE}${t}">
+<meta http-equiv="refresh" content="0; url=${t}">
+<script>location.replace(${JSON.stringify(to)}+location.hash)</script>
+</head><body><p><a href="${t}">marexi.com${t}</a></p></body></html>
+`);
+  redirs++;
+}
+console.log(`Sitio generado en ${path.relative(ROOT, OUT) || OUT}: ${files.length} archivos, ${made} páginas en español, ${redirs} redirecciones.`);

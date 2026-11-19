@@ -47,6 +47,7 @@
 
 /* mapa del sitio en el pie (igual que la portada) */
 .foot-sitemap{max-width:var(--maxw);margin:0 auto 22px;padding:0 24px 22px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left}.foot-sitemap h6{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}.foot-sitemap a{display:block;color:var(--faint);font-size:.83rem;margin-bottom:7px;text-decoration:none;transition:.15s}.foot-sitemap a:hover{color:var(--ink)}@media(max-width:640px){.foot-sitemap{grid-template-columns:1fr 1fr}}
+.box p.auto{margin:28px auto 0;font-size:.9rem;color:var(--faint)}
 </style>
 </head>
 <body>
@@ -71,6 +72,7 @@
       <a class="btn" href="/" data-es="← Ir al inicio">← Go to homepage</a>
       <a class="btn ghost" href="mailto:info@marexi.com" data-es="Contactar">Contact us</a>
     </div>
+    <p class="auto" id="auto" data-es="Le llevamos a la página de inicio en unos segundos…">Taking you to the homepage in a few seconds…</p>
   </div>
 </main>
 
@@ -101,6 +103,12 @@
     var saved; try{ saved = localStorage.getItem('marexi-lang'); }catch(e){}
     if(saved === 'es' || (!saved && /^es\b/i.test(navigator.language || ''))) setLang('es');
   })();
+  // Página no encontrada: tras 6 s se lleva al visitante a la portada en su idioma (Google sigue viendo un 404).
+  // Las URLs antiguas con equivalente claro se redirigen antes, al momento (REDIRECTS en tools/build-es.mjs).
+  setTimeout(function(){
+    var es = document.documentElement.lang === 'es' || /^\/es\//.test(location.pathname);
+    location.replace(es ? '/es/' : '/');
+  }, 6000);
 </script>
 
 </body>

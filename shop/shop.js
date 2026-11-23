@@ -7,6 +7,15 @@
  * - Idioma: el de <html lang>. La versión /es/ la genera tools/build-es.mjs.
  */
 var SHOP_EMAIL = 'info@marexi.com';
+// Tienda oculta al público (23/11/2026, a petición de administración, P52) hasta que esté configurada como la
+// antigua: no hay enlaces a /shop/ en la web y cualquier página de la tienda lleva a la del Pinger®.
+// Para reabrirla: SHOP_PUBLIC = true, volver a poner los enlaces (ver el commit «Ocultar la tienda»),
+// quitar el noindex de shop/index.html, product y quote, y devolver /shop/ al sitemap.xml.
+var SHOP_PUBLIC = false;
+if (!SHOP_PUBLIC) {
+  location.replace((/^\/es\//.test(location.pathname) ? '/es' : '') +
+    (/\/shop\/product\//.test(location.pathname) ? '/pinger/v2-3/' : '/pinger/'));
+}
 // Pedidos por la web: cerrados hasta que funcione el pago con tarjeta (TPV Santander / Redsys, P52).
 // Administración no quiere pedidos sin pagar (23/11/2026). Con false, la página de finalizar pedido
 // muestra el carrito y un aviso para comprar escribiendo a info@marexi.com, sin formulario.

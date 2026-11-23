@@ -221,6 +221,34 @@ const REDIRECTS = {
   'empresa/': '/es/', 'inicio/': '/es/',
   'company/': '/', 'en/company/': '/', 'acoustics/': '/', 'defense/': '/',
   'anisakis/': '/', 'marelight/': '/', 'retroled/': '/anisakischeck/retroled/',
+  // 23/11/2026 (P70, revisión completa): resto de direcciones antiguas que Google tiene (Search Console:
+  // indexadas y no indexadas) y daban 404. Equivalente si es seguro; si no, portada. En la web antigua
+  // (WordPress) el español iba sin prefijo y el inglés en /en/.
+  'en/pinger/': '/pinger/', 'en/tunascan/': '/tunascan/', 'en/aquadef/': '/aquadef/',
+  'en/retroled/': '/anisakischeck/retroled/',
+  'matrixled/': '/es/anisakischeck/matrixled/', 'en/matrixled/': '/anisakischeck/matrixled/',
+  'scanisaki-uv-press/': '/es/anisakischeck/uvpress/', 'en/scanisaki-uv-press/': '/anisakischeck/uvpress/',
+  'en/scanisakis/': '/anisakischeck/scanisakis/',
+  'microwave/': '/es/tedepad/', 'en/microwave/': '/tedepad/',
+  'cdti-feder/': '/es/funding/', 'en/cdti-feder/': '/funding/',
+  'aviso-legal/': '/es/legal.html', 'politica-de-privacidad/': '/es/legal.html', 'politica-de-cookies/': '/es/legal.html',
+  'en/legal-notice/': '/legal.html', 'en/privacy-policy/': '/legal.html', 'en/cookies-policy/': '/legal.html',
+  'en/terms-and-conditions/': '/legal.html',
+  'categoria-producto/pinger/': '/es/shop/', 'en/categoria-producto/pinger-en/': '/shop/',
+  'en/producto/pinger-3-unidades/': '/shop/product/?sku=PINGER-3',
+  'producto/pinger-5-unidades/feed/': '/es/shop/product/?sku=PINGER-5',
+  'en/producto/pinger-5-unidades/feed/': '/shop/product/?sku=PINGER-5',
+  'carrito/': '/es/shop/cart/', 'finalizar-compra/': '/es/shop/checkout/',
+  'en/cart/': '/shop/cart/', 'en/checkout/': '/shop/checkout/',
+  'wp-content/uploads/2024/10/Pinger_ES-1.pdf': '/es/pinger/',
+  'wp-content/uploads/2024/10/Pinger_EN-1.pdf': '/pinger/',
+  'wp-content/uploads/2026/07/ACOUSTIC-CALIBRATION-TANK-TESTING-SERVICES_FERRI-MAREXI.pdf': '/acoustic-tank/',
+  'tecnologias/': '/es/', 'ai/': '/es/', 'mi-cuenta/': '/es/', 'author/admin01/': '/es/',
+  'en/acoustics/': '/', 'en/defense/': '/', 'en/photonics/': '/', 'en/ai/': '/', 'en/marelight/': '/',
+  'en/landing-page/': '/', 'en/my-account/': '/', 'en/author/admin01/': '/', 'anisakis_en/': '/',
+  'marelight/info@marexi.com/': '/', 'en/marelight/info@marexi.com/': '/',
+  'index.php': '/',
+  'wordpress/wp-content/uploads/2017/02/CORDIS_result_189395_en.pdf': '/',
 };
 let redirs = 0;
 for (const [from, to] of Object.entries(REDIRECTS)) {

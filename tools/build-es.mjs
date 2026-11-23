@@ -216,6 +216,11 @@ const REDIRECTS = {
   'producto/pinger-3-unidades/': '/es/shop/product/?sku=PINGER-3',
   'producto/pinger-5-unidades/': '/es/shop/product/?sku=PINGER-5',
   'producto/pinger-10-unidades/': '/es/shop/product/?sku=PINGER-10',
+  // 23/11/2026 (P70): enlaces antiguos que Google mostraba en su menú al buscar «marexi» y daban 404.
+  // Regla de Christian: si no hay un equivalente seguro, a la portada.
+  'empresa/': '/es/', 'inicio/': '/es/',
+  'company/': '/', 'acoustics/': '/', 'defense/': '/',
+  'anisakis/': '/', 'marelight/': '/', 'retroled/': '/anisakischeck/retroled/',
 };
 let redirs = 0;
 for (const [from, to] of Object.entries(REDIRECTS)) {

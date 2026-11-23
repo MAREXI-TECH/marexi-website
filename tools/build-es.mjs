@@ -219,7 +219,7 @@ const REDIRECTS = {
   // 23/11/2026 (P70): enlaces antiguos que Google mostraba en su menú al buscar «marexi» y daban 404.
   // Regla de Christian: si no hay un equivalente seguro, a la portada.
   'empresa/': '/es/', 'inicio/': '/es/',
-  'company/': '/', 'acoustics/': '/', 'defense/': '/',
+  'company/': '/', 'en/company/': '/', 'acoustics/': '/', 'defense/': '/',
   'anisakis/': '/', 'marelight/': '/', 'retroled/': '/anisakischeck/retroled/',
 };
 let redirs = 0;

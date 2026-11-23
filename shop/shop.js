@@ -7,6 +7,10 @@
  * - Idioma: el de <html lang>. La versión /es/ la genera tools/build-es.mjs.
  */
 var SHOP_EMAIL = 'info@marexi.com';
+// Pedidos por la web: cerrados hasta que funcione el pago con tarjeta (TPV Santander / Redsys, P52).
+// Administración no quiere pedidos sin pagar (23/11/2026). Con false, la página de finalizar pedido
+// muestra el carrito y un aviso para comprar escribiendo a info@marexi.com, sin formulario.
+var ORDERS_OPEN = false;
 var IMG_PINGER = '/pinger/pinger-device.webp';
 
 var PRODUCTS = {
@@ -135,11 +139,25 @@ function renderMini() {
   var box = document.getElementById('cartMini'), list = items(), f = document.getElementById('ordForm');
   if (!list.length) { box.innerHTML = '<p class="empty">' + T('Cart empty. ', 'Carrito vacío. ') + '<a href="' + base() + '/shop/">' + T('Go to catalogue', 'Ir al catálogo') + '</a></p>';
     if (f) f.style.display = 'none'; return; }
-  if (f) f.style.display = '';
+  if (f) f.style.display = ORDERS_OPEN ? '' : 'none';
   var r = '<table class="cart"><tbody>';
   list.forEach(function (x) { var p = PRODUCTS[x.sku], line = p.price_cents == null ? null : p.price_cents * x.qty;
     r += '<tr><td>' + esc(pName(p)) + ' × ' + x.qty + '</td><td class="num">' + (line == null ? T('on request', 'bajo consulta') : fmt(line)) + '</td></tr>'; });
-  box.innerHTML = r + '</tbody></table><div class="summary"><span>Subtotal</span><b>' + esc(totals(list).text) + '</b></div>';
+  box.innerHTML = r + '</tbody></table><div class="summary"><span>Subtotal</span><b>' + esc(totals(list).text) + '</b></div>' +
+    (ORDERS_OPEN ? '' : ordersClosedNotice(list));
+}
+// Aviso mientras los pedidos por la web están cerrados: el visitante escribe a info@ con su carrito ya redactado
+function ordersClosedNotice(list) {
+  var body = T('Hello, I would like to buy:', 'Hola, me gustaría comprar:') + '\n\n' +
+    list.map(function (x) { return '- ' + pName(PRODUCTS[x.sku]) + ' × ' + x.qty; }).join('\n') +
+    '\n\n' + T('Company:', 'Empresa:') + '\n' + T('Country:', 'País:') + '\n' + T('Shipping address:', 'Dirección de envío:') + '\n' + T('VAT / tax ID:', 'NIF / IVA:') + '\n';
+  var subj = T('Purchase enquiry — Pinger store', 'Consulta de compra — Tienda Pinger');
+  return '<div class="notice" style="margin-top:22px;padding:18px 20px;border:1px solid #87cefa;border-radius:12px">' +
+    '<p style="margin:0 0 8px"><b>' + T('Online card payment will be available soon.', 'El pago con tarjeta en la web estará disponible próximamente.') + '</b></p>' +
+    '<p style="margin:0 0 14px">' + T('To buy now, write to us at ', 'Para comprar ya, escríbanos a ') + '<a href="mailto:' + SHOP_EMAIL + '">' + SHOP_EMAIL + '</a>' +
+      T(' with the products you need and we will send you the details to complete your purchase.', ' con los productos que necesita y le enviaremos los datos para completar la compra.') + '</p>' +
+    '<div class="actions"><a class="btn" href="' + esc(mailtoUrl(subj, body)) + '">' + T('Write to us with this cart', 'Escribirnos con este carrito') + '</a>' +
+    '<a class="btn ghost" href="' + base() + '/shop/cart/">' + T('← Cart', '← Carrito') + '</a></div></div>';
 }
 
 // ---------- presupuesto (cabecera) ----------
@@ -183,6 +201,7 @@ function sendByEmail(kind, ref, subject, body, form) {
 }
 function submitOrder(e) {
   e.preventDefault();
+  if (!ORDERS_OPEN) return;   // pedidos cerrados: el formulario ni se muestra
   var err = document.getElementById('err'); err.textContent = '';
   if (!checkCommon(['name', 'company', 'email', 'country'], err)) return;
   var list = items(); if (!list.length) { err.textContent = T('Your cart is empty.', 'Su carrito está vacío.'); return; }

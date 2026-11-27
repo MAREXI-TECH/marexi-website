@@ -115,6 +115,21 @@
   .plogo{margin:0 0 16px;line-height:0}
   .plogo img{width:auto;max-width:min(340px,86%);display:inline-block;opacity:.95}
   @media(max-width:640px){.plogo{zoom:.8}}
+
+  /* Equipos y medios propios (27/11/2026) */
+  .du-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:760px}
+  .du-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 24px;text-align:left}
+  .du-card h4{margin:0 0 14px;font-size:1.05rem}
+  .du-card p{color:var(--muted);margin:0 0 14px;line-height:1.55}
+  .du-spec{width:100%;border-collapse:collapse}
+  .du-spec th,.du-spec td{padding:9px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.45;font-size:.93rem}
+  .du-spec tr:last-child th,.du-spec tr:last-child td{border-bottom:0}
+  .du-spec th{width:38%;font-weight:600;padding-right:14px}
+  .du-spec td{color:var(--muted)}
+  .grid .card-img{height:auto;aspect-ratio:5/2}
+  .grid .card-img img{object-fit:contain}
+  .du-link{display:block;margin-top:10px;color:var(--violet);text-decoration:none;font-weight:600;line-height:1.4}
+  @media (max-width:780px){.du-grid{grid-template-columns:1fr}}
 </style>
 <style>/* Contacto + pie de la portada (idénticos en todas las páginas de producto) */
 .hf-root{--navy:#060f1d;--surface:rgba(12,32,54,.68);--line:rgba(30,65,95,.8);--ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;--accent:#ff6a4d;--cyan:#37c6c9;--green:#4ade80;--maxw:1280px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.65;color:var(--ink);text-align:left}
@@ -247,22 +262,22 @@
     <div class="section-title" data-es="Capacidades">Capabilities</div>
     <div class="grid">
       <div class="card">
-        <div class="card-img"><img width="800" height="800" src="img-acoustic.jpeg" alt="Underwater Pinger® array for acoustic area isolation"></div>
+        <div class="card-img"><img width="800" height="320" src="/dual-use/cap-aislamiento.svg" alt="Acoustic area isolation with a Pinger array (illustration)"></div>
         <h3 data-es="Aislamiento acústico de zonas" aria-level="2">Acoustic area isolation</h3>
         <p data-es="Conjuntos de disuasores acústicos Pinger® que delimitan y protegen zonas marinas, manteniendo alejados a los animales durante operaciones de buceo y estudios acústicos. Reduce el impacto ambiental a la vez que asegura el perímetro.">Arrays of Pinger® acoustic deterrent devices define and protect marine zones — keeping animals clear during underwater diving operations and acoustic surveys. Reduces environmental impact while securing the perimeter.</p>
       </div>
       <div class="card">
-        <div class="card-img"><img width="800" height="800" src="img-noise.jpeg" alt="Aerial view of underwater sensor array for noise mapping"></div>
+        <div class="card-img"><img width="800" height="320" src="/dual-use/cap-ruido.svg" alt="Underwater noise map from a sensor network (illustration)"></div>
         <h3 data-es="Mapeo de ruido submarino" aria-level="2">Underwater noise mapping</h3>
         <p data-es="Monitorización en tiempo real de mamíferos marinos para evitar impactos ambientales durante operaciones sensibles. Flujos de datos multisensor complejos para el mapeo y registro continuo del entorno acústico submarino.">Real-time marine mammal monitoring to prevent environmental impacts during sensitive operations. Complex multi-sensor data flows for continuous mapping and recording of underwater acoustic environments.</p>
       </div>
       <div class="card">
-        <div class="card-img icons" role="img" aria-label="AI image segmentation"><svg width="54" height="34" viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 17h6M12 9v16M18 4v26M24 11v12M30 6v22M36 13v8M42 8v18M48 15v4"/></svg><svg width="48" height="34" viewBox="0 0 48 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17C8 7.5 15.5 3 24 3s16 4.5 22 14c-6 9.5-13.5 14-22 14S8 26.5 2 17z"/><circle cx="24" cy="17" r="6.5"/><circle cx="24" cy="17" r="1.6" fill="currentColor"/></svg></div>
+        <div class="card-img"><img width="800" height="320" src="/dual-use/cap-segmentacion.svg" alt="AI image segmentation and object detection (illustration)"></div>
         <h3 data-es="Segmentación de imagen con IA" aria-level="2">AI image segmentation</h3>
         <p data-es="Sistema de visión artificial que divide la imagen en regiones precisas para detectar y clasificar objetos. Aplicado a defensa, robótica y medicina: reconocimiento de objetos, detección de patrones, videovigilancia y navegación autónoma.">Computer vision system that divides imagery into precise regions for object detection and classification. Applied to defence, robotics and medicine: object recognition, pattern detection, video surveillance and autonomous navigation.</p>
       </div>
       <div class="card">
-        <div class="card-img icons" role="img" aria-label="Multispectral analysis"><svg width="54" height="34" viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 17h6M12 9v16M18 4v26M24 11v12M30 6v22M36 13v8M42 8v18M48 15v4"/></svg><svg width="48" height="34" viewBox="0 0 48 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17C8 7.5 15.5 3 24 3s16 4.5 22 14c-6 9.5-13.5 14-22 14S8 26.5 2 17z"/><circle cx="24" cy="17" r="6.5"/><circle cx="24" cy="17" r="1.6" fill="currentColor"/></svg></div>
+        <div class="card-img"><img width="800" height="320" src="/dual-use/cap-multiespectral.svg" alt="Multispectral analysis: image bands and reflectance curves (illustration)"></div>
         <h3 data-es="Análisis multiespectral" aria-level="2">Multispectral analysis</h3>
         <p data-es="Análisis de firmas espectrales para identificar elementos concretos en imágenes aéreas. Imagen multiespectral, fotointerpretación y teledetección: análisis de canales operativos y de reflectancia para clasificar superficies.">Spectral signature analysis to identify specific elements in aerial imagery. Multispectral imaging, photointerpretation and remote sensing — operational and reflectance channel analysis for surface classification.</p>
       </div>
@@ -298,6 +313,20 @@
           <h4 data-es="Inteligencia artificial" aria-level="3">Artificial Intelligence</h4>
           <p data-es="Simulación por máquina de la inteligencia humana: aprendizaje, razonamiento y autocorrección. Aplicada al reconocimiento de patrones, la detección de anomalías y la toma de decisiones autónoma.">Machine simulation of human intelligence — learning, reasoning and self-correction. Applied to pattern recognition, anomaly detection and autonomous decision-making.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-title" data-es="Medios propios">In-house facilities</div>
+    <div class="du-grid">
+      <div class="du-card">
+        <h4 data-es="Medios de ensayo">Test facilities</h4>
+        <p data-es="Ensayamos y validamos los equipos en nuestras propias instalaciones antes de llevarlos al mar.">We test and validate equipment in our own facilities before taking it to sea.</p>
+        <a class="du-link" href="/acoustic-tank/" data-es="Piscina acústica: calibración y ensayos bajo el agua →">Acoustic water tank: underwater calibration and testing →</a>
+        <a class="du-link" href="/cylinder/" data-es="Cilindro hidrostático: ensayos de presión de componentes y electrónica →">Hydrostatic cylinder: pressure testing of components and electronics →</a>
       </div>
     </div>
   </div>

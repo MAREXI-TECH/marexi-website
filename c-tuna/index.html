@@ -70,6 +70,25 @@
   .kindb-line{color:#7cc8f5;border:1px solid rgba(0,158,224,.6)}
   .kindb-service{color:#7fe3c4;border:1px solid rgba(127,227,196,.6)}
   .kindb-product{color:#d5dfea;border:1px solid rgba(213,223,234,.35)}
+
+  /* Logo pequeño, imagen a un lado y texto al otro; módulos (27/11/2026) */
+  .plogo-ss{margin:0 auto 16px}.plogo-ss img{height:40px;width:auto;display:inline-block}
+  .prod-shot{display:block;margin:0 auto;width:100%}
+  .prod-shot img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line)}
+  .prod-feature{display:grid;grid-template-columns:var(--pf-cols,1.25fr 1fr);gap:36px;align-items:center;max-width:1040px;margin:44px auto 0;text-align:left}
+  .pf-text{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;text-align:left}
+  .pf-text h3{margin:0 0 14px;font-size:1.15rem}
+  .pf-text ul,.mod ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .pf-text li,.mod li{position:relative;padding-left:26px;color:var(--muted);line-height:1.5;text-align:left}
+  .pf-text li:before,.mod li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  .mods-block{max-width:1040px;margin:56px auto 0;text-align:left}
+  .mods-block h3{text-align:center;margin:0 0 20px;font-size:1.3rem}
+  .mods{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .mod{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px}
+  .mod-n{display:inline-block;color:var(--accent);font-weight:800;font-size:.85rem;letter-spacing:.1em;margin-bottom:6px}
+  .mod h4{margin:0 0 14px;font-size:1.05rem}
+  .mods .mod li.mx-j{text-align:left!important}
+  @media (max-width:860px){.prod-feature,.mods{grid-template-columns:1fr;gap:22px}}
 </style>
 <style>/* Contacto + pie de la portada (idénticos en todas las páginas de producto) */
 .hf-root{--navy:#060f1d;--surface:rgba(12,32,54,.68);--line:rgba(30,65,95,.8);--ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;--accent:#ff6a4d;--cyan:#37c6c9;--green:#4ade80;--maxw:1280px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.65;color:var(--ink);text-align:left}
@@ -167,12 +186,43 @@
 
 <section class="hero">
   <div class="wrap">
+    <div class="plogo-ss"><img src="/logos/c-tuna.png" alt="" width="776" height="162"></div>
     <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
     <div class="eyebrow" data-es="En desarrollo">In development</div>
     <h1>C-TUNA</h1>
     <p class="lede" data-es="Sistema automático de inspección a bordo de atunes capturados en embarcaciones atuneras, mediante visión artificial e inteligencia artificial para la detección y clasificación de diferentes especies de túnidos.">Automatic on-board inspection system for tuna caught at sea. Uses computer vision and artificial intelligence to detect and classify different tuna species directly on the vessel's fish deck.</p>
-    <div class="art"><img src="/logos/c-tuna.png" alt="C-TUNA" width="776" height="162"></div>
-    <p class="note" data-es="Más información próximamente">More information coming soon</p>
+    <div class="prod-feature" style="--pf-cols:1.25fr 1fr">
+      <div class="prod-shot"><img src="/c-tuna/ctuna-segmentacion.webp" width="1400" height="788" alt="C-TUNA — AI segmentation of tuna (render)"></div>
+      <div class="pf-text">
+        <h3 data-es="Qué hace">What it does</h3>
+        <ul>
+          <li data-es="Analiza cada salabardeo mientras los atunes pasan por una zona de inspección.">Analyses each brail as the tuna pass through an inspection area.</li>
+          <li data-es="Visión artificial e inteligencia artificial para detectar y separar cada atún en la imagen.">Computer vision and artificial intelligence to detect and separate each tuna in the image.</li>
+          <li data-es="Clasifica cada ejemplar por especie y estima su peso y su biometría.">Classifies each fish by species and estimates its weight and biometrics.</li>
+          <li data-es="Compara el peso total estimado con el que registra la pasteca inteligente (iPasteca).">Compares the estimated total weight with the one recorded by the smart block (iPasteca).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mods-block">
+      <h3 data-es="Tres módulos">Three modules</h3>
+      <div class="mods">
+        <div class="mod"><span class="mod-n">01</span><h4 data-es="Captura">Capture</h4><ul>
+            <li data-es="2 cámaras industriales de alta velocidad (30-60 fps), 2 perfiladores láser 3D y 2 radares de velocidad.">2 high-speed industrial cameras (30-60 fps), 2 3D laser profilers and 2 speed radars.</li>
+            <li data-es="Detecta automáticamente el paso de cada pez por la zona de inspección.">Automatically detects each fish passing through the inspection area.</li>
+            <li data-es="Graba vídeo con los datos de los sensores sincronizados y lo organiza por salabardeos.">Records video with synchronised sensor data and organises it by brail.</li>
+          </ul></div>
+        <div class="mod"><span class="mod-n">02</span><h4 data-es="Segmentación con IA">AI segmentation</h4><ul>
+            <li data-es="Detecta los atunes en cada imagen y crea la silueta precisa de cada uno.">Detects the tuna in each image and creates the precise silhouette of each one.</li>
+            <li data-es="Sigue a cada atún entre fotogramas y evita contarlo dos veces.">Tracks each tuna across frames and avoids counting it twice.</li>
+            <li data-es="Extrae una imagen individual de cada atún detectado.">Extracts an individual image of each detected tuna.</li>
+          </ul></div>
+        <div class="mod"><span class="mod-n">03</span><h4 data-es="Clasificación y pesaje">Classification and weighing</h4><ul>
+            <li data-es="Identifica la especie por la forma de las aletas, la coloración y las proporciones del cuerpo.">Identifies the species by fin shape, colouring and body proportions.</li>
+            <li data-es="Estima peso y biometría por capas: reconstruye los atunes parcialmente ocultos y estima los ocultos con el perfilómetro láser.">Estimates weight and biometrics layer by layer: reconstructs partly hidden tuna and estimates fully hidden ones with the laser profiler.</li>
+            <li data-es="Contrasta el peso total del salabardeo con la iPasteca para ajustar los algoritmos.">Checks the total brail weight against the iPasteca to adjust the algorithms.</li>
+          </ul></div>
+      </div>
+    </div>
   </div>
 </section>
 

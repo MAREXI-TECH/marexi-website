@@ -70,6 +70,31 @@
   .kindb-line{color:#7cc8f5;border:1px solid rgba(0,158,224,.6)}
   .kindb-service{color:#7fe3c4;border:1px solid rgba(127,227,196,.6)}
   .kindb-product{color:#d5dfea;border:1px solid rgba(213,223,234,.35)}
+
+  /* Logo pequeño, máquina a un lado y texto al otro (27/11/2026) */
+  .plogo-ss{margin:0 auto 16px}.plogo-ss img{height:48px;width:auto;display:inline-block}
+  .prod-shot{display:block;margin:0 auto;width:100%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.55))}
+  .prod-shot img{width:100%;height:auto;display:block}
+  .prod-feature{display:grid;grid-template-columns:var(--pf-cols,1.25fr 1fr);gap:36px;align-items:center;max-width:1040px;margin:44px auto 0;text-align:left}
+  .pf-text{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;text-align:left}
+  .pf-text h3{margin:0 0 14px;font-size:1.15rem}
+  .pf-text ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .pf-text li{position:relative;padding-left:26px;color:var(--muted);line-height:1.5;text-align:left}
+  .pf-text li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  @media (max-width:780px){.prod-feature{grid-template-columns:1fr;gap:22px}}
+
+  .spec-block{max-width:1040px;margin:48px auto 0;text-align:left}
+  .spec-block h3{text-align:center;margin:0 0 18px;font-size:1.3rem}
+  .spec{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .spec th,.spec td{padding:13px 18px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.5}
+  .spec tr:last-child th,.spec tr:last-child td{border-bottom:0}
+  .spec th{width:30%;color:#eef4fb;font-weight:600}
+  .spec td{color:var(--muted)}
+  .gal{max-width:1040px;margin:28px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left}
+  .gal figure{margin:0}
+  .gal img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line)}
+  .gal figcaption{margin-top:8px;color:var(--muted);font-size:.9rem}
+  @media (max-width:780px){.gal{grid-template-columns:1fr}.spec th{width:40%}}
 </style>
 <style>/* Contacto + pie de la portada (idénticos en todas las páginas de producto) */
 .hf-root{--navy:#060f1d;--surface:rgba(12,32,54,.68);--line:rgba(30,65,95,.8);--ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;--accent:#ff6a4d;--cyan:#37c6c9;--green:#4ade80;--maxw:1280px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.65;color:var(--ink);text-align:left}
@@ -167,12 +192,40 @@
 
 <section class="hero">
   <div class="wrap">
+    <div class="plogo-ss"><img src="/logos/tclean.png" alt="" width="800" height="307"></div>
     <span class="cat cat-vision" data-es="Visión artificial">Computer Vision</span>
     <div class="eyebrow" data-es="En desarrollo">In development</div>
     <h1>T-CLEAN®</h1>
     <p class="lede" data-es="Sistema automático de pelado de atunes mediante visión artificial y robótica de precisión. Genera un mapa 3D completo de la superficie de cada pieza para minimizar mermas a velocidad de producción.">Automated tuna peeling system combining computer vision and precision robotics. Generates a complete 3D surface map of each fish to minimise waste at full production speed.</p>
-    <div class="art"><img src="/logos/tclean.png" alt="T-CLEAN®" width="800" height="307"></div>
-    <p class="note" data-es="Más información próximamente">More information coming soon</p>
+    <div class="prod-feature" style="--pf-cols:1.25fr 1fr">
+      <div class="prod-shot"><img src="/t-clean/tclean-render.webp" width="1116" height="891" alt="T-CLEAN® — automatic tuna peeling system (render)"></div>
+      <div class="pf-text">
+        <h3 data-es="Así funciona">How it works</h3>
+        <ul>
+          <li data-es="Pela atunes cocidos de forma automática, pieza a pieza, sobre una banda transportadora.">Automatically peels cooked tuna, piece by piece, on a conveyor belt.</li>
+          <li data-es="Perfilometría láser 3D: escanea la superficie de cada atún para adaptar el pelado a su forma.">3D laser profilometry: scans the surface of each tuna to adapt the peeling to its shape.</li>
+          <li data-es="Actuadores independientes con grado de pelado ajustable, para reducir la merma.">Independent actuators with adjustable peeling intensity, to reduce waste.</li>
+          <li data-es="Hasta 259 atunes por hora con pelado completo de los dos laterales (prototipo).">Up to 259 tuna per hour with both sides fully peeled (prototype).</li>
+          <li data-es="Pantalla táctil con modos de marcha, paro y limpieza.">Touch screen with run, stop and cleaning modes.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="spec-block">
+      <h3 data-es="Ficha técnica del prototipo">Prototype specifications</h3>
+      <table class="spec">
+          <tr><th data-es="Producto">Product</th><td data-es="Atún cocido">Cooked tuna</td></tr>
+          <tr><th data-es="Rendimiento">Throughput</th><td data-es="517 atunes/h por lateral · 259 atunes/h con pelado completo (unos 570 kg/h con un peso medio de 2,2 kg)">517 tuna/h per side · 259 tuna/h fully peeled (about 570 kg/h with an average weight of 2.2 kg)</td></tr>
+          <tr><th data-es="Velocidad de la banda">Belt speed</th><td data-es="130 mm/s">130 mm/s</td></tr>
+          <tr><th data-es="Dimensiones">Dimensions</th><td data-es="3300 mm de largo × 1985 mm de alto × 1600 mm de ancho (2500 mm con las puertas laterales abiertas)">3300 mm long × 1985 mm high × 1600 mm wide (2500 mm with the side doors open)</td></tr>
+          <tr><th data-es="Alimentación">Power supply</th><td data-es="230/380 V trifásica, 60 Hz (otras tensiones y frecuencias bajo demanda)">230/380 V three-phase, 60 Hz (other voltages and frequencies on request)</td></tr>
+          <tr><th data-es="Potencia">Power</th><td data-es="2.500 W máxima · 1.500 W de consumo medio estimado">2,500 W maximum · 1,500 W estimated average consumption</td></tr>
+          <tr><th data-es="Control">Control</th><td data-es="Pantalla táctil con producción de las últimas 8 horas; maniobra a 24 V">Touch screen showing the last 8 hours of production; 24 V control circuit</td></tr>
+      </table>
+    </div>
+    <div class="gal">
+      <figure><img src="/t-clean/tclean-banda.webp" width="1000" height="500" loading="lazy" alt="T-CLEAN® — peeling actuators over the conveyor belt"><figcaption data-es="Interior: los actuadores con sus rodillos de pelado sobre la banda.">Inside: the actuators with their peeling rollers over the belt.</figcaption></figure>
+      <figure><img src="/t-clean/tclean-rodillos.webp" width="1000" height="500" loading="lazy" alt="T-CLEAN® — peeling roller"><figcaption data-es="Detalle de un rodillo de pelado.">Close-up of a peeling roller.</figcaption></figure>
+    </div>
   </div>
 </section>
 

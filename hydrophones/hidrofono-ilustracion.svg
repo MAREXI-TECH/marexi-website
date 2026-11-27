@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 400" role="img" aria-label="Hydrophone technical drawing">
+  <!-- Opción 3: plano técnico (blueprint) con partes señaladas -->
+  <defs>
+    <pattern id="rej" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#87cefa" stroke-opacity=".08"/></pattern>
+  </defs>
+  <rect width="560" height="400" rx="18" fill="#0c2236"/>
+  <rect width="560" height="400" rx="18" fill="url(#rej)"/>
+  <rect x=".5" y=".5" width="559" height="399" rx="18" fill="none" stroke="#1e415f"/>
+  <g fill="none" stroke="#cfe6f7" stroke-width="2.6" stroke-linejoin="round">
+    <path d="M80 200 H210"/>                                  <!-- cable -->
+    <rect x="210" y="186" width="70" height="28" rx="4"/>     <!-- funda -->
+    <rect x="280" y="178" width="26" height="44" rx="3"/>     <!-- casquillo -->
+    <path d="M306 170 h70 a30 30 0 0 1 0 60 h-70 z"/>          <!-- cápsula -->
+    <path d="M318 182 h56" stroke-opacity=".4"/>
+  </g>
+  <!-- cotas -->
+  <g stroke="#87cefa" stroke-opacity=".7" fill="#87cefa" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12">
+    <path d="M210 250 H406" stroke-dasharray="4 4"/><path d="M210 244 v12 M406 244 v12"/>
+  </g>
+  <!-- llamadas -->
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" font-size="19" font-weight="600" fill="#eef4fb">
+    <path d="M370 170 L400 124 H530" fill="none" stroke="#37c6c9"/><circle cx="370" cy="170" r="3.5" fill="#37c6c9"/>
+    <text x="396" y="92">Elemento sensor</text><text x="396" y="114" font-size="15" fill="#9fb4cc">Sensing element</text>
+    <path d="M292 178 L246 104 H150" fill="none" stroke="#37c6c9"/><circle cx="292" cy="178" r="3.5" fill="#37c6c9"/>
+    <text x="150" y="76">Cuerpo</text><text x="150" y="98" font-size="15" fill="#9fb4cc">Housing</text>
+    <path d="M140 200 L120 296 H40" fill="none" stroke="#37c6c9"/><circle cx="140" cy="200" r="3.5" fill="#37c6c9"/>
+    <text x="40" y="316">Cable de señal</text><text x="40" y="338" font-size="15" fill="#9fb4cc">Signal cable</text>
+  </g>
+  <text x="30" y="40" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" letter-spacing="2" fill="#9fb4cc">HIDRÓFONO · HYDROPHONE</text>
+</svg>

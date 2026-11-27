@@ -119,6 +119,18 @@
   .kindb-line{color:#7cc8f5;border:1px solid rgba(0,158,224,.6)}
   .kindb-service{color:#7fe3c4;border:1px solid rgba(127,227,196,.6)}
   .kindb-product{color:#d5dfea;border:1px solid rgba(213,223,234,.35)}
+
+  /* Foto de la máquina a un lado y texto al otro (27/11/2026) */
+  .prod-feature{display:grid;grid-template-columns:var(--pf-cols,1.25fr 1fr);gap:36px;align-items:center;max-width:1040px;margin:44px auto 0;text-align:left}
+  .prod-feature .prod-shot{margin:0 auto;width:100%}
+  .pf-text{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;text-align:left}
+  .pf-text li{text-align:left;hyphens:none}
+  .pf-text h3{margin:0 0 14px;font-size:1.15rem}
+  .pf-text ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .pf-text li{position:relative;padding-left:26px;color:var(--muted);line-height:1.5}
+  .pf-text li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  .pf-text li b{color:var(--text,#eef4fb);font-weight:600}
+  @media (max-width:780px){.prod-feature{grid-template-columns:1fr;gap:22px}}
 </style>
 <style>/* Contacto + pie de la portada (idénticos en todas las páginas de producto) */
 .hf-root{--navy:#060f1d;--surface:rgba(12,32,54,.68);--line:rgba(30,65,95,.8);--ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;--accent:#ff6a4d;--cyan:#37c6c9;--green:#4ade80;--maxw:1280px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.65;color:var(--ink);text-align:left}
@@ -253,9 +265,20 @@
         <span data-es="Rango de talla">Size range</span>
       </div>
     </div>
-    <div class="prod-shot card">
-      <img width="500" height="500" src="../tunascan_1.webp" alt="Tunascan® — automatic tuna classification system">
+    <div class="prod-feature" style="--pf-cols:1.2fr 1fr">
+    <div class="prod-shot transparent" style="max-width:100%">
+      <img width="737" height="686" src="/tunascan/tunascan-linea.webp" alt="Tunascan® — automatic tuna classification system">
     </div>
+    <div class="pf-text">
+      <h3 data-es="En pocas palabras">At a glance</h3>
+      <ul>
+        <li data-es="Perfilometría láser 3D e inteligencia artificial.">3D laser profilometry and artificial intelligence.</li>
+        <li data-es="Identifica, pesa y clasifica cada atún por especie y talla.">Identifies, weighs and sorts each tuna by species and size.</li>
+        <li data-es="Hasta 50 toneladas por hora con un solo operario.">Up to 50 tonnes per hour with a single operator.</li>
+        <li data-es="Resultados en tiempo real en el ERP de la planta.">Real-time results in the plant's ERP.</li>
+      </ul>
+    </div>
+  </div>
   </div>
 </section>
 

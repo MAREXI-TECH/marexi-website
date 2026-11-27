@@ -54,6 +54,11 @@
        font-weight:700;font-size:.98rem;padding:13px 26px;border-radius:999px;transition:transform .15s}
   .cta:hover{transform:translateY(-2px)}
   .note{margin:26px auto 0;color:var(--gold);font-weight:600;font-size:.9rem}
+  .feat-title{margin:40px auto 16px;font-size:1.3rem}
+  .feats{list-style:none;padding:0;margin:0 auto;max-width:1000px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;text-align:left}
+  .feats li{flex:1 1 170px;max-width:220px;border:1px solid rgba(135,206,250,.25);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.03)}
+  .feats b{display:block;margin-bottom:4px}
+  .feats span{color:var(--muted);font-size:.92rem;line-height:1.45}
   .contact-band{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0;margin-top:40px}
   .contact-band .wrap{text-align:center}
   .contact-band .eyebrow{color:var(--accent)}
@@ -71,6 +76,39 @@
   .kindb-line{color:#7cc8f5;border:1px solid rgba(0,158,224,.6)}
   .kindb-service{color:#7fe3c4;border:1px solid rgba(127,227,196,.6)}
   .kindb-product{color:#d5dfea;border:1px solid rgba(213,223,234,.35)}
+
+  /* Logo pequeño, sensor a un lado y texto al otro (27/11/2026) */
+  .plogo-ss{margin:0 auto 16px}.plogo-ss img{height:48px;width:auto;display:inline-block}
+  .prod-shot{display:block;margin:0 auto;width:100%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.55))}
+  .prod-shot img{width:100%;height:auto;display:block}
+  .prod-feature{display:grid;grid-template-columns:var(--pf-cols,1.25fr 1fr);gap:36px;align-items:center;max-width:1040px;margin:44px auto 0;text-align:left}
+  .pf-text{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;text-align:left}
+  .pf-text h3{margin:0 0 14px;font-size:1.15rem}
+  .pf-text ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .pf-text li{position:relative;padding-left:26px;color:var(--muted);line-height:1.5;text-align:left}
+  .pf-text li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  @media (max-width:780px){.prod-feature{grid-template-columns:1fr;gap:22px}}
+
+  .app-block{display:grid;grid-template-columns:1.1fr 0.9fr;gap:36px;align-items:center;max-width:1040px;margin:48px auto 0;text-align:left}
+  .pf-text li b{color:#eef4fb;font-weight:600}
+  .phones{display:flex;gap:18px;justify-content:center}
+  .phones img{width:46%;max-width:220px;height:auto;filter:drop-shadow(0 18px 36px rgba(0,0,0,.55))}
+  .phones img:last-child{margin-top:44px}
+  @media (max-width:780px){.app-block{grid-template-columns:1fr;gap:24px}.phones img:last-child{margin-top:28px}}
+
+  .phones{gap:14px}
+  .phones img{width:31%;max-width:180px;margin:0!important}
+  .phones img:nth-child(2){transform:translateY(-22px)}
+  .portal-block{max-width:1040px;margin:64px auto 0;text-align:left}
+  .portal-title{text-align:center;margin:0 0 20px;font-size:1.3rem}
+  .browser{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0d1a2b;box-shadow:0 24px 48px rgba(0,0,0,.45)}
+  .browser img{display:block;width:100%;height:auto}
+  .browser-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#132840;border-bottom:1px solid var(--line)}
+  .browser-bar i{width:10px;height:10px;border-radius:50%;background:#2f4a66;display:block}
+  .browser-bar span{margin-left:10px;font-size:.8rem;color:var(--muted)}
+  .portal-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:center;margin-top:28px}
+  .cta-sec{margin-top:18px;background:transparent;border:1px solid var(--accent);color:var(--accent)}
+  @media (max-width:780px){.portal-grid{grid-template-columns:1fr}.phones img:nth-child(2){transform:none}}
 </style>
 <style>/* Contacto + pie de la portada (idénticos en todas las páginas de producto) */
 .hf-root{--navy:#060f1d;--surface:rgba(12,32,54,.68);--line:rgba(30,65,95,.8);--ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;--accent:#ff6a4d;--cyan:#37c6c9;--green:#4ade80;--maxw:1280px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.65;color:var(--ink);text-align:left}
@@ -168,14 +206,57 @@
 
 <section class="hero">
   <div class="wrap">
+    <div class="plogo-ss"><img src="/logos/seasampler.png" alt="" width="800" height="237"></div>
     <span class="cat cat-sensors" data-es="Sensores · Oceanografía">Sensors · Oceanography</span>
     <div class="eyebrow" data-es="En desarrollo">In development</div>
     <h1>SeaSampler®</h1>
     <p class="lede" data-es="Un proyecto innovador de participación basado en tecnología para la ciencia ciudadana marina, diseñado para convertir a los buceadores recreativos en sensores activos y observadores científicos.">An innovative technology-based participation project for marine citizen science. Designed to enhance diver engagement by turning them into active sensors and scientific observers.</p>
-    <p class="lede" style="margin-top:14px" data-es="Los buceadores llevan un sensor de temperatura y profundidad que mide la temperatura del agua a distintas profundidades de la columna de agua; los datos se envían con la app SeaSampler® (Android e iOS) al portal web, que los calibra y valida automáticamente y los conecta con plataformas científicas abiertas.">Divers carry a temperature and depth sensor that measures water temperature at different depths of the water column; the data are sent with the SeaSampler® app (Android and iOS) to the web portal, which calibrates and validates them automatically and connects them with open scientific platforms.</p>
     <a class="cta" href="https://seascale.marexi.com/accounts/login/" target="_blank" rel="noopener noreferrer" data-es="Acceder al portal →">Access portal →</a>
-    <div class="art"><img src="/logos/seasampler.png" alt="SeaSampler®" width="800" height="237"></div>
-    <p class="note" data-es="Más información próximamente">More information coming soon</p>
+    <div class="prod-feature" style="--pf-cols:0.9fr 1.1fr">
+      <div class="prod-shot" style="max-width:420px"><img src="/seasampler/seasampler-sensor.webp" width="485" height="307" alt="SeaSampler® — temperature and depth sensor"></div>
+      <div class="pf-text">
+        <h3 data-es="Cómo funciona">How it works</h3>
+        <ul>
+          <li data-es="El buceador lleva un sensor de temperatura y profundidad que mide la temperatura del agua a distintas profundidades.">Divers carry a temperature and depth sensor that measures water temperature at different depths.</li>
+          <li data-es="La app SeaSampler® (Android e iOS) envía los datos al portal web.">The SeaSampler® app (Android and iOS) sends the data to the web portal.</li>
+          <li data-es="El portal los calibra y valida automáticamente.">The portal calibrates and validates them automatically.</li>
+          <li data-es="Y los conecta con plataformas científicas abiertas.">And connects them with open scientific platforms.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="app-block">
+      <div class="pf-text">
+        <h3 data-es="La app SeaSampler®">The SeaSampler® app</h3>
+        <ul>
+          <li><b data-es="Conexión por Bluetooth">Bluetooth connection</b> <span data-es="Se vincula con el sensor y descarga sus datos.">Pairs with the sensor and downloads its data.</span></li>
+          <li><b data-es="Modo sin conexión">Offline mode</b> <span data-es="Se puede usar sin cobertura.">Can be used without coverage.</span></li>
+          <li><b data-es="Gráfica de cada inmersión">Chart of each dive</b> <span data-es="Temperatura frente a profundidad.">Temperature versus depth.</span></li>
+          <li><b data-es="Mapa">Map</b> <span data-es="Para marcar la posición de la inmersión.">To mark the position of the dive.</span></li>
+          <li><b data-es="Exportación a CSV">CSV export</b> <span data-es="Los datos de cada inmersión, en un archivo para compartir.">Each dive's data, in a file to share.</span></li>
+        </ul>
+      </div>
+      <div class="phones">
+        <img src="/seasampler/app-sensores.webp" width="440" height="915" loading="lazy" alt="SeaSampler® app — linked sensors">
+        <img src="/seasampler/app-grafica.webp" width="440" height="915" loading="lazy" alt="SeaSampler® app — depth and temperature chart of a dive">
+        <img src="/seasampler/app-ajustes.webp" width="440" height="915" loading="lazy" alt="SeaSampler® app — settings">
+      </div>
+    </div>
+    <div class="portal-block">
+      <h3 class="portal-title" data-es="El portal web">The web portal</h3>
+      <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>seascale.marexi.com</span></div>
+        <img src="/seasampler/portal-mapa.webp" width="1400" height="805" loading="lazy" alt="SeaSampler® web portal — map of dives (demo data)"></div>
+      <div class="portal-grid">
+        <div class="pf-text">
+          <ul>
+            <li><b data-es="Mapa de inmersiones">Map of dives</b> <span data-es="Todas las inmersiones, situadas donde se hicieron.">Every dive, placed where it was made.</span></li>
+            <li><b data-es="Gráfica de cada inmersión">Chart of each dive</b> <span data-es="Temperatura y profundidad a lo largo de la inmersión.">Temperature and depth throughout the dive.</span></li>
+            <li><b data-es="Filtros y gráfica de grupo">Filters and group chart</b> <span data-es="Por sensor y por fechas, y varias inmersiones en una misma gráfica.">By sensor and date, and several dives on the same chart.</span></li>
+          </ul>
+          <a class="cta cta-sec" href="https://seascale.marexi.com/demo/" target="_blank" rel="noopener noreferrer" data-es="Probar la demo →">Try the demo →</a>
+        </div>
+        <div class="browser"><img src="/seasampler/portal-grafica.webp" width="1400" height="416" loading="lazy" alt="SeaSampler® web portal — temperature and depth chart of a dive (demo data)"></div>
+      </div>
+    </div>
   </div>
 </section>
 

@@ -70,6 +70,28 @@
   .kindb-line{color:#7cc8f5;border:1px solid rgba(0,158,224,.6)}
   .kindb-service{color:#7fe3c4;border:1px solid rgba(127,227,196,.6)}
   .kindb-product{color:#d5dfea;border:1px solid rgba(213,223,234,.35)}
+
+  /* Logo pequeño, foto a un lado y texto al otro; ficha del preamplificador (27/11/2026) */
+  .plogo-ss{margin:0 auto 16px}.plogo-ss img{height:34px;width:auto;display:inline-block}
+  .prod-shot{display:block;margin:0 auto;width:100%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.55))}
+  .prod-shot img{width:100%;height:auto;display:block}
+  .prod-feature{display:grid;grid-template-columns:var(--pf-cols,1.25fr 1fr);gap:36px;align-items:center;max-width:1040px;margin:44px auto 0;text-align:left}
+  .pf-text{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;text-align:left}
+  .pf-text h3{margin:0 0 14px;font-size:1.15rem}
+  .pf-text ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .pf-text li{position:relative;padding-left:26px;color:var(--muted);line-height:1.5;text-align:left}
+  .pf-text li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  .spec-block{max-width:1040px;margin:52px auto 0;text-align:left}
+  .spec-block h3{text-align:center;margin:0 0 8px;font-size:1.3rem}
+  .spec-intro{text-align:center;color:var(--muted);margin:0 0 18px}
+  .spec{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .spec th,.spec td{padding:13px 18px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.5}
+  .spec tr:last-child th,.spec tr:last-child td{border-bottom:0}
+  .spec th{width:30%;font-weight:600}
+  .spec td{color:var(--muted)}
+  .spec-link{text-align:center;margin-top:18px}
+  .spec-link a{color:var(--accent);text-decoration:none;font-weight:600}
+  @media (max-width:780px){.prod-feature{grid-template-columns:1fr;gap:22px}.spec th{width:40%}}
 </style>
 <style>/* Contacto + pie de la portada (idénticos en todas las páginas de producto) */
 .hf-root{--navy:#060f1d;--surface:rgba(12,32,54,.68);--line:rgba(30,65,95,.8);--ink:#eef4fb;--muted:#9fb4cc;--faint:#6f88a3;--accent:#ff6a4d;--cyan:#37c6c9;--green:#4ade80;--maxw:1280px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.65;color:var(--ink);text-align:left}
@@ -167,13 +189,36 @@
 
 <section class="hero">
   <div class="wrap">
+    <div class="plogo-ss"><img src="/logos/hydrophones.png" alt="" width="900" height="148"></div>
     <span class="cat cat-acoustic" data-es="Acústica">Acoustic</span>
     <div class="eyebrow" data-es="Próximamente">Coming soon</div>
     <h1 data-es="Hidrófonos">Hydrophones</h1>
     <div class="tagline" data-es="Sensores acústicos subacuáticos">Underwater acoustic sensors</div>
     <p class="lede" data-es="Hidrófonos y transductores de diseño propio para caracterización, investigación y guiado de peces. Configuración singular o array. Electrónica de preamplificación, filtrado y almacenamiento / transmisión de datos.">Proprietary hydrophones and transducers for characterisation, research and fish guidance. Single and array configurations. Pre-amplification electronics, filtering and data storage / transmission.</p>
-    <div class="art"><img src="/logos/hydrophones.png" alt="Hydrophones" width="900" height="148"></div>
-    <p class="note" data-es="Más información próximamente">More information coming soon</p>
+    <div class="prod-feature" style="--pf-cols:0.9fr 1.1fr">
+      <div class="prod-shot" style="max-width:520px;filter:drop-shadow(0 18px 36px rgba(0,0,0,.45))"><img src="/hydrophones/hidrofono-ilustracion.svg" width="560" height="400" alt="Hydrophone technical drawing: sensing element, housing and signal cable"></div>
+      <div class="pf-text">
+        <h3 data-es="Qué ofrecemos">What we offer</h3>
+        <ul>
+          <li data-es="Hidrófonos y transductores de diseño propio.">Proprietary hydrophones and transducers.</li>
+          <li data-es="Para caracterización acústica, investigación y guiado de peces.">For acoustic characterisation, research and fish guidance.</li>
+          <li data-es="Configuración singular o en array.">Single or array configuration.</li>
+          <li data-es="Electrónica propia de preamplificación, filtrado y almacenamiento o transmisión de datos.">In-house preamplification, filtering and data storage or transmission electronics.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="spec-block">
+      <h3 data-es="Preamplificador para hidrófonos">Hydrophone preamplifier</h3>
+      <p class="spec-intro" data-es="Preamplificador de bajo ruido diseñado por Marexi para nuestros hidrófonos.">Low-noise preamplifier designed by Marexi for our hydrophones.</p>
+      <table class="spec">
+          <tr><th data-es="Ganancia">Gain</th><td data-es="Hasta 84 dB (±2 dB)">Up to 84 dB (±2 dB)</td></tr>
+          <tr><th data-es="Ancho de banda">Bandwidth</th><td data-es="Hasta 200 kHz">Up to 200 kHz</td></tr>
+          <tr><th data-es="Filtros">Filters</th><td data-es="Paso alto fijo a 1 kHz y paso bajo a 10 kHz que se puede activar o desactivar">Fixed 1 kHz high-pass and a 10 kHz low-pass that can be switched on or off</td></tr>
+          <tr><th data-es="Alimentación">Power supply</th><td data-es="Versión con regulador (alimentación bipolar hasta ±20 V) o sin regulador (±5 V); opción de tierra virtual cuando no hay alimentación bipolar">Regulated version (bipolar supply up to ±20 V) or unregulated (±5 V); virtual ground option when no bipolar supply is available</td></tr>
+          <tr><th data-es="Salida">Output</th><td data-es="Simple para cable coaxial o balanceada para par trenzado">Single-ended for coaxial cable or balanced for twisted pair</td></tr>
+      </table>
+      <p class="spec-link"><a href="/acoustic-tank/" data-es="Calibración de hidrófonos en nuestra piscina acústica →">Hydrophone calibration in our acoustic water tank →</a></p>
+    </div>
   </div>
 </section>
 
